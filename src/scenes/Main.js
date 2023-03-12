@@ -15,7 +15,7 @@ export class Main extends Phaser.Scene {
         Align.center(this.game, this.SplashScreen)
 
         this.input.on('pointerdown', () => {
-            this.scene.start('Scene1', { x: 880, y: 320, })
+            this.scene.start('Cutscene1', { x: 880, y: 320, })
         })
     }
     update() { }

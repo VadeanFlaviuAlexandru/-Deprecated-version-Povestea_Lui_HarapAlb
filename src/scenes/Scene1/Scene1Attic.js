@@ -24,14 +24,14 @@ export class Scene1Attic extends Phaser.Scene {
         this.registry.set("ExitAttic", 1)
         // player stuff
         this.cursors = this.input.keyboard.createCursorKeys();
-        window.player = this.player = this.add.rpgcharacter({
+        window.player = this.player = this.add.character({
             x: 560,
             y: 550,
-            name: 'zeta',
-            image: 'zeta',
+            name: 'HarapAlb',
+            image: 'HarapAlb',
             speed: 140
         })
-        this.player.setTexture("zeta", "zeta-front")
+        this.player.setTexture("HarapAlb", "HarapAlb-front")
         // map stuff
         const mapAttic = this.make.tilemap({ key: "mapAttic" });
         const tilesetAttic = mapAttic.addTilesetImage("InteriorTiles", "tilesAttic")
@@ -70,7 +70,7 @@ export class Scene1Attic extends Phaser.Scene {
             key: 'vision',
             add: false
         })
-        vision.scale = 1.25
+        vision.scale = 1.15
         rt.mask = new Phaser.Display.Masks.BitmapMask(this, vision)
         rt.mask.invertAlpha = true
         // camera
@@ -116,9 +116,9 @@ export class Scene1Attic extends Phaser.Scene {
 
         this.player.update();
         // dialog
-        if (this.gzDialog.visible) {
+        if (this.Dialog.visible) {
             if (this.cursors.space.isDown) {
-                this.gzDialog.display(false);
+                this.Dialog.display(false);
             }
             return false;
         }
@@ -130,7 +130,7 @@ export class Scene1Attic extends Phaser.Scene {
     }
 
     HitLayer(player, target) {
-        if (target.properties.portal && !this.gzDialog.visible) {
+        if (target.properties.portal && !this.Dialog.visible) {
             this.scene.start(target.properties.portal);
             this.scene.get("Cutscene3").events.once('start', () => {
                 this.scene.shutdown();
@@ -139,9 +139,9 @@ export class Scene1Attic extends Phaser.Scene {
     }
 
     HitScript(player, target) {
-        if (target.properties.name && !this.gzDialog.visible) {
+        if (target.properties.name && !this.Dialog.visible) {
             player.anims.stopAfterRepeat(0);
-            this.gzDialog.setText(this.script[player.name][target.properties.name]);
+            this.Dialog.setText(this.script[player.name][target.properties.name]);
         }
     }
 }

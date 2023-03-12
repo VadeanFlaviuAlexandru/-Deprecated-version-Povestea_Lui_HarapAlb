@@ -31,7 +31,7 @@ export class Cutscene2 extends Phaser.Scene {
         let currentDialog = 0;
 
         this.Background = this.add.image(10, 10, Backgrounds[currentDialog])
-        this.gzDialog.setText(Dialogs[currentDialog])
+        this.Dialog.setText(Dialogs[currentDialog])
 
         Align.ScaleToGameW(this.game, this.Background, 0.8)
         Align.center(this.game, this.Background)
@@ -51,15 +51,11 @@ export class Cutscene2 extends Phaser.Scene {
             }
 
             this.Background = this.add.image(10, 10, Backgrounds[currentDialog])
-            this.gzDialog.setText(Dialogs[currentDialog])
+            this.Dialog.setText(Dialogs[currentDialog])
 
             Align.ScaleToGameW(this.game, this.Background, 0.8)
             Align.center(this.game, this.Background)
         })
-        
-        // attic
-        this.registry.set("ExitAttic", 0)
-        console.log(this.registry.get("ExitAttic"))
     }
     update() { }
 }

@@ -1,5 +1,4 @@
 import { Anims } from '../../plugins/anims';
-import { Cutscene1 } from './Cutscene1';
 
 export class Scene1 extends Phaser.Scene {
     constructor() {
@@ -30,14 +29,14 @@ export class Scene1 extends Phaser.Scene {
     create() {
         // player stuff
         this.cursors = this.input.keyboard.createCursorKeys();
-        window.player = this.player = this.add.rpgcharacter({
+        window.player = this.player = this.add.character({
             x: this.spawnX,
             y: this.spawnY,
-            name: 'zeta',
-            image: 'zeta',
-            speed: 200
+            name: 'HarapAlb',
+            image: 'HarapAlb',
+            speed: 340
         })
-        this.player.setTexture("zeta", "zeta-front")
+        this.player.setTexture("HarapAlb", "HarapAlb-front")
         // map stuff
         const mapCastle = this.make.tilemap({ key: "mapCastle" });
         const tilesetCastle = mapCastle.addTilesetImage("SimpleGrassTiles", "tilesCastle")
@@ -104,6 +103,7 @@ export class Scene1 extends Phaser.Scene {
 
 
     update() {
+        // animations
         if (this.cursors.left.isDown)
             this.player.SetInstruction({ action: 'walk', option: 'left' });
         else if (this.cursors.right.isDown)
@@ -112,30 +112,32 @@ export class Scene1 extends Phaser.Scene {
             this.player.SetInstruction({ action: 'walk', option: 'back' });
         else if (this.cursors.down.isDown)
             this.player.SetInstruction({ action: 'walk', option: 'front' });
-
         this.player.update();
-        if (this.gzDialog.visible) {
+        // dialog
+        if (this.Dialog.visible) {
+            player.body.velocity.x = 0;
+            player.body.velocity.y = 0;
             if (this.cursors.space.isDown) {
-                this.gzDialog.display(false);
+                this.Dialog.display(false);
             }
             return false;
         }
     }
 
     HitLayer(player, target) {
-        if (target.properties.portal && !this.gzDialog.visible) {
-            if (this.registry.get("ExitAttic") === 1) {
-                delete target.properties.portal
-                return
+        if (target.properties.portal && !this.Dialog.visible) {
+            if (this.registry.get("ExitAttic") !== 1 && !(target.properties.portal == "Cutscene4")) {
+                this.scene.start(target.properties.portal);
+            } else if (this.registry.get("ExitAttic") == 1) {
+                this.scene.start(target.properties.portal);
             }
-            this.scene.start(target.properties.portal);
         }
     }
 
     HitScript(player, target) {
-        if (target.properties.name && !this.gzDialog.visible) {
+        if (target.properties.name && !this.Dialog.visible) {
             player.anims.stopAfterRepeat(0);
-            this.gzDialog.setText(this.script[player.name][target.properties.name]);
+            this.Dialog.setText(this.script[player.name][target.properties.name]);
         }
     }
 

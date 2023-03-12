@@ -1,6 +1,6 @@
 import Phaser from "phaser";
 
-export class GzDialog extends Phaser.Plugins.ScenePlugin {
+export class Cutscene extends Phaser.Plugins.ScenePlugin {
 
     constructor(scene, pluginManager) {
         super(scene, pluginManager);
@@ -15,20 +15,17 @@ export class GzDialog extends Phaser.Plugins.ScenePlugin {
         this.windowHeight = 200;
         this.padding = 32;
         this.dialogSpeed = 20; //original: 3.5
-        this.scrollFactor = 0; //scrollFactor of 0 fixes to the camera
+        this.scrollFactor = 0;
 
-        // if the dialog window is shown
         this.visible = false;
-        // the text that will be displayed in the window
+
         this.graphics = {
             background: null,
             text: null
         };
     }
 
-    //  Called when the Plugin is booted by the PluginManager.
     boot() {
-        // Create the dialog window
         this._drawBackground();
         this._drawText();
 
@@ -38,20 +35,16 @@ export class GzDialog extends Phaser.Plugins.ScenePlugin {
         eventEmitter.on('shutdown', this.shutdown, this);
     }
 
-    //  Called when a Scene shuts down, it may then come back again later (which will invoke the 'start' event) but should be considered dormant.
     shutdown() {
         if (this.timedEvent) this.timedEvent.remove();
         if (this.graphics.text) this.graphics.text.destroy();
     }
 
-    //  Called when a Scene is destroyed by the Scene Manager. There is no coming back from a destroyed Scene, so clear up all resources here.
     destroy() {
         this.shutdown();
         this.scene = undefined;
     }
 
-
-    // Hide/Show the dialog window
     display(showMe) {
         if (typeof showMe === 'undefined') this.visible = !this.visible;
         else this.visible = showMe;
@@ -60,7 +53,6 @@ export class GzDialog extends Phaser.Plugins.ScenePlugin {
         if (this.graphics.background) this.graphics.background.visible = this.visible;
     }
 
-    // Sets the text for the dialog window
     setText(text) {
         if (!text || !text.split) return;
         if (this.timedEvent) this.timedEvent.remove();
@@ -84,7 +76,6 @@ export class GzDialog extends Phaser.Plugins.ScenePlugin {
         });
     }
 
-    // Calculates where to place the dialog window based on the game size
     _calculateWindowDimensions() {
         var gameHeight = this.scene.sys.game.config.height;
         var gameWidth = this.scene.sys.game.config.width;
@@ -100,7 +91,6 @@ export class GzDialog extends Phaser.Plugins.ScenePlugin {
         };
     }
 
-    // Creates the dialog window
     _drawBackground() {
         let dimensions = this._calculateWindowDimensions();
         this.graphics.background = this.scene.add.graphics().setScrollFactor(this.scrollFactor);
@@ -110,11 +100,9 @@ export class GzDialog extends Phaser.Plugins.ScenePlugin {
         this.graphics.background.strokeRoundedRect(dimensions.x, dimensions.y, dimensions.width, dimensions.height, 5);
         this.graphics.background.fillRoundedRect(dimensions.x, dimensions.y, dimensions.width, dimensions.height, 5);
 
-        // Ensure the dialog box renders above everything else
         this.graphics.background.setDepth(1000);
     }
 
-    // Creates text holder within the dialog window
     _drawText() {
         let dimensions = this._calculateWindowDimensions();
         let x = dimensions.x + this.padding;
@@ -133,8 +121,6 @@ export class GzDialog extends Phaser.Plugins.ScenePlugin {
             }
         }).setScrollFactor(this.scrollFactor);
 
-        // Ensure the dialog text renders above the background
         this.graphics.text.setDepth(1010);
     }
-
 }

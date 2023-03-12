@@ -1,6 +1,6 @@
 import Phaser from 'phaser';
-import { GzDialog } from './plugins/Cutscene';
-import { GzRpgCharacterPlugin } from './plugins/GzRpgCharacter';
+import { Cutscene } from './plugins/Cutscene';
+import { CharacterPlugin } from './plugins/Character';
 import { GameOver } from "./scenes/GameOver";
 import { Main } from './scenes/Main';
 import { Cutscene1 } from './scenes/Scene1/Cutscene1';
@@ -24,13 +24,13 @@ const config = {
     },
     plugins: {
         global: [
-            { key: 'GzRpgCharacterPlugin', plugin: GzRpgCharacterPlugin, start: true }
+            { key: 'CharacterPlugin', plugin: CharacterPlugin, start: true }
         ],
         scene: [
-            { key: 'gzDialog', plugin: GzDialog, mapping: 'gzDialog' }
+            { key: 'Dialog', plugin: Cutscene, mapping: 'Dialog' }
         ]
     },
-    scene: [Main, GameOver, Cutscene1, Scene1, Cutscene2, Scene1Attic, Cutscene3,Cutscene4]
+    scene: [Main, GameOver, Cutscene1, Scene1, Cutscene2, Scene1Attic, Cutscene3, Cutscene4]
 };
 
 const game = new Phaser.Game(config);
