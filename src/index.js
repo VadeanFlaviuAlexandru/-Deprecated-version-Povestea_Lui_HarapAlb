@@ -13,8 +13,8 @@ import { Scene1Attic } from './scenes/Scene1/Scene1Attic';
 const config = {
     type: Phaser.AUTO,
     parent: 'phaser-example',
-    width: 1366,    //1366
-    height: 800,    //800
+    width: 1366,        //1366
+    height: 800,        //800
     physics: {
         default: 'arcade',
         arcade: {
