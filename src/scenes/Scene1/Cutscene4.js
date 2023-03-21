@@ -3,7 +3,7 @@ import B27 from "../../assets/Scene1/B27.png"
 import B28 from "../../assets/Scene1/B28.png"
 import B29 from "../../assets/Scene1/B29.png"
 import B30 from "../../assets/Scene1/B30.png"
-import { Align } from '/CodingStuff/Licenta/Game/src/utilities/Align'
+import { Align } from '../../utilities/Align'
 
 export class Cutscene4 extends Phaser.Scene {
     constructor() {

@@ -1,5 +1,5 @@
 import B25 from "../../assets/Scene1/B25.png"
-import { Align } from '/CodingStuff/Licenta/Game/src/utilities/Align'
+import { Align } from '../../utilities/Align'
 
 export class Cutscene3 extends Phaser.Scene {
     constructor() {

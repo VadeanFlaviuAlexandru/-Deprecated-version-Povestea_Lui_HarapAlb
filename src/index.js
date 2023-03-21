@@ -9,6 +9,7 @@ import { Cutscene3 } from './scenes/Scene1/Cutscene3';
 import { Cutscene4 } from './scenes/Scene1/Cutscene4';
 import { Scene1 } from './scenes/Scene1/Scene1';
 import { Scene1Attic } from './scenes/Scene1/Scene1Attic';
+import { Board } from './scenes/Mini-Games/MemoryMatch/Board';
 
 const config = {
     type: Phaser.AUTO,
@@ -30,7 +31,7 @@ const config = {
             { key: 'Dialog', plugin: Cutscene, mapping: 'Dialog' }
         ]
     },
-    scene: [Main, GameOver, Cutscene1, Scene1, Cutscene2, Scene1Attic, Cutscene3, Cutscene4]
+    scene: [Main, GameOver, Cutscene1, Scene1, Cutscene2, Scene1Attic, Cutscene3, Cutscene4,Board]
 };
 
 const game = new Phaser.Game(config);

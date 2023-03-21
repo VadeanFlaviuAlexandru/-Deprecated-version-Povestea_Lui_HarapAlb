@@ -19,7 +19,7 @@ import B18 from "../../assets/Scene1/B18.png"
 import B19 from "../../assets/Scene1/B19.png"
 import B20 from "../../assets/Scene1/B20.png"
 import B21 from "../../assets/Scene1/B21.png"
-import { Align } from '/CodingStuff/Licenta/Game/src/utilities/Align'
+import { Align } from '../../utilities/Align'
 // import images from '../../assets/Scene1/images.js'
 
 export class Cutscene1 extends Phaser.Scene {
