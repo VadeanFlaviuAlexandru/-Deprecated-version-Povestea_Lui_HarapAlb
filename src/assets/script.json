@@ -5,6 +5,8 @@
         "AtticClosedChest":"Este închis.",
         "AtticClosedChestEmpty":"Este... gol.",
         "AtticArmour":"Nu am puterea să port toată armura asta...",
-        "AtticExit":"Nu pot să plec. Trebuie să găsesc armele și hainele cu care a fost tata mire"
+        "AtticExit":"Nu pot să plec. Trebuie să găsesc armele și hainele cu care a fost tata mire.",
+        "CantGoBack": "Nu pot să mă intorc!",
+        "WrongRoad": "Mă abat de la drum."
     }
 }

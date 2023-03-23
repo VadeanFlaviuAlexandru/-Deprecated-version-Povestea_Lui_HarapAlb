@@ -16,7 +16,7 @@ export class Main extends Phaser.Scene {
 
         this.input.on('pointerdown', () => {
             // this.scene.start('Cutscene1', { x: 880, y: 320, })
-            this.scene.start("Board")
+            this.scene.start("Scene2",{ x: 160, y: 400, })
         })
     }
     update() { }
