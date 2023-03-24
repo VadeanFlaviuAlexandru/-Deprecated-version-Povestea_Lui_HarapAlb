@@ -70,7 +70,7 @@ export class Board extends Phaser.Scene {
       );
     }
   }
-  update() {}
+  update() { }
   //    functions
   loadCards() {
     Object.keys(images).map((name) => {
@@ -124,8 +124,13 @@ export class Board extends Phaser.Scene {
       Matches: ${this.matchedCards()}
       Efficiency: ${efficiency}%
     `;
-    if (this.matchedCards() === 4){
-      console.log("TEST DONE")
+    if (this.matchedCards() === 4) {
+      setTimeout(() => {
+        this.scene.start('Cutscene6', { x: 3220, y: 1444 });
+        this.scene.get("Cutscene6").events.once('start', () => {
+          this.scene.shutdown();
+        });
+      }, 2500);
     }
   }
   setAsReadOnly() {

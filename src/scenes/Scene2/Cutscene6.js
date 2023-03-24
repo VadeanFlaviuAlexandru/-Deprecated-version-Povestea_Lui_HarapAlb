@@ -1,9 +1,9 @@
 import B21 from "../../assets/Scene1/B21.png"
 import { Align } from '../../utilities/Align'
 
-export class Cutscene5 extends Phaser.Scene {
+export class Cutscene6 extends Phaser.Scene {
     constructor() {
-        super('Cutscene5');
+        super('Cutscene6');
     }
     preload() {
         this.load.image('B21', B21)
@@ -32,8 +32,8 @@ export class Cutscene5 extends Phaser.Scene {
             currentDialog++;
 
             if (currentDialog >= Dialogs.length) {
-                this.scene.start('Board');
-                this.scene.get("Board").events.once('start', () => {
+                this.scene.start('Scene2', { x: 3220, y: 1444 });
+                this.scene.get("Scene2").events.once('start', () => {
                     this.scene.shutdown();
                 });
             }

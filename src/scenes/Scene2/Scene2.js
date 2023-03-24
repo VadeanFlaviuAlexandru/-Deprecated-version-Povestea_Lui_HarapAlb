@@ -87,7 +87,6 @@ export class Scene2 extends Phaser.Scene {
         this.player.setDepth(10);
         layer6OutsideCastle.setDepth(11)
         layer9OutsideCastle.setDepth(12);
-
         // script for interactions
         this.script = this.cache.json.get('scriptData')
         const objectLayer = mapOutsideCastle.getObjectLayer('ScriptLayer');
@@ -104,7 +103,6 @@ export class Scene2 extends Phaser.Scene {
             );
         }
     }
-
     update() {
         // animations
         if (this.cursors.left.isDown)
@@ -124,14 +122,6 @@ export class Scene2 extends Phaser.Scene {
                 this.Dialog.display(false);
             }
             return false;
-        }
-    }
-    steer(force) {
-        if (cursors.left.isDown) {
-            Phaser.Physics.Matter.Matter.Body.applyForce(car.body, car.getTopRight(), force);
-        }
-        else if (cursors.right.isDown) {
-            Phaser.Physics.Matter.Matter.Body.applyForce(car.body, car.getBottomRight(), vec.neg(force));
         }
     }
     HitLayer(player, target) {
