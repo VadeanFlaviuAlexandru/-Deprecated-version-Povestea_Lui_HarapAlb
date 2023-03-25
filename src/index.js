@@ -9,6 +9,7 @@ import { Cutscene3 } from './scenes/Scene1/Cutscene3';
 import { Cutscene4 } from './scenes/Scene1/Cutscene4';
 import { Cutscene5 } from './scenes/Scene2/Cutscene5';
 import { Cutscene6 } from './scenes/Scene2/Cutscene6';
+import { Cutscene7 } from './scenes/Scene2/Cutscene7';
 import { Scene2Forest } from './scenes/Scene2/Scene2Forest';
 import { Scene1 } from './scenes/Scene1/Scene1';
 import { Scene2 } from './scenes/Scene2/Scene2';
@@ -37,7 +38,7 @@ const config = {
     },
     scene: [Main, GameOver, Cutscene1, Scene1, Cutscene2,
         Scene1Attic, Cutscene3, Cutscene4, Board, Scene2,
-        Cutscene5, Cutscene6, Scene2Forest]
+        Cutscene5, Cutscene6, Scene2Forest,Cutscene7]
 };
 
 const game = new Phaser.Game(config);

@@ -1,21 +1,21 @@
-import B31 from "../../assets/Scene2/B31.png";
-import B32 from "../../assets/Scene2/B32.png";
+import B36 from "../../assets/Scene2/B36.png";
+import B37 from "../../assets/Scene2/B37.png";
 import { Align } from "../../utilities/Align";
 
-export class Cutscene5 extends Phaser.Scene {
+export class Cutscene7 extends Phaser.Scene {
   constructor() {
-    super("Cutscene5");
+    super("Cutscene7");
   }
   preload() {
-    this.load.image("B31", B31);
-    this.load.image("B32", B32);
+    this.load.image("B36", B36);
+    this.load.image("B37", B37);
   }
   create() {
     let Dialogs = [
-      "Și, prin dreptul podului, numai iaca îi iese și lui ursul înainte, mornăind înfricoșat.",
-      "Calul atunci dă năvală asupra ursului, și fiul craiului, ridică buzduganul să dea.",
+      "— Bun întâlnișul, voinice! Nu ai trebuință de slugă la drum? Prin locurile iestea e cam greu de călătorit singur; nu cumva să-ți iasă vro dihanie ceva înainte și să-ți scurteze cărările. Eu cunosc bine pe-aici, și poate mai încolo să ai nevoie de unul ca mine.",
+      "— Poate să am, poate să n-am, zise fiul craiului, dar acum deodată mă las în voia întâmplării.",
     ];
-    let Backgrounds = ["B31", "B32"];
+    let Backgrounds = ["B36", "B37"];
 
     let currentDialog = 0;
 
@@ -31,8 +31,8 @@ export class Cutscene5 extends Phaser.Scene {
       currentDialog++;
 
       if (currentDialog >= Dialogs.length) {
-        this.scene.start("Board");
-        this.scene.get("Board").events.once("start", () => {
+        this.scene.start("Scene2Forest", { x: 3000, y: 400 });
+        this.scene.get("Scene2Forest").events.once("start", () => {
           this.scene.shutdown();
         });
       }

@@ -16,6 +16,7 @@ export class Board extends Phaser.Scene {
     this.newRound();
   }
   create() {
+    this.Dialog.setText("Acest joc se numește \"Jocul de memorie\". Un joc de memorie în care jucătorul trebuie să găsească perechi de cărți cu aceeași imagine. Scopul jocului este de a găsi toate perechile cât mai rapid posibil, astfel incat feciorul craiului sa poata ramana calm in fata ursului. ")
     const MAX_CARD_PER_LINE = 4;
     const PAIRS = 4;
     const H_OFFSET = 200;
