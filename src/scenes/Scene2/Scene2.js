@@ -238,7 +238,7 @@ export class Scene2 extends Phaser.Scene {
   }
   HitLayer(player, target) {
     if (target.properties.portal && !this.Dialog.visible) {
-      this.scene.start(target.properties.portal,{x:100,y:500});
+      this.scene.start(target.properties.portal, { x: 100, y: 500 });
     }
   }
 

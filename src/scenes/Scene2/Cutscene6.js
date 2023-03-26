@@ -8,7 +8,7 @@ export class Cutscene6 extends Phaser.Scene {
     super("Cutscene6");
   }
   preload() {
-    this.load.image("B33", B33);
+    this.load.image("B33", B33);O
     this.load.image("B34", B34);
     this.load.image("B35", B35);
   }

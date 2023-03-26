@@ -31,7 +31,7 @@ export class Cutscene7 extends Phaser.Scene {
       currentDialog++;
 
       if (currentDialog >= Dialogs.length) {
-        this.scene.start("Scene2Forest", { x: 3000, y: 400 });
+        this.scene.start("Scene2Forest", { x: 1000, y: 400 });
         this.scene.get("Scene2Forest").events.once("start", () => {
           this.scene.shutdown();
         });
