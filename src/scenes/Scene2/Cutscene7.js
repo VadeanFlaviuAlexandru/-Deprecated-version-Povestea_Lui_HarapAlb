@@ -10,12 +10,16 @@ export class Cutscene7 extends Phaser.Scene {
     this.load.image("B36", B36);
     this.load.image("B37", B37);
   }
+  init(data) {
+    this.cutscene1 = data.cutscene1;
+    this.cutscene2 = data.cutscene2;
+  }
   create() {
     let Dialogs = [
       "— Bun întâlnișul, voinice! Nu ai trebuință de slugă la drum? Prin locurile iestea e cam greu de călătorit singur; nu cumva să-ți iasă vro dihanie ceva înainte și să-ți scurteze cărările. Eu cunosc bine pe-aici, și poate mai încolo să ai nevoie de unul ca mine.",
       "— Poate să am, poate să n-am, zise fiul craiului, dar acum deodată mă las în voia întâmplării.",
     ];
-    let Backgrounds = ["B36", "B37"];
+    let Backgrounds = [this.cutscene1, this.cutscene2];
 
     let currentDialog = 0;
 
@@ -31,7 +35,7 @@ export class Cutscene7 extends Phaser.Scene {
       currentDialog++;
 
       if (currentDialog >= Dialogs.length) {
-        this.scene.start("Scene2Forest", { x: 1000, y: 400 });
+        this.scene.start("Scene2Forest", { x: 3400, y: 830 });
         this.scene.get("Scene2Forest").events.once("start", () => {
           this.scene.shutdown();
         });

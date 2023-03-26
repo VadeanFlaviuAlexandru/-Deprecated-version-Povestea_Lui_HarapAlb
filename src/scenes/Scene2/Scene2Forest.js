@@ -6,6 +6,7 @@ export class Scene2Forest extends Phaser.Scene {
     this.cursors = null;
     this.player = null;
     this.animsManager = new Anims(this);
+    this.script=null;
   }
   preload() {
     // map
@@ -162,10 +163,18 @@ export class Scene2Forest extends Phaser.Scene {
   }
   HitLayer(player, target) {
     if (target.properties.portal && !this.Dialog.visible) {
-      this.scene.start(target.properties.portal);
+      this.scene.start(target.properties.portal, {
+        cutscene1: "B36",
+        cutscene2: "B37",
+      });
+      this.scene.get("Cutscene7").events.once("start", () => {
+        this.scene.shutdown();
+      });
+    }
+    if(target.properties.name == "test"){
+      this.Dialog.setText("TEST")
     }
   }
-
   HitScript(player, target) {
     if (target.properties.name && !this.Dialog.visible) {
       player.anims.stopAfterRepeat(0);

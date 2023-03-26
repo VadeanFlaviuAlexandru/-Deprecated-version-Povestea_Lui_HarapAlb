@@ -7,6 +7,7 @@
         "AtticArmour":"Nu am puterea să port toată armura asta...",
         "AtticExit":"Nu pot să plec. Trebuie să găsesc armele și hainele cu care a fost tata mire.",
         "CantGoBack": "Nu pot să mă intorc!",
-        "WrongRoad": "Mă abat de la drum."
+        "WrongRoad": "Mă abat de la drum.",
+        "NoSpanHelp": "N-ar trebui să mă întorc. Pot și fără îndrumarea spânului."
     }
 }

@@ -19,8 +19,8 @@ import { Board } from './scenes/Mini-Games/MemoryMatch/Board';
 const config = {
     type: Phaser.AUTO,
     parent: 'phaser-example',
-    width: 1366,        //1366
-    height: 800,        //800
+    width: 1166,        //1366
+    height: 630,        //800
     physics: {
         default: 'arcade',
         arcade: {
