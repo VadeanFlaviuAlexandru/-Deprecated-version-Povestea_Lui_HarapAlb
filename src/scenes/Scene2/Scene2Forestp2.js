@@ -1,8 +1,8 @@
 import { Anims } from "../../plugins/anims";
 
-export class Scene2Forest extends Phaser.Scene {
+export class Scene2Forest2 extends Phaser.Scene {
   constructor() {
-    super("Scene2Forest");
+    super("Scene2Forest2");
     this.cursors = null;
     this.player = null;
     this.animsManager = new Anims(this);
@@ -10,11 +10,11 @@ export class Scene2Forest extends Phaser.Scene {
   }
   preload() {
     // map
-    this.load.image("tilesCodru", "src/assets/World/SimpleGrassTiles.png");
-    this.load.image("tiles2Codru", "src/assets/World/PlantTiles.png");
-    this.load.image("tiles6Codru", "src/assets/World/PropsTiles.png");
+    this.load.image("tilesCodru2", "src/assets/World/SimpleGrassTiles.png");
+    this.load.image("tiles2Codru2", "src/assets/World/PlantTiles.png");
+    this.load.image("tiles6Codru2", "src/assets/World/PropsTiles.png");
     this.load.tilemapTiledJSON(
-      "mapCodru",
+      "mapCodru2",
       "src/assets/Scene2/Scene2Forest.json"
     );
     // player
@@ -38,90 +38,96 @@ export class Scene2Forest extends Phaser.Scene {
     });
     this.player.setTexture("HarapAlb", "HarapAlb-front");
     // map stuff
-    const mapCodru = this.make.tilemap({ key: "mapCodru" });
-    const tilesetCodru = mapCodru.addTilesetImage(
+    const mapCodru2 = this.make.tilemap({ key: "mapCodru2" });
+    const tilesetCodru2 = mapCodru2.addTilesetImage(
       "SimpleGrassTiles",
-      "tilesCodru"
+      "tilesCodru2"
     );
-    const tileset6Codru = mapCodru.addTilesetImage("PropsTiles", "tiles6Codru");
-    const tileset2Codru = mapCodru.addTilesetImage("PlantTiles", "tiles2Codru");
-    const layer1Codru = mapCodru.createLayer("GrassLayer", tilesetCodru);
-    const layer2Codru = mapCodru.createLayer("PropsLayer", tileset6Codru);
-    const layer9Codru = mapCodru.createLayer("BushesLayer", tileset2Codru);
-    const layer3Codru = mapCodru.createLayer("PlantLayer", tileset2Codru);
-    const layer4Codru = mapCodru.createLayer("Plant2Layer", tileset2Codru);
-    const layer5Codru = mapCodru.createLayer("Plant3Layer", tileset2Codru);
-    const layer6Codru = mapCodru.createLayer("Plant4Layer", tileset2Codru);
-    const layer7Codru = mapCodru.createLayer("Plant5Layer", tileset2Codru);
-    const layer8Codru = mapCodru.createLayer("Plant6Layer", tileset2Codru);
-    layer2Codru.setCollisionByProperty({ collide: true });
+    const tileset6Codru2 = mapCodru2.addTilesetImage(
+      "PropsTiles",
+      "tiles6Codru2"
+    );
+    const tileset2Codru2 = mapCodru2.addTilesetImage(
+      "PlantTiles",
+      "tiles2Codru2"
+    );
+    const layer1Codru2 = mapCodru2.createLayer("GrassLayer", tilesetCodru2);
+    const layer2Codru2 = mapCodru2.createLayer("PropsLayer", tileset6Codru2);
+    const layer9Codru2 = mapCodru2.createLayer("BushesLayer", tileset2Codru2);
+    const layer3Codru2 = mapCodru2.createLayer("PlantLayer", tileset2Codru2);
+    const layer4Codru2 = mapCodru2.createLayer("Plant2Layer", tileset2Codru2);
+    const layer5Codru2 = mapCodru2.createLayer("Plant3Layer", tileset2Codru2);
+    const layer6Codru2 = mapCodru2.createLayer("Plant4Layer", tileset2Codru2);
+    const layer7Codru2 = mapCodru2.createLayer("Plant5Layer", tileset2Codru2);
+    const layer8Codru2 = mapCodru2.createLayer("Plant6Layer", tileset2Codru2);
+    layer2Codru2.setCollisionByProperty({ collide: true });
     this.physics.add.collider(
       this.player,
-      layer2Codru,
+      layer2Codru2,
       this.HitLayer.bind(this)
     );
-    layer3Codru.setCollisionByProperty({ collide: true });
+    layer3Codru2.setCollisionByProperty({ collide: true });
     this.physics.add.collider(
       this.player,
-      layer3Codru,
+      layer3Codru2,
       this.HitLayer.bind(this)
     );
-    layer4Codru.setCollisionByProperty({ collide: true });
+    layer4Codru2.setCollisionByProperty({ collide: true });
     this.physics.add.collider(
       this.player,
-      layer4Codru,
+      layer4Codru2,
       this.HitLayer.bind(this)
     );
-    layer5Codru.setCollisionByProperty({ collide: true });
+    layer5Codru2.setCollisionByProperty({ collide: true });
     this.physics.add.collider(
       this.player,
-      layer5Codru,
+      layer5Codru2,
       this.HitLayer.bind(this)
     );
-    layer6Codru.setCollisionByProperty({ collide: true });
+    layer6Codru2.setCollisionByProperty({ collide: true });
     this.physics.add.collider(
       this.player,
-      layer6Codru,
+      layer6Codru2,
       this.HitLayer.bind(this)
     );
-    layer7Codru.setCollisionByProperty({ collide: true });
+    layer7Codru2.setCollisionByProperty({ collide: true });
     this.physics.add.collider(
       this.player,
-      layer7Codru,
+      layer7Codru2,
       this.HitLayer.bind(this)
     );
-    layer8Codru.setCollisionByProperty({ collide: true });
+    layer8Codru2.setCollisionByProperty({ collide: true });
     this.physics.add.collider(
       this.player,
-      layer8Codru,
+      layer8Codru2,
       this.HitLayer.bind(this)
     );
-    layer9Codru.setCollisionByProperty({ collide: true });
+    layer9Codru2.setCollisionByProperty({ collide: true });
     this.physics.add.collider(
       this.player,
-      layer9Codru,
+      layer9Codru2,
       this.HitLayer.bind(this)
     );
     // camera
     const camera = this.cameras.main;
     camera.startFollow(this.player);
-    camera.setBounds(0, 0, mapCodru.widthInPixels, mapCodru.heightInPixels);
-    camera.setBounds(0, 0, mapCodru.widthInPixels, mapCodru.heightInPixels);
+    camera.setBounds(0, 0, mapCodru2.widthInPixels, mapCodru2.heightInPixels);
+    camera.setBounds(0, 0, mapCodru2.widthInPixels, mapCodru2.heightInPixels);
     // animations
     this.animsManager.create();
     // correcting layers
     this.player.setDepth(10);
-    layer2Codru.setDepth(11);
-    layer9Codru.setDepth(12);
-    layer3Codru.setDepth(13);
-    layer4Codru.setDepth(14);
-    layer5Codru.setDepth(15);
-    layer6Codru.setDepth(16);
-    layer7Codru.setDepth(17);
-    layer8Codru.setDepth(18);
+    layer2Codru2.setDepth(11);
+    layer9Codru2.setDepth(12);
+    layer3Codru2.setDepth(13);
+    layer4Codru2.setDepth(14);
+    layer5Codru2.setDepth(15);
+    layer6Codru2.setDepth(16);
+    layer7Codru2.setDepth(17);
+    layer8Codru2.setDepth(18);
     // script for interactions
     this.script = this.cache.json.get("scriptData");
-    const objectLayer = mapCodru.getObjectLayer("ScriptLayer");
+    const objectLayer = mapCodru2.getObjectLayer("ScriptLayer");
     if (objectLayer && objectLayer.objects) {
       objectLayer.objects.forEach((object) => {
         let tmp = this.add.rectangle(
@@ -164,8 +170,8 @@ export class Scene2Forest extends Phaser.Scene {
   HitLayer(player, target) {
     if (target.properties.portal && !this.Dialog.visible) {
       this.scene.start(target.properties.portal, {
-        cutscene1: "B36",
-        cutscene2: "B37",
+        cutscene11: "B36",
+        cutscene22: "B37",
       });
     }
   }

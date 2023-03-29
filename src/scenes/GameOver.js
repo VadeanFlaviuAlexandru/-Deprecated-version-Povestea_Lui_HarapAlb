@@ -5,7 +5,7 @@ export class GameOver extends Phaser.Scene {
     preload() {
     }
     create() {
-        console.log("GAME OVER")
+        this.text1 = this.add.text(this.game.config.width/3, this.game.config.height/2, 'Demo end 🦆', { font: "74px Arial Black", fill: "#fff" });
     }
     update() { }
 }

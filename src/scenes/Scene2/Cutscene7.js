@@ -35,10 +35,7 @@ export class Cutscene7 extends Phaser.Scene {
       currentDialog++;
 
       if (currentDialog >= Dialogs.length) {
-        this.scene.start("Scene2Forest", { x: 3400, y: 830 });
-        this.scene.get("Scene2Forest").events.once("start", () => {
-          this.scene.shutdown();
-        });
+        this.scene.start("Scene2Forest2", { x: 3400, y: 830 });
       }
 
       this.Background = this.add.image(10, 10, Backgrounds[currentDialog]);
