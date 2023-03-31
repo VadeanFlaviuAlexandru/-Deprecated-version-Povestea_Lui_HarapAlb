@@ -27,7 +27,6 @@ const config = {
   parent: "phaser-example",
   width: 1166, //1366
   height: 630, //800
-  backgroundColor: 0xFF53A38F,
   physics: {
     default: "arcade",
     arcade: {
@@ -59,7 +58,7 @@ const config = {
     Scene2Forest3,
     Cutscene9,
     QuickMath,
-    Cutscene10
+    Cutscene10,
   ],
 };
 

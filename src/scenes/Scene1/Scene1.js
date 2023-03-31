@@ -34,7 +34,7 @@ export class Scene1 extends Phaser.Scene {
       y: this.spawnY,
       name: "HarapAlb",
       image: "HarapAlb",
-      speed: 340,
+      speed: 200,
     });
     this.player.setTexture("HarapAlb", "HarapAlb-front");
     // map stuff
@@ -166,20 +166,19 @@ export class Scene1 extends Phaser.Scene {
   }
 
   update() {
-    // animations
-    if (this.cursors.left.isDown)
-      this.player.SetInstruction({ action: "walk", option: "left" });
-    else if (this.cursors.right.isDown)
-      this.player.SetInstruction({ action: "walk", option: "right" });
-    if (this.cursors.up.isDown)
-      this.player.SetInstruction({ action: "walk", option: "back" });
-    else if (this.cursors.down.isDown)
-      this.player.SetInstruction({ action: "walk", option: "front" });
-    this.player.update();
-    // dialog
-    if (this.Dialog.visible) {
-      player.body.velocity.x = 0;
-      player.body.velocity.y = 0;
+    if (!this.Dialog.visible) {
+      // animations
+      if (this.cursors.left.isDown)
+        this.player.SetInstruction({ action: "walk", option: "left" });
+      else if (this.cursors.right.isDown)
+        this.player.SetInstruction({ action: "walk", option: "right" });
+      if (this.cursors.up.isDown)
+        this.player.SetInstruction({ action: "walk", option: "back" });
+      else if (this.cursors.down.isDown)
+        this.player.SetInstruction({ action: "walk", option: "front" });
+      this.player.update();
+    } else if (this.Dialog.visible) {
+      //dialog
       if (this.cursors.space.isDown) {
         this.Dialog.display(false);
       }

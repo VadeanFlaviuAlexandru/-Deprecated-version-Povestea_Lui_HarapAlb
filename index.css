@@ -1,0 +1,17 @@
+body {
+  background: url(./src/assets/Main/PageBackground.jpg) no-repeat center center
+    fixed;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+h1 {
+  font-family: "Dancing Script";
+  font-style: italic;
+  font-size: 36px;
+}
+canvas {
+  border: 5px solid black;
+}
