@@ -8,7 +8,6 @@ export class Scene1 extends Phaser.Scene {
     this.animsManager = new Anims(this);
   }
   preload() {
-    // map
     this.load.image("tilesCastle", "src/assets/World/SimpleGrassTiles.png");
     this.load.image("tiles2Castle", "src/assets/World/PlantTiles.png");
     this.load.image("tiles3Castle", "src/assets/World/FenceTiles.png");
@@ -17,9 +16,7 @@ export class Scene1 extends Phaser.Scene {
     this.load.image("tiles7Castle", "src/assets/World/StructureTiles.png");
     this.load.image("tiles8Castle", "src/assets/World/WallsTiles2.png");
     this.load.tilemapTiledJSON("mapCastle", "src/assets/Scene1/Scene1.json");
-    // player
     this.animsManager.preload();
-    // script
     this.load.json("scriptData", "src/assets/script.json");
   }
   init(data) {
@@ -27,7 +24,6 @@ export class Scene1 extends Phaser.Scene {
     this.spawnY = data.y;
   }
   create() {
-    // player stuff
     this.cursors = this.input.keyboard.createCursorKeys();
     window.player = this.player = this.add.character({
       x: this.spawnX,
@@ -37,7 +33,6 @@ export class Scene1 extends Phaser.Scene {
       speed: 200,
     });
     this.player.setTexture("HarapAlb", "HarapAlb-front");
-    // map stuff
     const mapCastle = this.make.tilemap({ key: "mapCastle" });
     const tilesetCastle = mapCastle.addTilesetImage(
       "SimpleGrassTiles",
@@ -130,21 +125,17 @@ export class Scene1 extends Phaser.Scene {
       layer9Castle,
       this.HitLayer.bind(this)
     );
-    // camera
     const camera = this.cameras.main;
     camera.startFollow(this.player);
     camera.setBounds(0, 0, mapCastle.widthInPixels, mapCastle.heightInPixels);
     camera.setBounds(0, 0, mapCastle.widthInPixels, mapCastle.heightInPixels);
-    // animations
     this.animsManager.create();
-    // correcting layers
     this.player.setDepth(10);
     layer6Castle.setDepth(11);
     layer9Castle.setDepth(12);
     layer11Castle.setDepth(13);
     layer7Castle.setDepth(14);
     layer8Castle.setDepth(15);
-    // script for interactions
     this.script = this.cache.json.get("scriptData");
     const objectLayer = mapCastle.getObjectLayer("ScriptLayer");
     if (objectLayer && objectLayer.objects) {
@@ -164,10 +155,8 @@ export class Scene1 extends Phaser.Scene {
       });
     }
   }
-
   update() {
     if (!this.Dialog.visible) {
-      // animations
       if (this.cursors.left.isDown)
         this.player.SetInstruction({ action: "walk", option: "left" });
       else if (this.cursors.right.isDown)
@@ -178,14 +167,12 @@ export class Scene1 extends Phaser.Scene {
         this.player.SetInstruction({ action: "walk", option: "front" });
       this.player.update();
     } else if (this.Dialog.visible) {
-      //dialog
       if (this.cursors.space.isDown) {
         this.Dialog.display(false);
       }
       return false;
     }
   }
-
   HitLayer(player, target) {
     if (target.properties.portal && !this.Dialog.visible) {
       if (
@@ -198,7 +185,6 @@ export class Scene1 extends Phaser.Scene {
       }
     }
   }
-
   HitScript(player, target) {
     if (target.properties.name && !this.Dialog.visible) {
       player.anims.stopAfterRepeat(0);

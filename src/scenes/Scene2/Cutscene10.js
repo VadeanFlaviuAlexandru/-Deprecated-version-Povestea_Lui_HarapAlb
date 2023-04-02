@@ -26,27 +26,19 @@ export class Cutscene10 extends Phaser.Scene {
       "După aceasta încalecă, fiecare pe calul său, și pornesc, Spânul înainte, ca stăpân, Harap-Alb în urmă, ca slugă, mergând spre împărăție, Dumnezeu să ne ție, că cuvântul din poveste, înainte mult mai este.",
     ];
     let Backgrounds = ["B49", "B48", "B48", "B50", "B51", "B52"];
-
     let currentDialog = 0;
-
     this.Background = this.add.image(10, 10, Backgrounds[currentDialog]);
     this.Dialog.setText(Dialogs[currentDialog]);
-
     Align.ScaleToGameW(this.game, this.Background, 0.8);
     Align.center(this.game, this.Background);
-
-    this.input.on("pointerdown", () => {
+    this.input.keyboard.on("keydown-SPACE", () => {
       this.Background.destroy();
-
       currentDialog++;
-
       if (currentDialog >= Dialogs.length) {
-        this.scene.start("GameOver");
+        window.alert("End Of Demo!")
       }
-
       this.Background = this.add.image(10, 10, Backgrounds[currentDialog]);
       this.Dialog.setText(Dialogs[currentDialog]);
-
       Align.ScaleToGameW(this.game, this.Background, 0.8);
       Align.center(this.game, this.Background);
     });

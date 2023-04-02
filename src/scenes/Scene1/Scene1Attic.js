@@ -9,20 +9,15 @@ export class Scene1Attic extends Phaser.Scene {
     this.vision = null;
   }
   preload() {
-    //map
     this.load.image("tilesAttic", "src/assets/World/InteriorTiles.png");
     this.load.image("tiles2Attic", "src/assets/World/PropsTiles.png");
     this.load.tilemapTiledJSON("mapAttic", "src/assets/Scene1/attic.json");
-    // player
     this.animsManager.preload();
-    // script
     this.load.json("scriptData", "src/assets/script.json");
     this.load.image("vision", "src/assets/World/Vision.png");
   }
   create() {
-    // attic
     this.registry.set("ExitAttic", 1);
-    // player stuff
     this.cursors = this.input.keyboard.createCursorKeys();
     window.player = this.player = this.add.character({
       x: 560,
@@ -32,7 +27,6 @@ export class Scene1Attic extends Phaser.Scene {
       speed: 200,
     });
     this.player.setTexture("HarapAlb", "HarapAlb-front");
-    // map stuff
     const mapAttic = this.make.tilemap({ key: "mapAttic" });
     const tilesetAttic = mapAttic.addTilesetImage(
       "InteriorTiles",
@@ -81,7 +75,6 @@ export class Scene1Attic extends Phaser.Scene {
       layer5Attic,
       this.HitLayer.bind(this)
     );
-    // fog of war
     const width = this.scale.width;
     const height = this.scale.height;
     const rt = this.make.renderTexture(
@@ -103,21 +96,17 @@ export class Scene1Attic extends Phaser.Scene {
     vision.scale = 1.15;
     rt.mask = new Phaser.Display.Masks.BitmapMask(this, vision);
     rt.mask.invertAlpha = true;
-    // camera
     const camera = this.cameras.main;
     camera.startFollow(this.player);
     camera.setBounds(0, 0, mapAttic.widthInPixels, mapAttic.heightInPixels);
     camera.setBounds(0, 0, mapAttic.widthInPixels, mapAttic.heightInPixels);
-    // animations
     this.animsManager.create();
-    // correcting layers
     this.player.setDepth(10);
     layer2Attic.setDepth(11);
     layer3Attic.setDepth(12);
     layer4Attic.setDepth(13);
     layer5Attic.setDepth(14);
     rt.setDepth(15);
-    // script for interactions
     this.script = this.cache.json.get("scriptData");
     const objectLayer = mapAttic.getObjectLayer("ScriptLayer");
     if (objectLayer && objectLayer.objects) {
@@ -139,7 +128,6 @@ export class Scene1Attic extends Phaser.Scene {
   }
   update() {
     if (!this.Dialog.visible) {
-      // animations
       if (this.cursors.left.isDown)
         this.player.SetInstruction({ action: "walk", option: "left" });
       else if (this.cursors.right.isDown)
@@ -150,19 +138,16 @@ export class Scene1Attic extends Phaser.Scene {
         this.player.SetInstruction({ action: "walk", option: "front" });
       this.player.update();
     } else if (this.Dialog.visible) {
-      //dialog
       if (this.cursors.space.isDown) {
         this.Dialog.display(false);
       }
       return false;
     }
-    // fog of war
     if (this.vision) {
       this.vision.x = this.player.x;
       this.vision.y = this.player.y;
     }
   }
-
   HitLayer(player, target) {
     if (target.properties.portal && !this.Dialog.visible) {
       this.scene.start(target.properties.portal);
@@ -171,7 +156,6 @@ export class Scene1Attic extends Phaser.Scene {
       });
     }
   }
-
   HitScript(player, target) {
     if (target.properties.name && !this.Dialog.visible) {
       player.anims.stopAfterRepeat(0);

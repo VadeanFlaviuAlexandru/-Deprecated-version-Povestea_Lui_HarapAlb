@@ -28,9 +28,7 @@ export class Board extends Phaser.Scene {
     Align.ScaleToGameW(this.game, this.Background, 1);
     Align.center(this.game, this.Background);
     this.text = this.add.text(32, 32);
-
     this.cursors = this.input.keyboard.createCursorKeys();
-
     this.shuffle();
   }
   update() {
@@ -40,6 +38,7 @@ export class Board extends Phaser.Scene {
         this.restartGame();
         this.timedEvent = this.time.delayedCall(14000, this.onEvent, [], this);
         this.GameInfo.display(false);
+        this.Background.clearTint()
       }
       return false;
     }
@@ -92,19 +91,12 @@ export class Board extends Phaser.Scene {
       boundsAlignH: "center",
       boundsAlignV: "middle",
     };
-
     if (!this.score) {
       this.score = this.add.text(0, 400, "", style);
     }
     const efficiency = this.attempts
       ? ((this.matchedCards() / this.attempts) * 100).toFixed(0)
       : 0;
-
-    // this.score.text = `
-    //   Attempts:${this.attempts}
-    //   Matches: ${this.matchedCards()}
-    //   Efficiency: ${efficiency}%
-    // `;
     if (this.matchedCards() === 4) {
       setTimeout(() => {
         this.scene.start("Cutscene6");
@@ -123,11 +115,11 @@ export class Board extends Phaser.Scene {
     }
     const cardA = this.selectedCards[0];
     const cardB = this.selectedCards[1];
-
     return cardA.key === cardB.key;
   }
   onEvent() {
     this.restartGame();
+    this.Background.setTint(0xFF0000)
     this.GameInfo.setText(
       "Din păcate, fiul craiului nu a putut rămane concentrat... Hai să încercăm din nou!"
     );
@@ -147,19 +139,16 @@ export class Board extends Phaser.Scene {
     const V_OFFSET = 200;
     const INITIAL_X = this.game.config.width / 3.5;
     const INITIAL_Y = this.game.config.height / 4;
-
     const lines =
       parseInt((PAIRS * 2) / MAX_CARD_PER_LINE) +
       (((PAIRS * 2) / MAX_CARD_PER_LINE) % MAX_CARD_PER_LINE ? 1 : 0);
     const numberOfCards = PAIRS * 2;
     const positions = [];
-
     const imageNames = Object.keys(images)
       .filter((name) => {
         return name.includes("card");
       })
       .slice(0, PAIRS);
-
     let total = numberOfCards;
     for (let line = 0; line < lines; line++) {
       for (let pos = 0; pos < MAX_CARD_PER_LINE; pos++) {
@@ -172,7 +161,6 @@ export class Board extends Phaser.Scene {
         total--;
       }
     }
-
     while (positions.length) {
       const posA = positions.splice(getRandomInt(positions.length), 1)[0];
       const posB = positions.splice(getRandomInt(positions.length), 1)[0];

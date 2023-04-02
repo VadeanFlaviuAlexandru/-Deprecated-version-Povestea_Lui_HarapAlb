@@ -22,6 +22,7 @@ import { Board } from "./scenes/Mini-Games/MemoryMatch/Board";
 import { QuickMath } from "./scenes/Mini-Games/QuickMath/QuickMath";
 import { Cutscene10 } from "./scenes/Scene2/Cutscene10";
 import { GameInfo } from "./plugins/GameInfo";
+import { Scene2AfterBridge } from "./scenes/Scene2/Scene2AfterBridge";
 
 const config = {
   type: Phaser.AUTO,
@@ -39,7 +40,7 @@ const config = {
     global: [{ key: "CharacterPlugin", plugin: CharacterPlugin, start: true }],
     scene: [
       { key: "Dialog", plugin: Cutscene, mapping: "Dialog" },
-      { key: "Info", plugin: GameInfo, mapping: "GameInfo" },
+      { key: "GameInfo", plugin: GameInfo, mapping: "GameInfo" },
     ],
   },
   scene: [
@@ -63,6 +64,7 @@ const config = {
     Cutscene9,
     QuickMath,
     Cutscene10,
+    Scene2AfterBridge
   ],
 };
 

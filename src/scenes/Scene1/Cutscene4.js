@@ -26,33 +26,21 @@ export class Cutscene4 extends Phaser.Scene {
       "Apoi sărută mâna tată-său, primind carte de la dânsul către împăratul, zice rămas bun fraților săi și a treia zi către seară pornește și el, mergând din pasul calului.",
     ];
     let Backgrounds = ["B27", "B28", "B29", "B29", "B30", "B21"];
-
     let currentDialog = 0;
-
     this.Background = this.add.image(10, 10, Backgrounds[currentDialog]);
     this.Dialog.setText(Dialogs[currentDialog]);
-
     Align.ScaleToGameW(this.game, this.Background, 0.8);
     Align.center(this.game, this.Background);
-
-    this.input.on("pointerdown", () => {
+    this.input.keyboard.on("keydown-SPACE", () => {
       this.Background.destroy();
-
       currentDialog++;
-
       if (currentDialog >= Dialogs.length) {
-        this.scene.start("Scene2");
-        this.scene.get("Scene2").events.once("start", () => {
-          this.scene.shutdown();
-        });
+        this.scene.start("Scene2", { x: 161, y: 391 });
       }
-
       this.Background = this.add.image(10, 10, Backgrounds[currentDialog]);
       this.Dialog.setText(Dialogs[currentDialog]);
-
       Align.ScaleToGameW(this.game, this.Background, 0.8);
       Align.center(this.game, this.Background);
-
       this.registry.destroy("ExitAttic");
     });
   }

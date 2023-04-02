@@ -24,30 +24,19 @@ export class Cutscene2 extends Phaser.Scene {
       "— Despre aceasta nu mă plâng eu, tată, bine că mi l-ai dat; de unde-a fi, de unde n-a fi, dacă l-oi găsi, al meu să fie. ",
     ];
     let Backgrounds = ["B22", "B7", "B23", "B7", "B7", "B23", "B7", "B23"];
-
     let currentDialog = 0;
-
     this.Background = this.add.image(10, 10, Backgrounds[currentDialog]);
     this.Dialog.setText(Dialogs[currentDialog]);
-
     Align.ScaleToGameW(this.game, this.Background, 0.8);
     Align.center(this.game, this.Background);
-
-    this.input.on("pointerdown", () => {
+    this.input.keyboard.on("keydown-SPACE", () => {
       this.Background.destroy();
-
       currentDialog++;
-
       if (currentDialog >= Dialogs.length) {
-        this.scene.start("Scene1");
-        this.scene.get("Scene1").events.once("start", () => {
-          this.scene.shutdown();
-        });
+        this.scene.start("Scene1", { x: 1272, y: 510 });
       }
-
       this.Background = this.add.image(10, 10, Backgrounds[currentDialog]);
       this.Dialog.setText(Dialogs[currentDialog]);
-
       Align.ScaleToGameW(this.game, this.Background, 0.8);
       Align.center(this.game, this.Background);
     });

@@ -1,10 +1,8 @@
 export class Anims {
   constructor(scene) {
     if (!scene) return;
-
     this.scene = scene;
   }
-
   preload() {
     this.scene.load.atlas(
       "HarapAlb",
@@ -12,10 +10,8 @@ export class Anims {
       "src/assets/Player/HarapAlb.json"
     );
   }
-
   create() {
     const anims = this.scene.anims;
-
     anims.create({
       key: "HarapAlb-walk-left",
       frames: anims.generateFrameNames("HarapAlb", {

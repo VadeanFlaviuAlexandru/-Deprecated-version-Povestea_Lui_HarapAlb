@@ -63,7 +63,7 @@ export class Main extends Phaser.Scene {
       playButton.setTint(0xa1c4c6);
     });
     playButton.on("pointerdown", () => {
-      this.scene.start("Board");
+      this.scene.start("Scene2Forest",{ x: 100, y: 500 });
     });
     playButton.on("pointerout", () => {
       playButton.setTint(0x72751c);

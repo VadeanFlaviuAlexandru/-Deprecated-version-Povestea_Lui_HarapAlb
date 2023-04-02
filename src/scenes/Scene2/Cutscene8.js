@@ -22,28 +22,26 @@ export class Cutscene8 extends Phaser.Scene {
       "Și vorba ceea: La calic slujești, calic rămâi. Când aș da odată peste un stăpân cum gândesc eu, n-aș ști ce să fac să nu-l smintesc. Nu cumva ai trebuință de slugă, voinice? Cum te văd, sameni a avea seu la rărunchi. De ce te scumpești pentru nimica toată și nu-ți iei o slugă vrednică, ca să-ți fie mână de ajutor la drum? Locurile aiestea sunt șugubețe; de unde știi cum vine întâmplarea, și, Doamne ferește, să nu-ți cadă greu singur. ",
       "— Acum deodată încă tot nu, zise fiul craiului cu mâna pe buzdugan; m-oi mai sluji și eu singur, cum oi putea, și dând iar pinteni calului, pornește mai repede. ",
     ];
-    let Backgrounds = [this.cutscene11, this.cutscene22,this.cutscene11,this.cutscene11,this.cutscene22];
-
+    let Backgrounds = [
+      this.cutscene11,
+      this.cutscene22,
+      this.cutscene11,
+      this.cutscene11,
+      this.cutscene22,
+    ];
     let currentDialog = 0;
-
     this.Background = this.add.image(10, 10, Backgrounds[currentDialog]);
     this.Dialog.setText(Dialogs[currentDialog]);
-
     Align.ScaleToGameW(this.game, this.Background, 0.8);
     Align.center(this.game, this.Background);
-
-    this.input.on("pointerdown", () => {
+    this.input.keyboard.on("keydown-SPACE", () => {
       this.Background.destroy();
-
       currentDialog++;
-
       if (currentDialog >= Dialogs.length) {
         this.scene.start("Scene2Forest3", { x: 80, y: 500 });
       }
-
       this.Background = this.add.image(10, 10, Backgrounds[currentDialog]);
       this.Dialog.setText(Dialogs[currentDialog]);
-
       Align.ScaleToGameW(this.game, this.Background, 0.8);
       Align.center(this.game, this.Background);
     });

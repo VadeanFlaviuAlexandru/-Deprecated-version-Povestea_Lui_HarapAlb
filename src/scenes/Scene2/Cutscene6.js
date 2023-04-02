@@ -20,30 +20,22 @@ export class Cutscene6 extends Phaser.Scene {
       "Na-ți acum și pielea asta de urs, că ți-a prinde bine vreodată. Mergeți în pace, dragii mei. De-acum înainte, Dumnezeu știe când ne-om mai vedea!... ",
     ];
     let Backgrounds = ["B33", "B34", "B35", "B35"];
-
     let currentDialog = 0;
-
     this.Background = this.add.image(10, 10, Backgrounds[currentDialog]);
     this.Dialog.setText(Dialogs[currentDialog]);
-
     Align.ScaleToGameW(this.game, this.Background, 0.8);
     Align.center(this.game, this.Background);
-
-    this.input.on("pointerdown", () => {
+    this.input.keyboard.on("keydown-SPACE", () => {
       this.Background.destroy();
-
       currentDialog++;
-
       if (currentDialog >= Dialogs.length) {
-        this.scene.start("Scene2", { x: 3220, y: 1444 });
+        this.scene.start("Scene2AfterBridge", { x: 3220, y: 1444 });
         this.scene.get("Scene2").events.once("start", () => {
           this.scene.shutdown();
         });
       }
-
       this.Background = this.add.image(10, 10, Backgrounds[currentDialog]);
       this.Dialog.setText(Dialogs[currentDialog]);
-
       Align.ScaleToGameW(this.game, this.Background, 0.8);
       Align.center(this.game, this.Background);
     });

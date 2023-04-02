@@ -1,8 +1,8 @@
 import { Anims } from "../../plugins/anims";
 
-export class Scene2 extends Phaser.Scene {
+export class Scene2AfterBridge extends Phaser.Scene {
   constructor() {
-    super("Scene2");
+    super("Scene2AfterBridge");
     this.cursors = null;
     this.player = null;
     this.animsManager = new Anims(this);

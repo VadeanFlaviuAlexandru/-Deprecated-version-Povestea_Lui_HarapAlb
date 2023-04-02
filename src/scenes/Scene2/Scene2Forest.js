@@ -9,17 +9,15 @@ export class Scene2Forest extends Phaser.Scene {
     this.script = null;
   }
   preload() {
-    // map
     this.load.image("tilesCodru", "src/assets/World/SimpleGrassTiles.png");
     this.load.image("tiles2Codru", "src/assets/World/PlantTiles.png");
     this.load.image("tiles6Codru", "src/assets/World/PropsTiles.png");
+    this.load.image("spanT","src/assets/Player/span.png")
     this.load.tilemapTiledJSON(
       "mapCodru",
       "src/assets/Scene2/Scene2Forest.json"
     );
-    // player
     this.animsManager.preload();
-    // script
     this.load.json("scriptData", "src/assets/script.json");
   }
   init(data) {
@@ -27,17 +25,15 @@ export class Scene2Forest extends Phaser.Scene {
     this.spawnY = data.y;
   }
   create() {
-    // player stuff
     this.cursors = this.input.keyboard.createCursorKeys();
     window.player = this.player = this.add.character({
       x: this.spawnX,
       y: this.spawnY,
       name: "HarapAlb",
       image: "HarapAlb",
-      speed: 400,
+      speed: 270,
     });
     this.player.setTexture("HarapAlb", "HarapAlb-front");
-    // map stuff
     const mapCodru = this.make.tilemap({ key: "mapCodru" });
     const tilesetCodru = mapCodru.addTilesetImage(
       "SimpleGrassTiles",
@@ -45,7 +41,9 @@ export class Scene2Forest extends Phaser.Scene {
     );
     const tileset6Codru = mapCodru.addTilesetImage("PropsTiles", "tiles6Codru");
     const tileset2Codru = mapCodru.addTilesetImage("PlantTiles", "tiles2Codru");
+    const tileset3Codru = mapCodru.addTilesetImage("span", "spanT");
     const layer1Codru = mapCodru.createLayer("GrassLayer", tilesetCodru);
+    const layerSCodru = mapCodru.createLayer("SpanLayer", tileset3Codru);
     const layer2Codru = mapCodru.createLayer("PropsLayer", tileset6Codru);
     const layer9Codru = mapCodru.createLayer("BushesLayer", tileset2Codru);
     const layer3Codru = mapCodru.createLayer("PlantLayer", tileset2Codru);
@@ -102,14 +100,11 @@ export class Scene2Forest extends Phaser.Scene {
       layer9Codru,
       this.HitLayer.bind(this)
     );
-    // camera
     const camera = this.cameras.main;
     camera.startFollow(this.player);
     camera.setBounds(0, 0, mapCodru.widthInPixels, mapCodru.heightInPixels);
     camera.setBounds(0, 0, mapCodru.widthInPixels, mapCodru.heightInPixels);
-    // animations
     this.animsManager.create();
-    // correcting layers
     this.player.setDepth(10);
     layer2Codru.setDepth(11);
     layer9Codru.setDepth(12);
@@ -119,7 +114,6 @@ export class Scene2Forest extends Phaser.Scene {
     layer6Codru.setDepth(16);
     layer7Codru.setDepth(17);
     layer8Codru.setDepth(18);
-    // script for interactions
     this.script = this.cache.json.get("scriptData");
     const objectLayer = mapCodru.getObjectLayer("ScriptLayer");
     if (objectLayer && objectLayer.objects) {
@@ -139,9 +133,7 @@ export class Scene2Forest extends Phaser.Scene {
       });
     }
   }
-
   update() {
-    // animations
     if (this.cursors.left.isDown)
       this.player.SetInstruction({ action: "walk", option: "left" });
     else if (this.cursors.right.isDown)
@@ -151,7 +143,6 @@ export class Scene2Forest extends Phaser.Scene {
     else if (this.cursors.down.isDown)
       this.player.SetInstruction({ action: "walk", option: "front" });
     this.player.update();
-    // dialog
     if (this.Dialog.visible) {
       player.body.velocity.x = 0;
       player.body.velocity.y = 0;

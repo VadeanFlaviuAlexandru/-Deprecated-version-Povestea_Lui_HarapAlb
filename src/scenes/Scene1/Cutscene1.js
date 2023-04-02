@@ -20,13 +20,52 @@ import B19 from "../../assets/Scene1/B19.png";
 import B20 from "../../assets/Scene1/B20.png";
 import B21 from "../../assets/Scene1/B21.png";
 import { Align } from "../../utilities/Align";
-// import images from '../../assets/Scene1/images.js'
 
 export class Cutscene1 extends Phaser.Scene {
   constructor() {
     super("Cutscene1");
   }
   preload() {
+    var width = this.cameras.main.width;
+    var height = this.cameras.main.height;
+    var loadingText = this.make.text({
+      x: width / 2,
+      y: height / 2 - 50,
+      text: "Loading...",
+      style: {
+        font: "20px monospace",
+        fill: "#ffffff",
+      },
+    });
+    loadingText.setOrigin(0.5, 0.5);
+    var percentText = this.make.text({
+      x: width / 2,
+      y: height / 2 - 5,
+      text: "0%",
+      style: {
+        font: "18px monospace",
+        fill: "#ffffff",
+      },
+    });
+    percentText.setOrigin(0.5, 0.5);
+    var assetText = this.make.text({
+      x: width / 2,
+      y: height / 2 + 50,
+      text: "",
+      style: {
+        font: "18px monospace",
+        fill: "#ffffff",
+      },
+    });
+    assetText.setOrigin(0.5, 0.5);
+    this.load.on("progress", function (value) {
+      percentText.setText(parseInt(value * 100) + "%");
+    });
+    this.load.on("complete", function () {
+      loadingText.destroy();
+      percentText.destroy();
+      assetText.destroy();
+    });
     this.load.image("B1", B1);
     this.load.image("B2", B2);
     this.load.image("B3", B3);
@@ -48,15 +87,6 @@ export class Cutscene1 extends Phaser.Scene {
     this.load.image("B19", B19);
     this.load.image("B20", B20);
     this.load.image("B21", B21);
-
-    // for (let i = 1; i <= 30; i++) {
-    //     // let CurrentImage = ("B" + i)                                //  Bi
-    //     // let CurrentPath = `../../assets/Scene1/${CurrentImage}.png` //  ../../assets/Scene1/Bi.png
-    //     let CurrentImage = `B${i}`
-    //     let CurrentPath = images[i]
-    //     console.log("current image " + CurrentImage + " and current path " + CurrentPath)
-    //     // this.load.image(CurrentImage, CurrentPath)
-    // }
   }
   create() {
     let Dialogs = [
@@ -127,30 +157,19 @@ export class Cutscene1 extends Phaser.Scene {
       "B19",
       "B19",
     ];
-
     let currentDialog = 0;
-
     this.Background = this.add.image(10, 10, Backgrounds[currentDialog]);
     this.Dialog.setText(Dialogs[currentDialog]);
-
     Align.ScaleToGameW(this.game, this.Background, 0.8);
     Align.center(this.game, this.Background);
-
-    this.input.on("pointerdown", () => {
+    this.input.keyboard.on("keydown-SPACE", () => {
       this.Background.destroy();
-
       currentDialog++;
-
       if (currentDialog >= Dialogs.length) {
-        this.scene.start("Scene1");
-        this.scene.get("Scene1").events.once("start", () => {
-          this.scene.shutdown();
-        });
+        this.scene.start("Scene1", { x: 360, y: 1181 });
       }
-
       this.Background = this.add.image(10, 10, Backgrounds[currentDialog]);
       this.Dialog.setText(Dialogs[currentDialog]);
-
       Align.ScaleToGameW(this.game, this.Background, 0.8);
       Align.center(this.game, this.Background);
     });

@@ -15,7 +15,6 @@ import B49 from "../../assets/Scene2/B49.png";
 import B50 from "../../assets/Scene2/B50.png";
 import B51 from "../../assets/Scene2/B51.png";
 import B52 from "../../assets/Scene2/B52.png";
-
 import { Align } from "../../utilities/Align";
 
 export class Cutscene9 extends Phaser.Scene {
@@ -94,27 +93,19 @@ export class Cutscene9 extends Phaser.Scene {
       "B47",
       "B48",
     ];
-
     let currentDialog = 0;
-
     this.Background = this.add.image(10, 10, Backgrounds[currentDialog]);
     this.Dialog.setText(Dialogs[currentDialog]);
-
     Align.ScaleToGameW(this.game, this.Background, 0.8);
     Align.center(this.game, this.Background);
-
-    this.input.on("pointerdown", () => {
+    this.input.keyboard.on("keydown-SPACE", () => {
       this.Background.destroy();
-
       currentDialog++;
-
       if (currentDialog >= Dialogs.length) {
         this.scene.start("QuickMath", { x: 80, y: 500 });
       }
-
       this.Background = this.add.image(10, 10, Backgrounds[currentDialog]);
       this.Dialog.setText(Dialogs[currentDialog]);
-
       Align.ScaleToGameW(this.game, this.Background, 0.8);
       Align.center(this.game, this.Background);
     });
