@@ -1,6 +1,8 @@
+import Background from "../../../assets/MemoryMatch/Background.jpg";
+import { Align } from "../../../utilities/Align";
+import { getRandomInt } from "../../../utilities/Random";
 import Card from "./Card";
 import { images } from "./imageUtils.js";
-import { getRandomInt } from "../../../utilities/Random";
 
 export class Board extends Phaser.Scene {
   constructor() {
@@ -10,13 +12,135 @@ export class Board extends Phaser.Scene {
     this.attempts = 0;
     this.waitForNewRound = false;
     this.score;
+    this.cursors = null;
+    this.timedEvent;
+    this.text;
   }
   preload() {
+    this.load.image("Background", Background);
     this.loadCards();
-    this.newRound();
+    this.GameInfo.setText(
+      'Pentru ca fiul craiului să învingă acest urs, trebuie completat "Jocul de memorie". Trebuie să găsești perechi de cărți cu aceeași imagine în cel mult 13 de secunde! '
+    );
   }
   create() {
-    this.Dialog.setText("Acest joc se numește \"Jocul de memorie\". Un joc de memorie în care jucătorul trebuie să găsească perechi de cărți cu aceeași imagine. Scopul jocului este de a găsi toate perechile cât mai rapid posibil, astfel incat feciorul craiului sa poata ramana calm in fata ursului. ")
+    this.Background = this.add.image(10, 10, "Background");
+    Align.ScaleToGameW(this.game, this.Background, 1);
+    Align.center(this.game, this.Background);
+    this.text = this.add.text(32, 32);
+
+    this.cursors = this.input.keyboard.createCursorKeys();
+
+    this.shuffle();
+  }
+  update() {
+    if (this.GameInfo.visible) {
+      //dialog
+      if (this.cursors.space.isDown) {
+        this.restartGame();
+        this.timedEvent = this.time.delayedCall(14000, this.onEvent, [], this);
+        this.GameInfo.display(false);
+      }
+      return false;
+    }
+    this.text.setText(
+      "Timp rămas: " + this.timedEvent.getProgress().toString().substr(0, 4)
+    );
+  }
+  loadCards() {
+    Object.keys(images).map((name) => {
+      this.load.image(name, images[name]);
+    });
+  }
+  cardClickHandler(card) {
+    if (!this.GameInfo.visible) {
+      if (
+        this.waitForNewRound ||
+        card.out ||
+        this.selectedCards.includes(card)
+      ) {
+        return;
+      }
+      card.faceUp();
+      this.selectedCards.push(card);
+      if (this.selectedCards.length === 2) {
+        this.newRound();
+      }
+    }
+  }
+  newRound() {
+    this.waitForNewRound = true;
+    setTimeout(() => {
+      if (this.matchCards()) {
+        this.setAsReadOnly();
+      } else {
+        this.faceCardsDown();
+      }
+      this.updateScore();
+      this.selectedCards.length = 0;
+      this.waitForNewRound = false;
+      this.attempts++;
+    }, 1000);
+  }
+  matchedCards() {
+    return this.Cards.filter((card) => card.outOfTheGame).length / 2;
+  }
+  updateScore() {
+    var style = {
+      font: "bold 32px Arial",
+      fill: "#fff",
+      boundsAlignH: "center",
+      boundsAlignV: "middle",
+    };
+
+    if (!this.score) {
+      this.score = this.add.text(0, 400, "", style);
+    }
+    const efficiency = this.attempts
+      ? ((this.matchedCards() / this.attempts) * 100).toFixed(0)
+      : 0;
+
+    // this.score.text = `
+    //   Attempts:${this.attempts}
+    //   Matches: ${this.matchedCards()}
+    //   Efficiency: ${efficiency}%
+    // `;
+    if (this.matchedCards() === 4) {
+      setTimeout(() => {
+        this.scene.start("Cutscene6");
+      }, 300);
+    }
+  }
+  setAsReadOnly() {
+    this.selectedCards.forEach((card) => card.readOnly());
+  }
+  faceCardsDown() {
+    this.selectedCards.forEach((card) => card.faceDown());
+  }
+  matchCards() {
+    if (!this.selectedCards.length) {
+      return;
+    }
+    const cardA = this.selectedCards[0];
+    const cardB = this.selectedCards[1];
+
+    return cardA.key === cardB.key;
+  }
+  onEvent() {
+    this.restartGame();
+    this.GameInfo.setText(
+      "Din păcate, fiul craiului nu a putut rămane concentrat... Hai să încercăm din nou!"
+    );
+  }
+  restartGame() {
+    this.selectedCards.length = 0;
+    this.Cards.forEach((card) => {
+      card.faceDown();
+      card.outOfTheGame = false;
+    });
+    this.shuffle();
+  }
+  shuffle() {
     const MAX_CARD_PER_LINE = 4;
     const PAIRS = 4;
     const H_OFFSET = 200;
@@ -70,83 +194,5 @@ export class Board extends Phaser.Scene {
         })
       );
     }
-  }
-  update() { }
-  //    functions
-  loadCards() {
-    Object.keys(images).map((name) => {
-      this.load.image(name, images[name]);
-    });
-  }
-  cardClickHandler(card) {
-    if (this.waitForNewRound || card.out) {
-      return;
-    }
-    card.faceUp();
-    this.selectedCards.push(card);
-    if (this.selectedCards.length === 2) {
-      this.newRound();
-    }
-  }
-  newRound() {
-    this.waitForNewRound = true;
-    setTimeout(() => {
-      if (this.matchCards()) {
-        this.setAsReadOnly();
-      } else {
-        this.faceCardsDown();
-      }
-      this.updateScore();
-      this.selectedCards.length = 0;
-      this.waitForNewRound = false;
-      this.attempts++;
-    }, 1000);
-  }
-  matchedCards() {
-    return this.Cards.filter((card) => card.outOfTheGame).length / 2;
-  }
-  updateScore() {
-    var style = {
-      font: "bold 32px Arial",
-      fill: "#fff",
-      boundsAlignH: "center",
-      boundsAlignV: "middle",
-    };
-
-    if (!this.score) {
-      this.score = this.add.text(0, 400, "", style);
-    }
-    const efficiency = this.attempts
-      ? ((this.matchedCards() / this.attempts) * 100).toFixed(0)
-      : 0;
-
-    this.score.text = `
-      Attempts:${this.attempts}
-      Matches: ${this.matchedCards()}
-      Efficiency: ${efficiency}%
-    `;
-    if (this.matchedCards() === 4) {
-      setTimeout(() => {
-        this.scene.start('Cutscene6', { x: 3220, y: 1444 });
-        this.scene.get("Cutscene6").events.once('start', () => {
-          this.scene.shutdown();
-        });
-      }, 2500);
-    }
-  }
-  setAsReadOnly() {
-    this.selectedCards.forEach((card) => card.readOnly());
-  }
-  faceCardsDown() {
-    this.selectedCards.forEach((card) => card.faceDown());
-  }
-  matchCards() {
-    if (!this.selectedCards.length) {
-      return;
-    }
-    const cardA = this.selectedCards[0];
-    const cardB = this.selectedCards[1];
-
-    return cardA.key === cardB.key;
   }
 }

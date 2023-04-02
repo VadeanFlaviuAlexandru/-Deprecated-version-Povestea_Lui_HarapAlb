@@ -41,7 +41,7 @@ export class Cutscene4 extends Phaser.Scene {
       currentDialog++;
 
       if (currentDialog >= Dialogs.length) {
-        this.scene.start("Scene2", { x: 160, y: 400 });
+        this.scene.start("Scene2");
         this.scene.get("Scene2").events.once("start", () => {
           this.scene.shutdown();
         });

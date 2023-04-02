@@ -29,7 +29,7 @@ export class Scene1Attic extends Phaser.Scene {
       y: 550,
       name: "HarapAlb",
       image: "HarapAlb",
-      speed: 140,
+      speed: 200,
     });
     this.player.setTexture("HarapAlb", "HarapAlb-front");
     // map stuff

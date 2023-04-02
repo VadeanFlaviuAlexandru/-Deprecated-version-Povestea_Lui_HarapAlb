@@ -21,6 +21,7 @@ import { Scene1Attic } from "./scenes/Scene1/Scene1Attic";
 import { Board } from "./scenes/Mini-Games/MemoryMatch/Board";
 import { QuickMath } from "./scenes/Mini-Games/QuickMath/QuickMath";
 import { Cutscene10 } from "./scenes/Scene2/Cutscene10";
+import { GameInfo } from "./plugins/GameInfo";
 
 const config = {
   type: Phaser.AUTO,
@@ -36,7 +37,10 @@ const config = {
   },
   plugins: {
     global: [{ key: "CharacterPlugin", plugin: CharacterPlugin, start: true }],
-    scene: [{ key: "Dialog", plugin: Cutscene, mapping: "Dialog" }],
+    scene: [
+      { key: "Dialog", plugin: Cutscene, mapping: "Dialog" },
+      { key: "Info", plugin: GameInfo, mapping: "GameInfo" },
+    ],
   },
   scene: [
     Main,
