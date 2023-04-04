@@ -1,5 +1,3 @@
-import B36 from "../../assets/Scene2/B36.png";
-import B37 from "../../assets/Scene2/B37.png";
 import { Align } from "../../utilities/Align";
 
 export class Cutscene8 extends Phaser.Scene {
