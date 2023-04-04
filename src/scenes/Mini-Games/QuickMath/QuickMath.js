@@ -1,6 +1,3 @@
-import timebar from "../../../assets/QuickMath/timebar.png";
-import buttons from "../../../assets/QuickMath/buttons.png";
-import Background from "../../../assets/QuickMath/BackGround.jpg";
 import { Align } from "../../../utilities/Align";
 
 export class QuickMath extends Phaser.Scene {
@@ -15,9 +12,9 @@ export class QuickMath extends Phaser.Scene {
     };
   }
   preload() {
-    this.load.image("Background", Background);
-    this.load.image("timebar", timebar);
-    this.load.spritesheet("buttons", buttons, {
+    this.load.image("Background", "../../../assets/QuickMath/BackGround.jpg");
+    this.load.image("timebar", "../../../assets/QuickMath/timebar.png");
+    this.load.spritesheet("buttons", "../../../assets/QuickMath/buttons.png", {
       frameWidth: 400,
       frameHeight: 50,
     });

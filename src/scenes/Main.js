@@ -5,11 +5,11 @@ export class Main extends Phaser.Scene {
     super("SceneMain");
   }
   preload() {
-    this.load.image("controls", "../assets/Main/Buttons/controls.png");
-    this.load.image("exit", "../assets/Main/Buttons/exit.png");
-    this.load.image("newgame", "../assets/Main/Buttons/newgame.png");
-    this.load.image("start", "../assets/Main/Buttons/start.png");
-    this.load.image("background", "../assets/Main/background.jpg");
+    this.load.image("controls", "src/assets/Main/Buttons/controls.png");
+    this.load.image("exit", "src/assets/Main/Buttons/exit.png");
+    this.load.image("newgame", "src/assets/Main/Buttons/newgame.png");
+    this.load.image("start", "src/assets/Main/Buttons/start.png");
+    this.load.image("background", "src/assets/Main/background.jpg");
     this.load.audio("music1", 'src/assets/music/JocDeInceput.mp3')
   }
   create() {
