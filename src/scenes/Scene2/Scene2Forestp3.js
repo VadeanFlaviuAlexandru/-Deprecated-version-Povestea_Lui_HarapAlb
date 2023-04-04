@@ -1,11 +1,11 @@
-import { Anims } from "../../plugins/anims";
+import { AnimsOnHorse } from "../../plugins/AnimsOnHorse";
 
 export class Scene2Forest3 extends Phaser.Scene {
   constructor() {
     super("Scene2Forest3");
     this.cursors = null;
     this.player = null;
-    this.animsManager = new Anims(this);
+    this.animsManagerOnHorse = new AnimsOnHorse(this);
     this.script = null;
   }
   preload() {
@@ -17,7 +17,7 @@ export class Scene2Forest3 extends Phaser.Scene {
       "mapCodru3",
       "src/assets/Scene2/Scene2ForestSplitPart2.json"
     );
-    this.animsManager.preload();
+    this.animsManagerOnHorse.preload();
     this.load.json("scriptData", "src/assets/script.json");
   }
   init(data) {
@@ -29,11 +29,11 @@ export class Scene2Forest3 extends Phaser.Scene {
     window.player = this.player = this.add.character({
       x: this.spawnX,
       y: this.spawnY,
-      name: "HarapAlb",
-      image: "HarapAlb",
+      name: "horse",
+      image: "horse",
       speed: 270,
     });
-    this.player.setTexture("HarapAlb", "HarapAlb-front");
+    this.player.setTexture("horse", "horse-front");
     const mapCodru3 = this.make.tilemap({ key: "mapCodru3" });
     const tilesetCodru3 = mapCodru3.addTilesetImage(
       "SimpleGrassTiles",
@@ -110,7 +110,7 @@ export class Scene2Forest3 extends Phaser.Scene {
     camera.startFollow(this.player);
     camera.setBounds(0, 0, mapCodru3.widthInPixels, mapCodru3.heightInPixels);
     camera.setBounds(0, 0, mapCodru3.widthInPixels, mapCodru3.heightInPixels);
-    this.animsManager.create();
+    this.animsManagerOnHorse.create();
     this.player.setDepth(10);
     layer2Codru3.setDepth(11);
     layer9Codru3.setDepth(12);

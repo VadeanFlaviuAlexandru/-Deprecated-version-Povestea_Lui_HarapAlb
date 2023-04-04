@@ -1,11 +1,11 @@
-import { Anims } from "../../plugins/anims";
+import { AnimsOnHorse } from "../../plugins/AnimsOnHorse";
 
 export class Scene2AfterBridge extends Phaser.Scene {
   constructor() {
     super("Scene2AfterBridge");
     this.cursors = null;
     this.player = null;
-    this.animsManager = new Anims(this);
+    this.animsManagerOnHorse = new AnimsOnHorse(this);
   }
   preload() {
     this.load.image(
@@ -27,7 +27,7 @@ export class Scene2AfterBridge extends Phaser.Scene {
       "mapOutsideCastle",
       "src/assets/Scene2/Scene2.json"
     );
-    this.animsManager.preload();
+    this.animsManagerOnHorse.preload();
     this.load.json("scriptData", "src/assets/script.json");
   }
   init(data) {
@@ -39,11 +39,11 @@ export class Scene2AfterBridge extends Phaser.Scene {
     window.player = this.player = this.add.character({
       x: this.spawnX,
       y: this.spawnY,
-      name: "HarapAlb",
-      image: "HarapAlb",
+      name: "horse",
+      image: "horse",
       speed: 270,
     });
-    this.player.setTexture("HarapAlb", "HarapAlb-front");
+    this.player.setTexture("horse", "horse-front");
     const mapOutsideCastle = this.make.tilemap({ key: "mapOutsideCastle" });
     const tilesetOutsideCastle = mapOutsideCastle.addTilesetImage(
       "SimpleGrassTiles",
@@ -183,7 +183,7 @@ export class Scene2AfterBridge extends Phaser.Scene {
       mapOutsideCastle.widthInPixels,
       mapOutsideCastle.heightInPixels
     );
-    this.animsManager.create();
+    this.animsManagerOnHorse.create();
     this.player.setDepth(10);
     layer6OutsideCastle.setDepth(11);
     layer9OutsideCastle.setDepth(12);

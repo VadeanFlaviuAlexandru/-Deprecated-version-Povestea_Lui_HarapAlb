@@ -181,6 +181,7 @@ export class Scene1 extends Phaser.Scene {
       ) {
         this.scene.start(target.properties.portal);
       } else if (this.registry.get("ExitAttic") == 1) {
+        this.animsManager.destroy()
         this.scene.start(target.properties.portal);
       }
     }

@@ -15,8 +15,22 @@ export class Main extends Phaser.Scene {
     this.load.image("newgame", newgame);
     this.load.image("start", start);
     this.load.image("background", background);
+    this.load.audio("music1", 'src/assets/music/JocDeInceput.mp3')
   }
   create() {
+    this.music1 = this.sound.add('music1', {
+      volume: 0.2,
+      loop: true
+    })
+    this.music1.play()
+    if (!this.sound.locked) {
+      this.music1.play()
+    }
+    else {
+      this.sound.once(Phaser.Sound.Events.UNLOCKED, () => {
+        this.music1.play()
+      })
+    }
     this.Background = this.add.image(10, 10, "background");
     Align.ScaleToGameW(this.game, this.Background, 0.9);
     Align.center(this.game, this.Background);
@@ -63,7 +77,7 @@ export class Main extends Phaser.Scene {
       playButton.setTint(0xa1c4c6);
     });
     playButton.on("pointerdown", () => {
-      this.scene.start("Scene2Forest",{ x: 100, y: 500 });
+      this.scene.start("Cutscene1");
     });
     playButton.on("pointerout", () => {
       playButton.setTint(0x72751c);
@@ -77,6 +91,19 @@ export class Main extends Phaser.Scene {
     controlsButton.on("pointerover", () => {
       controlsButton.setTint(0xa1c4c6);
     });
+    controlsButton.on("pointerdown", () => {
+      var modal = document.getElementById("myModal");
+      var span = document.getElementsByClassName("close")[0];
+      modal.style.display = "block";
+      span.onclick = function () {
+        modal.style.display = "none";
+      }
+      window.onclick = function (event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      }
+    })
     controlsButton.on("pointerout", () => {
       controlsButton.setTint(0x72751c);
     });
@@ -90,5 +117,5 @@ export class Main extends Phaser.Scene {
       exitButton.setTint(0x72751c);
     });
   }
-  update() {}
+  update() { }
 }

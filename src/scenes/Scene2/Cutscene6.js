@@ -11,8 +11,23 @@ export class Cutscene6 extends Phaser.Scene {
     this.load.image("B33", B33);
     this.load.image("B34", B34);
     this.load.image("B35", B35);
+    this.load.audio("music5", 'src/assets/music/OmuleCatAiTraiSLOWEDandREVERB.mp3')
   }
   create() {
+    this.sound.get("music4").stop();
+    this.music5 = this.sound.add('music5', {
+      volume: 0.2,
+      loop: true
+    })
+    this.music5.play()
+    if (!this.sound.locked) {
+      this.music5.play()
+    }
+    else {
+      this.sound.once(Phaser.Sound.Events.UNLOCKED, () => {
+        this.music5.play()
+      })
+    }
     let Dialogs = [
       "Dragul tatei, nu da, că eu sunt!",
       "Atunci fiul craiului descalecă, și tată-său, cuprinzându-l în brațe, îl sărută și-i zice: ",

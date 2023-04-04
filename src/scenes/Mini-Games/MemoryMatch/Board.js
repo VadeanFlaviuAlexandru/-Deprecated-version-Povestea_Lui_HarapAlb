@@ -22,8 +22,24 @@ export class Board extends Phaser.Scene {
     this.GameInfo.setText(
       'Pentru ca fiul craiului să învingă acest urs, trebuie completat "Jocul de memorie". Trebuie să găsești perechi de cărți cu aceeași imagine în cel mult 13 de secunde! '
     );
+    this.load.audio("music4", 'src/assets/music/TurningDance.mp3')
+
   }
   create() {
+    this.sound.get("music3").stop();
+    this.music4 = this.sound.add('music4', {
+      volume: 0.2,
+      loop: true
+    })
+    this.music4.play()
+    if (!this.sound.locked) {
+      this.music4.play()
+    }
+    else {
+      this.sound.once(Phaser.Sound.Events.UNLOCKED, () => {
+        this.music4.play()
+      })
+    }
     this.Background = this.add.image(10, 10, "Background");
     Align.ScaleToGameW(this.game, this.Background, 1);
     Align.center(this.game, this.Background);

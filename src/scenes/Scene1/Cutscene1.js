@@ -87,8 +87,23 @@ export class Cutscene1 extends Phaser.Scene {
     this.load.image("B19", B19);
     this.load.image("B20", B20);
     this.load.image("B21", B21);
+    this.load.audio("music2", 'src/assets/music/Batraneasca.mp3')
   }
   create() {
+    this.sound.get("music1").stop();
+    this.music2 = this.sound.add('music2', {
+      volume: 0.2,
+      loop: true
+    })
+    this.music2.play()
+    if (!this.sound.locked) {
+      this.music2.play()
+    }
+    else {
+      this.sound.once(Phaser.Sound.Events.UNLOCKED, () => {
+        this.music2.play()
+      })
+    }
     let Dialogs = [
       "Amu cică era odată într-o țară un crai, care avea trei feciori. Și craiul acela mai avea un frate mai mare, care era împărat într-o altă țară, mai depărtată. Și împăratul, fratele craiului, se numea Verde-împărat; și împăratul Verde nu avea feciori, ci numai fete. Mulți ani trecură la mijloc de când acești frați mai avură prilej a se întâlni amândoi. Iară verii, adică feciorii craiului și fetele împăratului, nu se văzuse niciodată de când erau ei.",
       "Și așa veni împrejurarea de nici împăratul Verde nu cunoștea nepoții săi, nici craiul nepoatele sale: pentru că țara în care împărățea fratele cel mai mare era tocmai la o margine a pământului, și crăia istuilalt la o altă margine. Și apoi, pe vremile acelea, mai toate țările erau bântuite de războaie grozave, drumurile pe ape și pe uscat erau puțin cunoscute și foarte încurcate și de aceea nu se putea călători așa de ușor și fără primejdii ca în ziua de astăzi. Și cine apuca a se duce pe atunci într-o parte a lumii adeseori dus rămânea până la moarte. ",
@@ -174,5 +189,5 @@ export class Cutscene1 extends Phaser.Scene {
       Align.center(this.game, this.Background);
     });
   }
-  update() {}
+  update() { }
 }

@@ -57,4 +57,10 @@ export class Anims {
       repeat: -1,
     });
   }
+  destroy() {
+    this.scene.anims.remove("HarapAlb-walk-left")
+    this.scene.anims.remove("HarapAlb-walk-right")
+    this.scene.anims.remove("HarapAlb-walk-front")
+    this.scene.anims.remove("HarapAlb-walk-back")
+  }
 }

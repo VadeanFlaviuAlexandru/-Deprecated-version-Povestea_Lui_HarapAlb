@@ -21,14 +21,30 @@ export class QuickMath extends Phaser.Scene {
       frameWidth: 400,
       frameHeight: 50,
     });
+    this.load.audio("music6", 'src/assets/music/TheCask.mp3')
+
   }
   create() {
+    this.sound.get("music5").stop();
+    this.music6 = this.sound.add('music6', {
+      volume: 0.1,
+      loop: true
+    })
+    this.music6.play()
+    if (!this.sound.locked) {
+      this.music6.play()
+    }
+    else {
+      this.sound.once(Phaser.Sound.Events.UNLOCKED, () => {
+        this.music6.play()
+      })
+    }
     this.Background = this.add.image(10, 10, "Background");
     Align.ScaleToGameW(this.game, this.Background, 1);
     Align.center(this.game, this.Background);
     this.cursors = this.input.keyboard.createCursorKeys();
     this.GameInfo.setText(
-      "Pentru ca fiul craiului să scape, trebuie să obți un scor mai mare de 1500 la acest joc de aritmetică. Trebuie să apeși pe răspunsul corect înainte să se scurgă timpul!"
+      "Pentru ca fiul craiului să scape, trebuie să obți un scor mai mare de 4500 la acest joc de aritmetică! Trebuie să apeși pe răspunsul corect înainte să se scurgă timpul! Nu ceda!"
     );
   }
   update() {

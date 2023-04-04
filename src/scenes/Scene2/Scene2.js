@@ -1,11 +1,11 @@
-import { Anims } from "../../plugins/anims";
+import { AnimsOnHorse } from "../../plugins/AnimsOnHorse";
 
 export class Scene2 extends Phaser.Scene {
   constructor() {
     super("Scene2");
     this.cursors = null;
     this.player = null;
-    this.animsManager = new Anims(this);
+    this.animsManagerOnHorse = new AnimsOnHorse(this);
   }
   preload() {
     this.load.image(
@@ -27,23 +27,40 @@ export class Scene2 extends Phaser.Scene {
       "mapOutsideCastle",
       "src/assets/Scene2/Scene2.json"
     );
-    this.animsManager.preload();
+    this.animsManagerOnHorse.preload();
     this.load.json("scriptData", "src/assets/script.json");
+    this.load.audio("music3", 'src/assets/music/OmuleCatAiTrai.mp3')
+
   }
   init(data) {
     this.spawnX = data.x;
     this.spawnY = data.y;
   }
   create() {
+    this.animsManagerOnHorse.create();
+    this.sound.get("music2").stop();
+    this.music3 = this.sound.add('music3', {
+      volume: 0.2,
+      loop: true
+    })
+    this.music3.play()
+    if (!this.sound.locked) {
+      this.music3.play()
+    }
+    else {
+      this.sound.once(Phaser.Sound.Events.UNLOCKED, () => {
+        this.music3.play()
+      })
+    }
     this.cursors = this.input.keyboard.createCursorKeys();
     window.player = this.player = this.add.character({
       x: this.spawnX,
       y: this.spawnY,
-      name: "HarapAlb",
-      image: "HarapAlb",
+      name: "horse",
+      image: "horse",
       speed: 270,
     });
-    this.player.setTexture("HarapAlb", "HarapAlb-front");
+    this.player.setTexture("horse", "horse-front");
     const mapOutsideCastle = this.make.tilemap({ key: "mapOutsideCastle" });
     const tilesetOutsideCastle = mapOutsideCastle.addTilesetImage(
       "SimpleGrassTiles",
@@ -183,7 +200,6 @@ export class Scene2 extends Phaser.Scene {
       mapOutsideCastle.widthInPixels,
       mapOutsideCastle.heightInPixels
     );
-    this.animsManager.create();
     this.player.setDepth(10);
     layer6OutsideCastle.setDepth(11);
     layer9OutsideCastle.setDepth(12);

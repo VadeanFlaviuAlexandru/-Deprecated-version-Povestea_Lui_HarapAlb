@@ -1,11 +1,11 @@
-import { Anims } from "../../plugins/anims";
+import { AnimsOnHorse } from "../../plugins/AnimsOnHorse";
 
 export class Scene2Forest extends Phaser.Scene {
   constructor() {
     super("Scene2Forest");
     this.cursors = null;
     this.player = null;
-    this.animsManager = new Anims(this);
+    this.animsManager = new AnimsOnHorse(this);
     this.script = null;
   }
   preload() {
@@ -29,11 +29,11 @@ export class Scene2Forest extends Phaser.Scene {
     window.player = this.player = this.add.character({
       x: this.spawnX,
       y: this.spawnY,
-      name: "HarapAlb",
-      image: "HarapAlb",
+      name: "horse",
+      image: "horse",
       speed: 270,
     });
-    this.player.setTexture("HarapAlb", "HarapAlb-front");
+    this.player.setTexture("horse", "horse-front");
     const mapCodru = this.make.tilemap({ key: "mapCodru" });
     const tilesetCodru = mapCodru.addTilesetImage(
       "SimpleGrassTiles",
