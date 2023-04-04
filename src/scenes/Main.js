@@ -1,8 +1,3 @@
-import controls from "../assets/Main/Buttons/controls.png";
-import exit from "../assets/Main/Buttons/exit.png";
-import newgame from "../assets/Main/Buttons/newgame.png";
-import start from "../assets/Main/Buttons/start.png";
-import background from "../assets/Main/background.jpg";
 import { Align } from "../utilities/Align.js";
 
 export class Main extends Phaser.Scene {
@@ -10,11 +5,11 @@ export class Main extends Phaser.Scene {
     super("SceneMain");
   }
   preload() {
-    this.load.image("controls", controls);
-    this.load.image("exit", exit);
-    this.load.image("newgame", newgame);
-    this.load.image("start", start);
-    this.load.image("background", background);
+    this.load.image("controls", "../assets/Main/Buttons/controls.png");
+    this.load.image("exit", "../assets/Main/Buttons/exit.png");
+    this.load.image("newgame", "../assets/Main/Buttons/newgame.png");
+    this.load.image("start", "../assets/Main/Buttons/start.png");
+    this.load.image("background", "../assets/Main/background.jpg");
     this.load.audio("music1", 'src/assets/music/JocDeInceput.mp3')
   }
   create() {

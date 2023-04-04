@@ -1,4 +1,3 @@
-import B25 from "../../assets/Scene1/B25.png";
 import { Align } from "../../utilities/Align";
 
 export class Cutscene3 extends Phaser.Scene {
@@ -6,7 +5,7 @@ export class Cutscene3 extends Phaser.Scene {
     super("Cutscene3");
   }
   preload() {
-    this.load.image("B25", B25);
+    this.load.image("B25", "../../assets/Scene1/B25.png");
   }
   create() {
     let Dialogs = [

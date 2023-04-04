@@ -1,5 +1,3 @@
-import B36 from "../../assets/Scene2/B36.png";
-import B37 from "../../assets/Scene2/B37.png";
 import { Align } from "../../utilities/Align";
 
 export class Cutscene7 extends Phaser.Scene {
@@ -7,8 +5,8 @@ export class Cutscene7 extends Phaser.Scene {
     super("Cutscene7");
   }
   preload() {
-    this.load.image("B36", B36);
-    this.load.image("B37", B37);
+    this.load.image("B36", "../../assets/Scene2/B36.png");
+    this.load.image("B37", "../../assets/Scene2/B37.png");
   }
   init(data) {
     this.cutscene1 = data.cutscene1;
