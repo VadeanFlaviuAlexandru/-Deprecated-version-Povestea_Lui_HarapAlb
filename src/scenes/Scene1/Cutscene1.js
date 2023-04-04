@@ -1,24 +1,3 @@
-import B1 from "../../assets/Scene1/B1.png";
-import B2 from "../../assets/Scene1/B2.png";
-import B3 from "../../assets/Scene1/B3.png";
-import B4 from "../../assets/Scene1/B4.png";
-import B5 from "../../assets/Scene1/B5.png";
-import B6 from "../../assets/Scene1/B6.png";
-import B7 from "../../assets/Scene1/B7.png";
-import B8 from "../../assets/Scene1/B8.png";
-import B9 from "../../assets/Scene1/B9.png";
-import B10 from "../../assets/Scene1/B10.png";
-import B11 from "../../assets/Scene1/B11.png";
-import B12 from "../../assets/Scene1/B12.png";
-import B13 from "../../assets/Scene1/B13.png";
-import B14 from "../../assets/Scene1/B14.png";
-import B15 from "../../assets/Scene1/B15.png";
-import B16 from "../../assets/Scene1/B16.png";
-import B17 from "../../assets/Scene1/B17.png";
-import B18 from "../../assets/Scene1/B18.png";
-import B19 from "../../assets/Scene1/B19.png";
-import B20 from "../../assets/Scene1/B20.png";
-import B21 from "../../assets/Scene1/B21.png";
 import { Align } from "../../utilities/Align";
 
 export class Cutscene1 extends Phaser.Scene {
@@ -66,27 +45,27 @@ export class Cutscene1 extends Phaser.Scene {
       percentText.destroy();
       assetText.destroy();
     });
-    this.load.image("B1", B1);
-    this.load.image("B2", B2);
-    this.load.image("B3", B3);
-    this.load.image("B4", B4);
-    this.load.image("B5", B5);
-    this.load.image("B6", B6);
-    this.load.image("B7", B7);
-    this.load.image("B8", B8);
-    this.load.image("B9", B9);
-    this.load.image("B10", B10);
-    this.load.image("B11", B11);
-    this.load.image("B12", B12);
-    this.load.image("B13", B13);
-    this.load.image("B14", B14);
-    this.load.image("B15", B15);
-    this.load.image("B16", B16);
-    this.load.image("B17", B17);
-    this.load.image("B18", B18);
-    this.load.image("B19", B19);
-    this.load.image("B20", B20);
-    this.load.image("B21", B21);
+    this.load.image("B1", "../../assets/Scene1/B1.png");
+    this.load.image("B2", "../../assets/Scene1/B2.png");
+    this.load.image("B3", "../../assets/Scene1/B3.png");
+    this.load.image("B4", "../../assets/Scene1/B4.png");
+    this.load.image("B5", "../../assets/Scene1/B5.png");
+    this.load.image("B6", "../../assets/Scene1/B6.png");
+    this.load.image("B7", "../../assets/Scene1/B7.png");
+    this.load.image("B8", "../../assets/Scene1/B8.png");
+    this.load.image("B9", "../../assets/Scene1/B9.png");
+    this.load.image("B10", "../../assets/Scene1/B10.png");
+    this.load.image("B11", "../../assets/Scene1/B11.png");
+    this.load.image("B12", "../../assets/Scene1/B12.png");
+    this.load.image("B13", "../../assets/Scene1/B13.png");
+    this.load.image("B14", "../../assets/Scene1/B14.png");
+    this.load.image("B15", "../../assets/Scene1/B15.png");
+    this.load.image("B16", "../../assets/Scene1/B16.png");
+    this.load.image("B17", "../../assets/Scene1/B17.png");
+    this.load.image("B18", "../../assets/Scene1/B18.png");
+    this.load.image("B19", "../../assets/Scene1/B19.png");
+    this.load.image("B20", "../../assets/Scene1/B20.png");
+    this.load.image("B21", "../../assets/Scene1/B21.png");
     this.load.audio("music2", 'src/assets/music/Batraneasca.mp3')
   }
   create() {
