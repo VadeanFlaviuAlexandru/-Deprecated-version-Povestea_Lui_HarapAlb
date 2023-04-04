@@ -17,7 +17,7 @@ export class Scene1 extends Phaser.Scene {
     this.load.image("tiles8Castle", "src/assets/World/WallsTiles2.png");
     this.load.tilemapTiledJSON("mapCastle", "src/assets/Scene1/Scene1.json");
     this.animsManager.preload();
-    this.load.json("scriptData", "src/assets/script.json");
+    this.load.json("scriptData", "src/assets/Interactions/script.json");
   }
   init(data) {
     this.spawnX = data.x;

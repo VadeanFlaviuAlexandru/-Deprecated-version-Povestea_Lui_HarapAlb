@@ -18,7 +18,7 @@ export class Scene2Forest3 extends Phaser.Scene {
       "src/assets/Scene2/Scene2ForestSplitPart2.json"
     );
     this.animsManagerOnHorse.preload();
-    this.load.json("scriptData", "src/assets/script.json");
+    this.load.json("scriptDataHorse", "src/assets/Interactions/scriptOnHorse.json");
   }
   init(data) {
     this.spawnX = data.x;
@@ -120,7 +120,7 @@ export class Scene2Forest3 extends Phaser.Scene {
     layer6Codru3.setDepth(16);
     layer7Codru3.setDepth(17);
     layer8Codru3.setDepth(18);
-    this.script = this.cache.json.get("scriptData");
+    this.script = this.cache.json.get("scriptDataHorse");
     const objectLayer = mapCodru3.getObjectLayer("ScriptLayer");
     if (objectLayer && objectLayer.objects) {
       objectLayer.objects.forEach((object) => {

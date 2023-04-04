@@ -44,7 +44,7 @@ export class QuickMath extends Phaser.Scene {
     Align.center(this.game, this.Background);
     this.cursors = this.input.keyboard.createCursorKeys();
     this.GameInfo.setText(
-      "Pentru ca fiul craiului să scape, trebuie să obți un scor mai mare de 4500 la acest joc de aritmetică! Trebuie să apeși pe răspunsul corect înainte să se scurgă timpul! Nu ceda!"
+      "Pentru ca fiul craiului să scape, trebuie să obți un scor mai mare de 2000 la acest joc de aritmetică! Trebuie să apeși pe răspunsul corect înainte să se scurgă timpul! Nu ceda!"
     );
   }
   update() {
@@ -186,7 +186,7 @@ export class QuickMath extends Phaser.Scene {
       this.gameOptions.localStorageName,
       Math.max(this.score, this.topScore)
     );
-    if (this.score > 1500) {
+    if (this.score > 2000) {
       this.scene.start("Cutscene10");
     }
     this.GameInfo.setText(

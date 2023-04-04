@@ -13,7 +13,7 @@ export class Scene1Attic extends Phaser.Scene {
     this.load.image("tiles2Attic", "src/assets/World/PropsTiles.png");
     this.load.tilemapTiledJSON("mapAttic", "src/assets/Scene1/attic.json");
     this.animsManager.preload();
-    this.load.json("scriptData", "src/assets/script.json");
+    this.load.json("scriptData", "src/assets/Interactions/script.json");
     this.load.image("vision", "src/assets/World/Vision.png");
   }
   create() {

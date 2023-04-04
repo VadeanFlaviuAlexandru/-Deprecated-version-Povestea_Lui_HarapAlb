@@ -28,7 +28,7 @@ export class Scene2 extends Phaser.Scene {
       "src/assets/Scene2/Scene2.json"
     );
     this.animsManagerOnHorse.preload();
-    this.load.json("scriptData", "src/assets/script.json");
+    this.load.json("scriptDataHorse", "src/assets/Interactions/scriptOnHorse.json");
     this.load.audio("music3", 'src/assets/music/OmuleCatAiTrai.mp3')
 
   }
@@ -203,7 +203,7 @@ export class Scene2 extends Phaser.Scene {
     this.player.setDepth(10);
     layer6OutsideCastle.setDepth(11);
     layer9OutsideCastle.setDepth(12);
-    this.script = this.cache.json.get("scriptData");
+    this.script = this.cache.json.get("scriptDataHorse");
     const objectLayer = mapOutsideCastle.getObjectLayer("ScriptLayer");
     if (objectLayer && objectLayer.objects) {
       objectLayer.objects.forEach((object) => {
