@@ -5,23 +5,23 @@ export class Cutscene9 extends Phaser.Scene {
     super("Cutscene9");
   }
   preload() {
-    this.load.image("B36", "../../assets/Scene2/B36.png");
-    this.load.image("B37", "../../assets/Scene2/B37.png");
-    this.load.image("B38", "../../assets/Scene2/B38.png");
-    this.load.image("B39", "../../assets/Scene2/B39.png");
-    this.load.image("B40", "../../assets/Scene2/B40.png");
-    this.load.image("B41", "../../assets/Scene2/B41.png");
-    this.load.image("B42", "../../assets/Scene2/B42.png");
-    this.load.image("B43", "../../assets/Scene2/B43.png");
-    this.load.image("B44", "../../assets/Scene2/B44.png");
-    this.load.image("B45", "../../assets/Scene2/B45.png");
-    this.load.image("B46", "../../assets/Scene2/B46.png");
-    this.load.image("B47", "../../assets/Scene2/B47.png");
-    this.load.image("B48", "../../assets/Scene2/B48.png");
-    this.load.image("B49", "../../assets/Scene2/B49.png");
-    this.load.image("B50", "../../assets/Scene2/B50.png");
-    this.load.image("B51", "../../assets/Scene2/B51.png");
-    this.load.image("B52", "../../assets/Scene2/B52.png");
+    this.load.image("B36", "src/assets/Scene2/B36.png");
+    this.load.image("B37", "src/assets/Scene2/B37.png");
+    this.load.image("B38", "src/assets/Scene2/B38.png");
+    this.load.image("B39", "src/assets/Scene2/B39.png");
+    this.load.image("B40", "src/assets/Scene2/B40.png");
+    this.load.image("B41", "src/assets/Scene2/B41.png");
+    this.load.image("B42", "src/assets/Scene2/B42.png");
+    this.load.image("B43", "src/assets/Scene2/B43.png");
+    this.load.image("B44", "src/assets/Scene2/B44.png");
+    this.load.image("B45", "src/assets/Scene2/B45.png");
+    this.load.image("B46", "src/assets/Scene2/B46.png");
+    this.load.image("B47", "src/assets/Scene2/B47.png");
+    this.load.image("B48", "src/assets/Scene2/B48.png");
+    this.load.image("B49", "src/assets/Scene2/B49.png");
+    this.load.image("B50", "src/assets/Scene2/B50.png");
+    this.load.image("B51", "src/assets/Scene2/B51.png");
+    this.load.image("B52", "src/assets/Scene2/B52.png");
   }
   create() {
     let Dialogs = [

@@ -5,7 +5,7 @@ export class Cutscene3 extends Phaser.Scene {
     super("Cutscene3");
   }
   preload() {
-    this.load.image("B25", "../../assets/Scene1/B25.png");
+    this.load.image("B25", "src/assets/Scene1/B25.png");
   }
   create() {
     let Dialogs = [

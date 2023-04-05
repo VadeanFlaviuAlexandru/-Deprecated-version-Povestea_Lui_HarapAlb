@@ -12,9 +12,9 @@ export class QuickMath extends Phaser.Scene {
     };
   }
   preload() {
-    this.load.image("Background", "../../../assets/QuickMath/BackGround.jpg");
-    this.load.image("timebar", "../../../assets/QuickMath/timebar.png");
-    this.load.spritesheet("buttons", "../../../assets/QuickMath/buttons.png", {
+    this.load.image("Background", "src/assets/QuickMath/BackGround.jpg");
+    this.load.image("timebar", "src/assets/QuickMath/timebar.png");
+    this.load.spritesheet("buttons", "src/assets/QuickMath/buttons.png", {
       frameWidth: 400,
       frameHeight: 50,
     });

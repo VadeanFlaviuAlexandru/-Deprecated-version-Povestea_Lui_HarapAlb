@@ -5,11 +5,11 @@ export class Cutscene4 extends Phaser.Scene {
     super("Cutscene4");
   }
   preload() {
-    this.load.image("B21", "../../assets/Scene1/B21.png");
-    this.load.image("B27", "../../assets/Scene1/B27.png");
-    this.load.image("B28", "../../assets/Scene1/B28.png");
-    this.load.image("B29", "../../assets/Scene1/B29.png");
-    this.load.image("B30", "../../assets/Scene1/B30.png");
+    this.load.image("B21", "src/assets/Scene1/B21.png");
+    this.load.image("B27", "src/assets/Scene1/B27.png");
+    this.load.image("B28", "src/assets/Scene1/B28.png");
+    this.load.image("B29", "src/assets/Scene1/B29.png");
+    this.load.image("B30", "src/assets/Scene1/B30.png");
   }
   create() {
     let Dialogs = [

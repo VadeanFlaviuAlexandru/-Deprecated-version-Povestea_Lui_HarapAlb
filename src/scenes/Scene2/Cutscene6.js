@@ -5,9 +5,9 @@ export class Cutscene6 extends Phaser.Scene {
     super("Cutscene6");
   }
   preload() {
-    this.load.image("B33", "../../assets/Scene2/B33.png");
-    this.load.image("B34", "../../assets/Scene2/B34.png");
-    this.load.image("B35", "../../assets/Scene2/B35.png");
+    this.load.image("B33", "src/assets/Scene2/B33.png");
+    this.load.image("B34", "src/assets/Scene2/B34.png");
+    this.load.image("B35", "src/assets/Scene2/B35.png");
     this.load.audio("music5", 'src/assets/music/OmuleCatAiTraiSLOWEDandREVERB.mp3')
   }
   create() {

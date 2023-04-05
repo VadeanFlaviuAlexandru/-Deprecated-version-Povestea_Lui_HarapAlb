@@ -45,27 +45,27 @@ export class Cutscene1 extends Phaser.Scene {
       percentText.destroy();
       assetText.destroy();
     });
-    this.load.image("B1", "../../assets/Scene1/B1.png");
-    this.load.image("B2", "../../assets/Scene1/B2.png");
-    this.load.image("B3", "../../assets/Scene1/B3.png");
-    this.load.image("B4", "../../assets/Scene1/B4.png");
-    this.load.image("B5", "../../assets/Scene1/B5.png");
-    this.load.image("B6", "../../assets/Scene1/B6.png");
-    this.load.image("B7", "../../assets/Scene1/B7.png");
-    this.load.image("B8", "../../assets/Scene1/B8.png");
-    this.load.image("B9", "../../assets/Scene1/B9.png");
-    this.load.image("B10", "../../assets/Scene1/B10.png");
-    this.load.image("B11", "../../assets/Scene1/B11.png");
-    this.load.image("B12", "../../assets/Scene1/B12.png");
-    this.load.image("B13", "../../assets/Scene1/B13.png");
-    this.load.image("B14", "../../assets/Scene1/B14.png");
-    this.load.image("B15", "../../assets/Scene1/B15.png");
-    this.load.image("B16", "../../assets/Scene1/B16.png");
-    this.load.image("B17", "../../assets/Scene1/B17.png");
-    this.load.image("B18", "../../assets/Scene1/B18.png");
-    this.load.image("B19", "../../assets/Scene1/B19.png");
-    this.load.image("B20", "../../assets/Scene1/B20.png");
-    this.load.image("B21", "../../assets/Scene1/B21.png");
+    this.load.image("B1", "src/assets/Scene1/B1.png");
+    this.load.image("B2", "src/assets/Scene1/B2.png");
+    this.load.image("B3", "src/assets/Scene1/B3.png");
+    this.load.image("B4", "src/assets/Scene1/B4.png");
+    this.load.image("B5", "src/assets/Scene1/B5.png");
+    this.load.image("B6", "src/assets/Scene1/B6.png");
+    this.load.image("B7", "src/assets/Scene1/B7.png");
+    this.load.image("B8", "src/assets/Scene1/B8.png");
+    this.load.image("B9", "src/assets/Scene1/B9.png");
+    this.load.image("B10", "src/assets/Scene1/B10.png");
+    this.load.image("B11", "src/assets/Scene1/B11.png");
+    this.load.image("B12", "src/assets/Scene1/B12.png");
+    this.load.image("B13", "src/assets/Scene1/B13.png");
+    this.load.image("B14", "src/assets/Scene1/B14.png");
+    this.load.image("B15", "src/assets/Scene1/B15.png");
+    this.load.image("B16", "src/assets/Scene1/B16.png");
+    this.load.image("B17", "src/assets/Scene1/B17.png");
+    this.load.image("B18", "src/assets/Scene1/B18.png");
+    this.load.image("B19", "src/assets/Scene1/B19.png");
+    this.load.image("B20", "src/assets/Scene1/B20.png");
+    this.load.image("B21", "src/assets/Scene1/B21.png");
     this.load.audio("music2", 'src/assets/music/Batraneasca.mp3')
   }
   create() {

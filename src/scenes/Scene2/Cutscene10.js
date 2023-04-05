@@ -5,11 +5,11 @@ export class Cutscene10 extends Phaser.Scene {
     super("Cutscene10");
   }
   preload() {
-    this.load.image("B48", "../../assets/Scene2/B48.png");
-    this.load.image("B49", "../../assets/Scene2/B49.png");
-    this.load.image("B50", "../../assets/Scene2/B50.png");
-    this.load.image("B51", "../../assets/Scene2/B51.png");
-    this.load.image("B52", "../../assets/Scene2/B52.png");
+    this.load.image("B48", "src/assets/Scene2/B48.png");
+    this.load.image("B49", "src/assets/Scene2/B49.png");
+    this.load.image("B50", "src/assets/Scene2/B50.png");
+    this.load.image("B51", "src/assets/Scene2/B51.png");
+    this.load.image("B52", "src/assets/Scene2/B52.png");
   }
   create() {
     let Dialogs = [
@@ -31,6 +31,7 @@ export class Cutscene10 extends Phaser.Scene {
       currentDialog++;
       if (currentDialog >= Dialogs.length) {
         window.alert("End Of Demo!")
+        this.scene.start("Main")
       }
       this.Background = this.add.image(10, 10, Backgrounds[currentDialog]);
       this.Dialog.setText(Dialogs[currentDialog]);

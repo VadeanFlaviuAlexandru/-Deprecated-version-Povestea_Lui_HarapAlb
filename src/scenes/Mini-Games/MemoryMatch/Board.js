@@ -16,7 +16,7 @@ export class Board extends Phaser.Scene {
     this.text;
   }
   preload() {
-    this.load.image("Background", "../../../assets/MemoryMatch/Background.jpg");
+    this.load.image("Background", "src/assets/MemoryMatch/Background.jpg");
     this.loadCards();
     this.GameInfo.setText(
       'Pentru ca fiul craiului să învingă acest urs, trebuie completat "Jocul de memorie". Trebuie să găsești perechi de cărți cu aceeași imagine în cel mult 13 de secunde! '
