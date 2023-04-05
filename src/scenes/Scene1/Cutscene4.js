@@ -1,15 +1,20 @@
 import { Align } from "../../utilities/Align";
+import B21 from "../../assets/Scene1/B21.png"
+import B27 from "../../assets/Scene1/B27.png"
+import B28 from "../../assets/Scene1/B28.png"
+import B29 from "../../assets/Scene1/B29.png"
+import B30 from "../../assets/Scene1/B23.png"
 
 export class Cutscene4 extends Phaser.Scene {
   constructor() {
     super("Cutscene4");
   }
   preload() {
-    this.load.image("B21", "src/assets/Scene1/B21.png");
-    this.load.image("B27", "src/assets/Scene1/B27.png");
-    this.load.image("B28", "src/assets/Scene1/B28.png");
-    this.load.image("B29", "src/assets/Scene1/B29.png");
-    this.load.image("B30", "src/assets/Scene1/B30.png");
+    this.load.image("B21", B21);
+    this.load.image("B27", B27);
+    this.load.image("B28", B28);
+    this.load.image("B29", B29);
+    this.load.image("B30", B30);
   }
   create() {
     let Dialogs = [

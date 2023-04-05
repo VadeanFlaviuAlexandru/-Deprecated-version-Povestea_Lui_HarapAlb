@@ -1,13 +1,16 @@
 import { Align } from "../../utilities/Align";
+import B33 from "../../assets/Scene2/B33.png"
+import B34 from "../../assets/Scene2/B34.png"
+import B35 from "../../assets/Scene2/B35.png"
 
 export class Cutscene6 extends Phaser.Scene {
   constructor() {
     super("Cutscene6");
   }
   preload() {
-    this.load.image("B33", "src/assets/Scene2/B33.png");
-    this.load.image("B34", "src/assets/Scene2/B34.png");
-    this.load.image("B35", "src/assets/Scene2/B35.png");
+    this.load.image("B33", B33);
+    this.load.image("B34", B34);
+    this.load.image("B35", B35);
     this.load.audio("music5", 'src/assets/music/OmuleCatAiTraiSLOWEDandREVERB.mp3')
   }
   create() {

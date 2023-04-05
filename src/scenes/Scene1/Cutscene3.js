@@ -1,11 +1,12 @@
 import { Align } from "../../utilities/Align";
+import B25 from "../../assets/Scene1/B25.png"
 
 export class Cutscene3 extends Phaser.Scene {
   constructor() {
     super("Cutscene3");
   }
   preload() {
-    this.load.image("B25", "src/assets/Scene1/B25.png");
+    this.load.image("B25", B25);
   }
   create() {
     let Dialogs = [

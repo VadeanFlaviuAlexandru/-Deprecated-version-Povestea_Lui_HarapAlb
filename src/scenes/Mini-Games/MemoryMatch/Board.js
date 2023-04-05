@@ -2,6 +2,7 @@ import { Align } from "../../../utilities/Align";
 import { getRandomInt } from "../../../utilities/Random";
 import Card from "./Card";
 import { images } from "./imageUtils.js";
+import backGround from "../../../assets/MemoryMatch/Background.jpg"
 
 export class Board extends Phaser.Scene {
   constructor() {
@@ -16,7 +17,7 @@ export class Board extends Phaser.Scene {
     this.text;
   }
   preload() {
-    this.load.image("Background", "src/assets/MemoryMatch/Background.jpg");
+    this.load.image("Background", backGround);
     this.loadCards();
     this.GameInfo.setText(
       'Pentru ca fiul craiului să învingă acest urs, trebuie completat "Jocul de memorie". Trebuie să găsești perechi de cărți cu aceeași imagine în cel mult 13 de secunde! '

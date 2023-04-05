@@ -1,4 +1,7 @@
 import { Align } from "../../../utilities/Align";
+import background from "../../../assets/QuickMath/BackGround.jpg"
+import timebar from "../../../assets/QuickMath/timebar.png"
+import spritesheet from "../../../assets/QuickMath/buttons.png"
 
 export class QuickMath extends Phaser.Scene {
   constructor() {
@@ -12,9 +15,9 @@ export class QuickMath extends Phaser.Scene {
     };
   }
   preload() {
-    this.load.image("Background", "src/assets/QuickMath/BackGround.jpg");
-    this.load.image("timebar", "src/assets/QuickMath/timebar.png");
-    this.load.spritesheet("buttons", "src/assets/QuickMath/buttons.png", {
+    this.load.image("Background", background);
+    this.load.image("timebar", timebar);
+    this.load.spritesheet("buttons", spritesheet, {
       frameWidth: 400,
       frameHeight: 50,
     });
@@ -128,9 +131,9 @@ export class QuickMath extends Phaser.Scene {
   nextNumber() {
     this.scoreText.setText(
       "Score: " +
-        this.score.toString() +
-        "\nBest Score: " +
-        this.topScore.toString()
+      this.score.toString() +
+      "\nBest Score: " +
+      this.topScore.toString()
     );
     if (this.correctAnswers > 1) {
       this.timeTween.stop();
@@ -154,10 +157,10 @@ export class QuickMath extends Phaser.Scene {
     );
     this.questionText.setText(
       this.sumsArray[questionLength][this.randomSum][
-        Phaser.Math.Between(
-          0,
-          this.sumsArray[questionLength][this.randomSum].length - 1
-        )
+      Phaser.Math.Between(
+        0,
+        this.sumsArray[questionLength][this.randomSum].length - 1
+      )
       ]
     );
   }
