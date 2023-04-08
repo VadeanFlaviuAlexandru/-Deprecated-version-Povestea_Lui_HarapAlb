@@ -26,7 +26,7 @@ export class Board extends Phaser.Scene {
 
   }
   create() {
-    // this.sound.get("music3").stop();
+    this.sound.get("music3").stop();
     this.music4 = this.sound.add('music4', {
       volume: 0.2,
       loop: true
