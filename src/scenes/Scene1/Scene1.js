@@ -180,8 +180,8 @@ export class Scene1 extends Phaser.Scene {
         !(target.properties.portal == "Cutscene4")
       ) {
         this.scene.start(target.properties.portal);
-      } else if (this.registry.get("ExitAttic") == 1) {
-        this.animsManager.destroy()
+      } else if (this.registry.get("ExitAttic") == 1 &&
+        target.properties.portal == "Cutscene4") {
         this.scene.start(target.properties.portal);
       }
     }

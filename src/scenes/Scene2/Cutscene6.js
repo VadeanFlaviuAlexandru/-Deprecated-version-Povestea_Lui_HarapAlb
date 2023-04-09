@@ -14,6 +14,46 @@ export class Cutscene6 extends Phaser.Scene {
     this.load.audio("music5", 'src/assets/music/OmuleCatAiTraiSLOWEDandREVERB.mp3')
   }
   create() {
+    var width = this.cameras.main.width;
+    var height = this.cameras.main.height;
+    var loadingText = this.make.text({
+      x: width / 2,
+      y: height / 2 - 50,
+      text: "Loading...",
+      style: {
+        font: "20px monospace",
+        fill: "#ffffff",
+      },
+    });
+    loadingText.setOrigin(0.5, 0.5);
+    var percentText = this.make.text({
+      x: width / 2,
+      y: height / 2 - 5,
+      text: "0%",
+      style: {
+        font: "18px monospace",
+        fill: "#ffffff",
+      },
+    });
+    percentText.setOrigin(0.5, 0.5);
+    var assetText = this.make.text({
+      x: width / 2,
+      y: height / 2 + 50,
+      text: "",
+      style: {
+        font: "18px monospace",
+        fill: "#ffffff",
+      },
+    });
+    assetText.setOrigin(0.5, 0.5);
+    this.load.on("progress", function (value) {
+      percentText.setText(parseInt(value * 100) + "%");
+    });
+    this.load.on("complete", function () {
+      loadingText.destroy();
+      percentText.destroy();
+      assetText.destroy();
+    });
     this.sound.get("music4").stop();
     this.music5 = this.sound.add('music5', {
       volume: 0.2,

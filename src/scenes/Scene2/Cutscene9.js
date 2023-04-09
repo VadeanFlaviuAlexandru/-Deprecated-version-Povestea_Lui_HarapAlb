@@ -41,6 +41,46 @@ export class Cutscene9 extends Phaser.Scene {
     this.load.image("B52", B52);
   }
   create() {
+    var width = this.cameras.main.width;
+    var height = this.cameras.main.height;
+    var loadingText = this.make.text({
+      x: width / 2,
+      y: height / 2 - 50,
+      text: "Loading...",
+      style: {
+        font: "20px monospace",
+        fill: "#ffffff",
+      },
+    });
+    loadingText.setOrigin(0.5, 0.5);
+    var percentText = this.make.text({
+      x: width / 2,
+      y: height / 2 - 5,
+      text: "0%",
+      style: {
+        font: "18px monospace",
+        fill: "#ffffff",
+      },
+    });
+    percentText.setOrigin(0.5, 0.5);
+    var assetText = this.make.text({
+      x: width / 2,
+      y: height / 2 + 50,
+      text: "",
+      style: {
+        font: "18px monospace",
+        fill: "#ffffff",
+      },
+    });
+    assetText.setOrigin(0.5, 0.5);
+    this.load.on("progress", function (value) {
+      percentText.setText(parseInt(value * 100) + "%");
+    });
+    this.load.on("complete", function () {
+      loadingText.destroy();
+      percentText.destroy();
+      assetText.destroy();
+    });
     let Dialogs = [
       "— Ptiu, drace! iaca în ce încurcătură am intrat! Asta-i mai rău decât poftim la masă, zise el. Nici tu sat, nici tu târg, nici tu nimica. De ce mergi înainte, numai peste pustietăți dai; parcă a pierit sămânța omenească de pe fața pământului. Îmi pare rău că n-am luat măcar spânul cel de-al doilea cu mine. Dacă s-a aruncat în partea mâne-sa, ce-i vinovat el?",
       "Tata așa a zis, însă la mare nevoie ce-i de făcut? vorba ceea: Rău-i cu rău, dar e mai rău făr’ de rău. Și tot horhăind el când pe o cărare, când pe un drum părăsit, numai iaca ce iar îi iese Spânul înainte, îmbrăcat altfel și călare pe un cal frumos, și, prefăcându-și glasul, începe a căina pe fiul craiului, zicând:",
