@@ -65,7 +65,6 @@ export class QuickMath extends Phaser.Scene {
       percentText.destroy();
       assetText.destroy();
     });
-    this.sound.get("music5").stop();
     this.music6 = this.sound.add('music6', {
       volume: 0.1,
       loop: true
@@ -84,8 +83,7 @@ export class QuickMath extends Phaser.Scene {
     Align.center(this.game, this.Background);
     this.cursors = this.input.keyboard.createCursorKeys();
     this.GameInfo.setText(
-      "Pentru ca fiul craiului să scape, trebuie să obți un scor mai mare de 2000 la acest joc de aritmetică! Trebuie să apeși pe răspunsul corect înainte să se scurgă timpul! Apasă mouse-ul pentru a alege cartea. Nu ceda!"
-    );
+      "Pentru ca fiul craiului să scape, obține un scor de peste 2000 în acest joc de aritmetică! Alege răspunsul corect înainte ca timpul să expire! Ai întotdeauna mai mult timp decât crezi! Apasă mouse-ul pentru a selecta cartea.");
   }
   update() {
     if (this.GameInfo.visible) {
@@ -227,6 +225,7 @@ export class QuickMath extends Phaser.Scene {
       Math.max(this.score, this.topScore)
     );
     if (this.score > 2000) {
+      this.music6.stop()
       this.scene.start("Cutscene10");
     }
     this.GameInfo.setText(

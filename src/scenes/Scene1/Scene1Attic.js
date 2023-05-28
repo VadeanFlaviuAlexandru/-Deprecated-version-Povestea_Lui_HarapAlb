@@ -191,9 +191,6 @@ export class Scene1Attic extends Phaser.Scene {
   HitLayer(player, target) {
     if (target.properties.portal && !this.Dialog.visible) {
       this.scene.start(target.properties.portal);
-      this.scene.get("Cutscene3").events.once("start", () => {
-        this.scene.shutdown();
-      });
     }
   }
   HitScript(player, target) {

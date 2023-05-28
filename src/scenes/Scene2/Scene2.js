@@ -78,7 +78,6 @@ export class Scene2 extends Phaser.Scene {
       assetText.destroy();
     });
     this.animsManagerOnHorse.create();
-    this.sound.get("music2").stop();
     this.music3 = this.sound.add('music3', {
       volume: 0.2,
       loop: true
@@ -283,6 +282,7 @@ export class Scene2 extends Phaser.Scene {
   }
   HitLayer(player, target) {
     if (target.properties.portal && !this.Dialog.visible) {
+      this.music3.stop()
       this.scene.start(target.properties.portal, { x: 100, y: 500 });
     }
   }

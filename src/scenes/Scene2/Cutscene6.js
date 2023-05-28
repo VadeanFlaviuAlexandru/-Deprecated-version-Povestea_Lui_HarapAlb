@@ -54,7 +54,6 @@ export class Cutscene6 extends Phaser.Scene {
       percentText.destroy();
       assetText.destroy();
     });
-    this.sound.get("music4").stop();
     this.music5 = this.sound.add('music5', {
       volume: 0.2,
       loop: true
@@ -84,10 +83,8 @@ export class Cutscene6 extends Phaser.Scene {
       this.Background.destroy();
       currentDialog++;
       if (currentDialog >= Dialogs.length) {
+        this.music5.stop()
         this.scene.start("Scene2AfterBridge", { x: 3220, y: 1444 });
-        this.scene.get("Scene2").events.once("start", () => {
-          this.scene.shutdown();
-        });
       }
       this.Background = this.add.image(10, 10, Backgrounds[currentDialog]);
       this.Dialog.setText(Dialogs[currentDialog]);
@@ -95,5 +92,5 @@ export class Cutscene6 extends Phaser.Scene {
       Align.center(this.game, this.Background);
     });
   }
-  update() {}
+  update() { }
 }

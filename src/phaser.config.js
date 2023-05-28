@@ -23,6 +23,7 @@ import { QuickMath } from "./scenes/Mini-Games/QuickMath/QuickMath";
 import { Cutscene10 } from "./scenes/Scene2/Cutscene10";
 import { GameInfo } from "./plugins/GameInfo";
 import { Scene2AfterBridge } from "./scenes/Scene2/Scene2AfterBridge";
+import { Cutscene11 } from './scenes/Scene3/Cutscene11';
 
 // For more settings see <https://github.com/photonstorm/phaser/blob/master/src/boot/Config.js>
 export default {
@@ -65,6 +66,7 @@ export default {
     Cutscene9,
     QuickMath,
     Cutscene10,
-    Scene2AfterBridge
+    Scene2AfterBridge,
+    Cutscene11
   ],
 };

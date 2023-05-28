@@ -20,7 +20,7 @@ export class Board extends Phaser.Scene {
     this.load.image("Background", backGround);
     this.loadCards();
     this.GameInfo.setText(
-      'Pentru ca fiul craiului să învingă acest urs, trebuie completat "Jocul de memorie". Trebuie să găsești perechi de cărți cu aceeași imagine în cel mult 17 de secunde! Apasă mouse-ul pentru a alege cartea.'
+      'Pentru ca fiul craiului să învingă acest urs, trebuie completat "Jocul de memorie". Trebuie să găsești perechi de cărți cu aceeași imagine în cel mult 15 de secunde! Apasă mouse-ul pentru a alege cartea.'
     );
     this.load.audio("music4", 'src/assets/music/TurningDance.mp3')
 
@@ -66,7 +66,6 @@ export class Board extends Phaser.Scene {
       percentText.destroy();
       assetText.destroy();
     });
-    this.sound.get("music3").stop();
     this.music4 = this.sound.add('music4', {
       volume: 0.2,
       loop: true
@@ -92,15 +91,21 @@ export class Board extends Phaser.Scene {
       //dialog
       if (this.cursors.space.isDown) {
         this.restartGame();
-        this.timedEvent = this.time.delayedCall(17000, this.onEvent, [], this);
+        this.timedEvent = this.time.delayedCall(15000, this.onEvent, [], this);
         this.GameInfo.display(false);
         this.Background.clearTint()
       }
       return false;
     }
-    this.text.setText(
-      "Timp rămas: " + this.timedEvent.getProgress().toString().substr(0, 4)
-    );
+    this.time.addEvent({
+      delay: 1000, // Update every 1 second
+      callback: function () {
+        var remainingTime = Math.ceil((this.timedEvent.delay - this.timedEvent.elapsed) / 1000);
+        this.text.setText("Timp rămas: " + remainingTime.toString() + " secunde");
+      },
+      callbackScope: this,
+      loop: true
+    });
   }
   loadCards() {
     const imagesArray = Object.keys(images).map((name) => ({
@@ -157,8 +162,9 @@ export class Board extends Phaser.Scene {
       : 0;
     if (this.matchedCards() === 4) {
       setTimeout(() => {
+        this.music4.stop()
         this.scene.start("Cutscene6");
-      }, 200);
+      }, 125);
     }
   }
   setAsReadOnly() {

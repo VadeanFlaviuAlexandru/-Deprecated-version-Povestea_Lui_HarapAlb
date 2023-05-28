@@ -90,7 +90,6 @@ export class Cutscene1 extends Phaser.Scene {
     this.load.audio("music2", 'src/assets/music/Batraneasca.mp3')
   }
   create() {
-    this.sound.get("music1").stop();
     this.music2 = this.sound.add('music2', {
       volume: 0.2,
       loop: true
@@ -181,6 +180,7 @@ export class Cutscene1 extends Phaser.Scene {
       this.Background.destroy();
       currentDialog++;
       if (currentDialog >= Dialogs.length) {
+        this.music2.stop();
         this.scene.start("Scene1", { x: 360, y: 1181 });
       }
       this.Background = this.add.image(10, 10, Backgrounds[currentDialog]);

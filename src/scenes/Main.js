@@ -72,7 +72,8 @@ export class Main extends Phaser.Scene {
       playButton.setTint(0xa1c4c6);
     });
     playButton.on("pointerdown", () => {
-      this.scene.start("Cutscene1");
+      this.music1.stop();
+      this.scene.start("Cutscene11");
     });
     playButton.on("pointerout", () => {
       playButton.setTint(0x72751c);

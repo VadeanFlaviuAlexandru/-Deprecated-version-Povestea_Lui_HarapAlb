@@ -66,9 +66,6 @@ export class Cutscene5 extends Phaser.Scene {
       currentDialog++;
       if (currentDialog >= Dialogs.length) {
         this.scene.start("Board");
-        this.scene.get("Board").events.once("start", () => {
-          this.scene.shutdown();
-        });
       }
       this.Background = this.add.image(10, 10, Backgrounds[currentDialog]);
       this.Dialog.setText(Dialogs[currentDialog]);
@@ -76,5 +73,5 @@ export class Cutscene5 extends Phaser.Scene {
       Align.center(this.game, this.Background);
     });
   }
-  update() {}
+  update() { }
 }
