@@ -70,7 +70,7 @@ export class Cutscene11 extends Phaser.Scene {
             "– Da, stăpâne, zise Harap-Alb, lăsând ochii în jos. Şi, ieşind, porneşte la grajd. Cu asta a voit Spânul să-şi arate arama şi să facă pe HarapAlb ca să-i ia şi mai mult frica.",
             "Amu, cum şedea Spânul la ospăţ împreună cu moşu-său, cu verele sale şi cu alţii, câţi se întâmplase, li s-au adus mai la urmă în masă şi nişte sălăţi foarte minunate. Atunci împăratul zice Spânului:",
             "– Nepoate, mai mâncat-ai sălăţi de aceste de când eşti?",
-            "Ba nu, tocmai eram să vă întreb de unde le aveţi, că tare-s bune! O haraba întreagă aş fi în stare să mănânc, şi parcă tot nu m-aş sătura.",
+            "- Ba nu, tocmai eram să vă întreb de unde le aveţi, că tare-s bune! O haraba întreagă aş fi în stare să mănânc, şi parcă tot nu m-aş sătura.",
             "– Te crede moşul, nepoate, dar când ai şti cu ce greutate se capătă! pentru că numai în Grădina Ursului, dacă-i fi auzit de dânsa, se află sălăţi de aceste, şi mai rar om care să poată lua dintr-însele şi să scape cu viaţă. Între toţi oamenii din împărăţia mea, numai un pădurar se bizuieşte la treaba asta. Şi acela, el ştie ce face, ce drege, de-mi aduce din când în când aşa, câte puţine, de poftă.",
             "Spânul, voind să piardă acum pe Harap-Alb cu orice preţ, zise împăratului: \n\n– Doamne, moşule, de nu mi-a aduce sluga mea sălăţi de aceste şi din piatra seacă, mare lucru să fie!",
             "– Ce vorbeşti, nepoate! unul ca dânsul, şi încă necunoscător de locurile acestea, cum crezi că ar putea face această slujbă? Doar de ţi-i greu de viaţa lui.",
@@ -87,8 +87,7 @@ export class Cutscene11 extends Phaser.Scene {
             this.Background.destroy();
             currentDialog++;
             if (currentDialog >= Dialogs.length) {
-                window.alert("End Of Demo!")
-                this.scene.start("Main")
+                this.scene.start("Cutscene12")
             }
             this.Background = this.add.image(10, 10, Backgrounds[currentDialog]);
             this.Dialog.setText(Dialogs[currentDialog]);

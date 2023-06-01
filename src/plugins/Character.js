@@ -17,6 +17,10 @@ export class Character extends Phaser.GameObjects.Sprite {
       this.anims.stop();
     }
   }
+  ForceStop(){
+    this.body.setVelocity(0);
+    this.anims.stop()
+  }
   SetInstruction(instruction) {
     if (!instruction.action) return;
     if (instruction.action == "walk" && !instruction.option) return;

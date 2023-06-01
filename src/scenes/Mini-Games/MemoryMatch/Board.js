@@ -82,7 +82,13 @@ export class Board extends Phaser.Scene {
     this.Background = this.add.image(10, 10, "Background");
     Align.ScaleToGameW(this.game, this.Background, 1);
     Align.center(this.game, this.Background);
-    this.text = this.add.text(32, 32);
+    this.text = this.add.text(32, 32, '', {
+      fontFamily: 'Arial',
+      fontSize: '24px',
+      color: '#ffffff'
+    });
+    this.text.setDepth(100);
+    this.text.setScrollFactor(0);
     this.cursors = this.input.keyboard.createCursorKeys();
     this.shuffle();
   }

@@ -24,6 +24,9 @@ import { Cutscene10 } from "./scenes/Scene2/Cutscene10";
 import { GameInfo } from "./plugins/GameInfo";
 import { Scene2AfterBridge } from "./scenes/Scene2/Scene2AfterBridge";
 import { Cutscene11 } from './scenes/Scene3/Cutscene11';
+import { BearsMaze } from './scenes/Mini-Games/BearsMaze/BearsMaze';
+import { Cutscene12 } from './scenes/Scene3/Cutscene12';
+
 
 // For more settings see <https://github.com/photonstorm/phaser/blob/master/src/boot/Config.js>
 export default {
@@ -67,6 +70,8 @@ export default {
     QuickMath,
     Cutscene10,
     Scene2AfterBridge,
-    Cutscene11
+    Cutscene11,
+    Cutscene12,
+    BearsMaze
   ],
 };
