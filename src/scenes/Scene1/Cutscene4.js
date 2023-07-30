@@ -1,15 +1,17 @@
+import B21 from "../../assets/Scene1/B21.png";
+import B30 from "../../assets/Scene1/B23.png";
+import B27 from "../../assets/Scene1/B27.png";
+import B28 from "../../assets/Scene1/B28.png";
+import B29 from "../../assets/Scene1/B29.png";
 import { Align } from "../../utilities/Align";
-import B21 from "../../assets/Scene1/B21.png"
-import B27 from "../../assets/Scene1/B27.png"
-import B28 from "../../assets/Scene1/B28.png"
-import B29 from "../../assets/Scene1/B29.png"
-import B30 from "../../assets/Scene1/B23.png"
+import { LoadingScreen } from "../../utilities/LoadingScreen";
 
 export class Cutscene4 extends Phaser.Scene {
   constructor() {
     super("Cutscene4");
   }
   preload() {
+    LoadingScreen(this)
     this.load.image("B21", B21);
     this.load.image("B27", B27);
     this.load.image("B28", B28);
@@ -17,46 +19,6 @@ export class Cutscene4 extends Phaser.Scene {
     this.load.image("B30", B30);
   }
   create() {
-    var width = this.cameras.main.width;
-    var height = this.cameras.main.height;
-    var loadingText = this.make.text({
-      x: width / 2,
-      y: height / 2 - 50,
-      text: "Loading...",
-      style: {
-        font: "20px monospace",
-        fill: "#ffffff",
-      },
-    });
-    loadingText.setOrigin(0.5, 0.5);
-    var percentText = this.make.text({
-      x: width / 2,
-      y: height / 2 - 5,
-      text: "0%",
-      style: {
-        font: "18px monospace",
-        fill: "#ffffff",
-      },
-    });
-    percentText.setOrigin(0.5, 0.5);
-    var assetText = this.make.text({
-      x: width / 2,
-      y: height / 2 + 50,
-      text: "",
-      style: {
-        font: "18px monospace",
-        fill: "#ffffff",
-      },
-    });
-    assetText.setOrigin(0.5, 0.5);
-    this.load.on("progress", function (value) {
-      percentText.setText(parseInt(value * 100) + "%");
-    });
-    this.load.on("complete", function () {
-      loadingText.destroy();
-      percentText.destroy();
-      assetText.destroy();
-    });
     let Dialogs = [
       "Pe urmă umple o tavă cu jăratic, se duce la herghelie ",
       "și o pune jos între cai.",
@@ -84,5 +46,5 @@ export class Cutscene4 extends Phaser.Scene {
       this.registry.destroy("ExitAttic");
     });
   }
-  update() {}
+  update() { }
 }

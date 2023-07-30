@@ -1,15 +1,17 @@
+import B50 from "../../assets/Scene2/B45.png";
+import B48 from "../../assets/Scene2/B48.png";
+import B49 from "../../assets/Scene2/B49.png";
+import B51 from "../../assets/Scene2/B51.png";
+import B52 from "../../assets/Scene2/B52.png";
 import { Align } from "../../utilities/Align";
-import B48 from "../../assets/Scene2/B48.png"
-import B49 from "../../assets/Scene2/B49.png"
-import B50 from "../../assets/Scene2/B45.png"
-import B51 from "../../assets/Scene2/B51.png"
-import B52 from "../../assets/Scene2/B52.png"
+import { LoadingScreen } from "../../utilities/LoadingScreen";
 
 export class Cutscene10 extends Phaser.Scene {
   constructor() {
     super("Cutscene10");
   }
   preload() {
+    LoadingScreen(this)
     this.load.image("B48", B48);
     this.load.image("B49", B49);
     this.load.image("B50", B50)
@@ -17,46 +19,6 @@ export class Cutscene10 extends Phaser.Scene {
     this.load.image("B52", B52);
   }
   create() {
-    var width = this.cameras.main.width;
-    var height = this.cameras.main.height;
-    var loadingText = this.make.text({
-      x: width / 2,
-      y: height / 2 - 50,
-      text: "Loading...",
-      style: {
-        font: "20px monospace",
-        fill: "#ffffff",
-      },
-    });
-    loadingText.setOrigin(0.5, 0.5);
-    var percentText = this.make.text({
-      x: width / 2,
-      y: height / 2 - 5,
-      text: "0%",
-      style: {
-        font: "18px monospace",
-        fill: "#ffffff",
-      },
-    });
-    percentText.setOrigin(0.5, 0.5);
-    var assetText = this.make.text({
-      x: width / 2,
-      y: height / 2 + 50,
-      text: "",
-      style: {
-        font: "18px monospace",
-        fill: "#ffffff",
-      },
-    });
-    assetText.setOrigin(0.5, 0.5);
-    this.load.on("progress", function (value) {
-      percentText.setText(parseInt(value * 100) + "%");
-    });
-    this.load.on("complete", function () {
-      loadingText.destroy();
-      percentText.destroy();
-      assetText.destroy();
-    });
     let Dialogs = [
       "Fiul craiului ce era să facă? Îi spune cu de-amănuntul, căci, dă, care om nu ține la viață înainte de toate?",
       "— Bine, atâta am vrut să aflu din gura ta, pui de viperă ce mi-ai fost, zice atunci Spânul: numai cată să fie așa, că, de te-oi prinde cu oca mică, greu are să-ți cadă. Chiar acum aș putea să te omor, în voia cea bună, dar mi-i milă de tinerețile tale... Dacă vrei să mai vezi soarele cu ochii și să mai calci pe iarbă verde, atunci jură-mi-te pe ascuțișul paloșului tău că mi-i da ascultare și supunere întru toate, chiar și-n foc de ți-aș zice să te arunci.",
@@ -84,5 +46,5 @@ export class Cutscene10 extends Phaser.Scene {
       Align.center(this.game, this.Background);
     });
   }
-  update() {}
+  update() { }
 }

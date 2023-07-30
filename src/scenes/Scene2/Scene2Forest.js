@@ -1,4 +1,5 @@
 import { AnimsOnHorse } from "../../plugins/AnimsOnHorse";
+import { LoadingScreen } from "../../utilities/LoadingScreen";
 
 export class Scene2Forest extends Phaser.Scene {
   constructor() {
@@ -9,10 +10,11 @@ export class Scene2Forest extends Phaser.Scene {
     this.script = null;
   }
   preload() {
+    LoadingScreen(this)
     this.load.image("tilesCodru", "src/assets/World/SimpleGrassTiles.png");
     this.load.image("tiles2Codru", "src/assets/World/PlantTiles.png");
     this.load.image("tiles6Codru", "src/assets/World/PropsTiles.png");
-    this.load.image("spanT","src/assets/Player/span.png")
+    this.load.image("spanT", "src/assets/Player/span.png")
     this.load.tilemapTiledJSON(
       "mapCodru",
       "src/assets/Scene2/Scene2Forest.json"
@@ -25,46 +27,6 @@ export class Scene2Forest extends Phaser.Scene {
     this.spawnY = data.y;
   }
   create() {
-    var width = this.cameras.main.width;
-    var height = this.cameras.main.height;
-    var loadingText = this.make.text({
-      x: width / 2,
-      y: height / 2 - 50,
-      text: "Loading...",
-      style: {
-        font: "20px monospace",
-        fill: "#ffffff",
-      },
-    });
-    loadingText.setOrigin(0.5, 0.5);
-    var percentText = this.make.text({
-      x: width / 2,
-      y: height / 2 - 5,
-      text: "0%",
-      style: {
-        font: "18px monospace",
-        fill: "#ffffff",
-      },
-    });
-    percentText.setOrigin(0.5, 0.5);
-    var assetText = this.make.text({
-      x: width / 2,
-      y: height / 2 + 50,
-      text: "",
-      style: {
-        font: "18px monospace",
-        fill: "#ffffff",
-      },
-    });
-    assetText.setOrigin(0.5, 0.5);
-    this.load.on("progress", function (value) {
-      percentText.setText(parseInt(value * 100) + "%");
-    });
-    this.load.on("complete", function () {
-      loadingText.destroy();
-      percentText.destroy();
-      assetText.destroy();
-    });
     this.cursors = this.input.keyboard.createCursorKeys();
     window.player = this.player = this.add.character({
       x: this.spawnX,

@@ -1,12 +1,14 @@
+import B36 from "../../assets/Scene2/B36.png";
+import B37 from "../../assets/Scene2/B37.png";
 import { Align } from "../../utilities/Align";
-import B36 from "../../assets/Scene2/B36.png"
-import B37 from "../../assets/Scene2/B37.png"
+import { LoadingScreen } from "../../utilities/LoadingScreen";
 
 export class Cutscene8 extends Phaser.Scene {
   constructor() {
     super("Cutscene8");
   }
   preload() {
+    LoadingScreen(this)
     this.load.image("B36", B36);
     this.load.image("B37", B37);
   }
@@ -15,46 +17,6 @@ export class Cutscene8 extends Phaser.Scene {
     this.cutscene22 = data.cutscene22;
   }
   create() {
-    var width = this.cameras.main.width;
-    var height = this.cameras.main.height;
-    var loadingText = this.make.text({
-      x: width / 2,
-      y: height / 2 - 50,
-      text: "Loading...",
-      style: {
-        font: "20px monospace",
-        fill: "#ffffff",
-      },
-    });
-    loadingText.setOrigin(0.5, 0.5);
-    var percentText = this.make.text({
-      x: width / 2,
-      y: height / 2 - 5,
-      text: "0%",
-      style: {
-        font: "18px monospace",
-        fill: "#ffffff",
-      },
-    });
-    percentText.setOrigin(0.5, 0.5);
-    var assetText = this.make.text({
-      x: width / 2,
-      y: height / 2 + 50,
-      text: "",
-      style: {
-        font: "18px monospace",
-        fill: "#ffffff",
-      },
-    });
-    assetText.setOrigin(0.5, 0.5);
-    this.load.on("progress", function (value) {
-      percentText.setText(parseInt(value * 100) + "%");
-    });
-    this.load.on("complete", function () {
-      loadingText.destroy();
-      percentText.destroy();
-      assetText.destroy();
-    });
     let Dialogs = [
       "— Bună calea, drumețule!",
       "— Bună să-ți fie inima, cum ți-i căutătura.",
@@ -86,5 +48,5 @@ export class Cutscene8 extends Phaser.Scene {
       Align.center(this.game, this.Background);
     });
   }
-  update() {}
+  update() { }
 }

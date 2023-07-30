@@ -1,4 +1,5 @@
 import { Anims } from "../../plugins/anims";
+import { LoadingScreen } from "../../utilities/LoadingScreen";
 
 export class Scene1Attic extends Phaser.Scene {
   constructor() {
@@ -9,6 +10,7 @@ export class Scene1Attic extends Phaser.Scene {
     this.vision = null;
   }
   preload() {
+    LoadingScreen(this)
     this.load.image("tilesAttic", "src/assets/World/InteriorTiles.png");
     this.load.image("tiles2Attic", "src/assets/World/PropsTiles.png");
     this.load.tilemapTiledJSON("mapAttic", "src/assets/Scene1/attic.json");
@@ -17,46 +19,6 @@ export class Scene1Attic extends Phaser.Scene {
     this.load.image("vision", "src/assets/World/Vision.png");
   }
   create() {
-    var LoadingWidth = this.cameras.main.width;
-    var Loadingheight = this.cameras.main.height;
-    var loadingText = this.make.text({
-      x: LoadingWidth / 2,
-      y: Loadingheight / 2 - 50,
-      text: "Loading...",
-      style: {
-        font: "20px monospace",
-        fill: "#ffffff",
-      },
-    });
-    loadingText.setOrigin(0.5, 0.5);
-    var percentText = this.make.text({
-      x: LoadingWidth / 2,
-      y: Loadingheight / 2 - 5,
-      text: "0%",
-      style: {
-        font: "18px monospace",
-        fill: "#ffffff",
-      },
-    });
-    percentText.setOrigin(0.5, 0.5);
-    var assetText = this.make.text({
-      x: LoadingWidth / 2,
-      y: Loadingheight / 2 + 50,
-      text: "",
-      style: {
-        font: "18px monospace",
-        fill: "#ffffff",
-      },
-    });
-    assetText.setOrigin(0.5, 0.5);
-    this.load.on("progress", function (value) {
-      percentText.setText(parseInt(value * 100) + "%");
-    });
-    this.load.on("complete", function () {
-      loadingText.destroy();
-      percentText.destroy();
-      assetText.destroy();
-    });
     this.registry.set("ExitAttic", 1);
     this.cursors = this.input.keyboard.createCursorKeys();
     window.player = this.player = this.add.character({

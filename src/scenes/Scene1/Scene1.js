@@ -1,4 +1,5 @@
 import { Anims } from "../../plugins/anims";
+import { LoadingScreen } from "../../utilities/LoadingScreen";
 
 export class Scene1 extends Phaser.Scene {
   constructor() {
@@ -8,6 +9,7 @@ export class Scene1 extends Phaser.Scene {
     this.animsManager = new Anims(this);
   }
   preload() {
+    LoadingScreen(this)
     this.load.image("tilesCastle", "src/assets/World/SimpleGrassTiles.png");
     this.load.image("tiles2Castle", "src/assets/World/PlantTiles.png");
     this.load.image("tiles3Castle", "src/assets/World/FenceTiles.png");
@@ -179,7 +181,10 @@ export class Scene1 extends Phaser.Scene {
         this.registry.get("ExitAttic") !== 1 &&
         !(target.properties.portal == "Cutscene4")
       ) {
-        this.scene.start(target.properties.portal);
+        this.scene.transition({
+          target: target.properties.portal,
+          sleep: true,
+        })
       } else if (this.registry.get("ExitAttic") == 1 &&
         target.properties.portal == "Cutscene4") {
         this.scene.start(target.properties.portal);
