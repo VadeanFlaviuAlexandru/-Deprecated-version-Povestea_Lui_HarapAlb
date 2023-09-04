@@ -1,5 +1,6 @@
 import { Anims } from "../../plugins/anims";
 import { LoadingScreen } from "../../utilities/LoadingScreen";
+import { PlayerInstructions } from "../../utilities/PlayerInstructions";
 
 export class Scene1Attic extends Phaser.Scene {
   constructor() {
@@ -130,15 +131,7 @@ export class Scene1Attic extends Phaser.Scene {
   }
   update() {
     if (!this.Dialog.visible) {
-      if (this.cursors.left.isDown)
-        this.player.SetInstruction({ action: "walk", option: "left" });
-      else if (this.cursors.right.isDown)
-        this.player.SetInstruction({ action: "walk", option: "right" });
-      if (this.cursors.up.isDown)
-        this.player.SetInstruction({ action: "walk", option: "back" });
-      else if (this.cursors.down.isDown)
-        this.player.SetInstruction({ action: "walk", option: "front" });
-      this.player.update();
+      PlayerInstructions(this)
     } else if (this.Dialog.visible) {
       if (this.cursors.space.isDown) {
         this.Dialog.display(false);

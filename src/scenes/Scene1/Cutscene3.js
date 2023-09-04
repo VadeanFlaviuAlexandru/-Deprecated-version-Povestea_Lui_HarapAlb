@@ -24,7 +24,11 @@ export class Cutscene3 extends Phaser.Scene {
       this.Background.destroy();
       currentDialog++;
       if (currentDialog >= Dialogs.length) {
-        this.scene.start("Scene1", { x: 876, y: 300 });
+        this.Dialog.display(false);
+        this.scene.transition({
+          target: "Scene1",
+          remove: true,
+        })
       }
       this.Background = this.add.image(10, 10, Backgrounds[currentDialog]);
       this.Dialog.setText(Dialogs[currentDialog]);

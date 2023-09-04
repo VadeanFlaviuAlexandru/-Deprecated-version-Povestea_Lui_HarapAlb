@@ -1,5 +1,6 @@
 import { Anims } from "../../plugins/anims";
 import { LoadingScreen } from "../../utilities/LoadingScreen";
+import { PlayerInstructions } from "../../utilities/PlayerInstructions";
 
 export class Scene1 extends Phaser.Scene {
   constructor() {
@@ -26,6 +27,8 @@ export class Scene1 extends Phaser.Scene {
     this.spawnY = data.y;
   }
   create() {
+    this.events.on('wake', () => this.movePlayerAfterCutscene1());
+    this.events.on('transitionwake', () => this.movePlayerAfterCutscene3());
     this.cursors = this.input.keyboard.createCursorKeys();
     window.player = this.player = this.add.character({
       x: this.spawnX,
@@ -159,15 +162,7 @@ export class Scene1 extends Phaser.Scene {
   }
   update() {
     if (!this.Dialog.visible) {
-      if (this.cursors.left.isDown)
-        this.player.SetInstruction({ action: "walk", option: "left" });
-      else if (this.cursors.right.isDown)
-        this.player.SetInstruction({ action: "walk", option: "right" });
-      if (this.cursors.up.isDown)
-        this.player.SetInstruction({ action: "walk", option: "back" });
-      else if (this.cursors.down.isDown)
-        this.player.SetInstruction({ action: "walk", option: "front" });
-      this.player.update();
+      PlayerInstructions(this)
     } else if (this.Dialog.visible) {
       if (this.cursors.space.isDown) {
         this.Dialog.display(false);
@@ -181,13 +176,10 @@ export class Scene1 extends Phaser.Scene {
         this.registry.get("ExitAttic") !== 1 &&
         !(target.properties.portal == "Cutscene4")
       ) {
-        this.scene.transition({
-          target: target.properties.portal,
-          sleep: true,
-        })
+        this.scene.switch(target.properties.portal)
       } else if (this.registry.get("ExitAttic") == 1 &&
         target.properties.portal == "Cutscene4") {
-        this.scene.start(target.properties.portal);
+        this.scene.switch(target.properties.portal);
       }
     }
   }
@@ -196,5 +188,14 @@ export class Scene1 extends Phaser.Scene {
       player.anims.stopAfterRepeat(0);
       this.Dialog.setText(this.script[player.name][target.properties.name]);
     }
+  }
+  movePlayerAfterCutscene1() {
+    this.scene.remove("Cutscene2")
+    this.player.x = 1272
+    this.player.y = 510
+  }
+  movePlayerAfterCutscene3() {
+    this.player.x = 876
+    this.player.y = 300
   }
 }
