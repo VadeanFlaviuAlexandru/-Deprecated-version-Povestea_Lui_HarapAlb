@@ -1,4 +1,4 @@
-import B21 from "../../assets/Scene1/B21.png";
+import B1 from "../../assets/Scene1/B1.png";
 import B30 from "../../assets/Scene1/B23.png";
 import B27 from "../../assets/Scene1/B27.png";
 import B28 from "../../assets/Scene1/B28.png";
@@ -12,7 +12,7 @@ export class Cutscene4 extends Phaser.Scene {
   }
   preload() {
     LoadingScreen(this)
-    this.load.image("B21", B21);
+    this.load.image("B21", B1);
     this.load.image("B27", B27);
     this.load.image("B28", B28);
     this.load.image("B29", B29);

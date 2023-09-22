@@ -30,7 +30,7 @@ import { Cutscene12 } from './scenes/Scene3/Cutscene12';
 
 export default {
   type: Phaser.AUTO,
-  parent: "phaser-example",
+  parent: "GameScreen",
   width: 1166, //1366
   height: 630, //800
   physics: {

@@ -11,7 +11,6 @@ import B18 from "../../assets/Scene1/B18.png";
 import B19 from "../../assets/Scene1/B19.png";
 import B2 from "../../assets/Scene1/B2.png";
 import B20 from "../../assets/Scene1/B20.png";
-import B21 from "../../assets/Scene1/B21.png";
 import B3 from "../../assets/Scene1/B3.png";
 import B4 from "../../assets/Scene1/B4.png";
 import B5 from "../../assets/Scene1/B5.png";
@@ -48,7 +47,6 @@ export class Cutscene1 extends Phaser.Scene {
     this.load.image("B18", B18);
     this.load.image("B19", B19);
     this.load.image("B20", B20);
-    this.load.image("B21", B21);
     this.load.audio("music2", 'src/assets/music/Batraneasca.mp3')
   }
   create() {

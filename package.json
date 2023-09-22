@@ -32,6 +32,7 @@
   },
   "dependencies": {
     "@mikewesthad/dungeon": "^2.0.1",
-    "phaser": "^3.55.2"
+    "phaser": "^3.55.2",
+    "socket.io": "^4.7.2"
   }
 }

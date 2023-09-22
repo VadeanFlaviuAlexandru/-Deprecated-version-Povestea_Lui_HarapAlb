@@ -42,10 +42,11 @@ canvas {
   color: white;
   margin: 0 auto;
 }
-.close {
+.close1,
+.close2 {
   color: white;
   float: right;
-  font-size: 28px;
+  font-size: 35px;
   font-weight: bold;
 }
 .randIndicatie {
