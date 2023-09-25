@@ -20,9 +20,7 @@ import { Cutscene7 } from "./scenes/Scene2/Cutscene7";
 import { Cutscene8 } from "./scenes/Scene2/Cutscene8";
 import { Cutscene9 } from "./scenes/Scene2/Cutscene9";
 import { Scene2 } from "./scenes/Scene2/Scene2";
-import { Scene2AfterBridge } from "./scenes/Scene2/Scene2AfterBridge";
 import { Scene2Forest } from "./scenes/Scene2/Scene2Forest";
-import { Scene2Forest2 } from "./scenes/Scene2/Scene2Forestp2";
 import { Scene2Forest3 } from "./scenes/Scene2/Scene2Forestp3";
 import { Cutscene11 } from './scenes/Scene3/Cutscene11';
 import { Cutscene12 } from './scenes/Scene3/Cutscene12';
@@ -63,12 +61,10 @@ export default {
     Scene2Forest,
     Cutscene7,
     Cutscene8,
-    Scene2Forest2,
     Scene2Forest3,
     Cutscene9,
     QuickMath,
     Cutscene10,
-    Scene2AfterBridge,
     Cutscene11,
     Cutscene12,
     BearsMaze

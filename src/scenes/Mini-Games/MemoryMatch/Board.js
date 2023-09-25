@@ -79,6 +79,9 @@ export class Board extends Phaser.Scene {
         this.music4.play()
       })
     }
+    if (localStorage.getItem('HarapAlb-musicOff')) {
+      this.music4.stop();
+    }
     this.Background = this.add.image(10, 10, "Background");
     Align.ScaleToGameW(this.game, this.Background, 1);
     Align.center(this.game, this.Background);
@@ -97,7 +100,7 @@ export class Board extends Phaser.Scene {
       //dialog
       if (this.cursors.space.isDown) {
         this.restartGame();
-        this.timedEvent = this.time.delayedCall(15000, this.onEvent, [], this);
+        this.timedEvent = this.time.delayedCall(15500, this.onEvent, [], this);
         this.GameInfo.display(false);
         this.Background.clearTint()
       }

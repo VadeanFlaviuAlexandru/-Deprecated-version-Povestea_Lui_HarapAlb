@@ -12,10 +12,6 @@ export class Cutscene8 extends Phaser.Scene {
     this.load.image("B36", B36);
     this.load.image("B37", B37);
   }
-  init(data) {
-    this.cutscene11 = data.cutscene11;
-    this.cutscene22 = data.cutscene22;
-  }
   create() {
     let Dialogs = [
       "— Bună calea, drumețule!",
@@ -24,13 +20,7 @@ export class Cutscene8 extends Phaser.Scene {
       "Și vorba ceea: La calic slujești, calic rămâi. Când aș da odată peste un stăpân cum gândesc eu, n-aș ști ce să fac să nu-l smintesc. Nu cumva ai trebuință de slugă, voinice? Cum te văd, sameni a avea seu la rărunchi. De ce te scumpești pentru nimica toată și nu-ți iei o slugă vrednică, ca să-ți fie mână de ajutor la drum? Locurile aiestea sunt șugubețe; de unde știi cum vine întâmplarea, și, Doamne ferește, să nu-ți cadă greu singur. ",
       "— Acum deodată încă tot nu, zise fiul craiului cu mâna pe buzdugan; m-oi mai sluji și eu singur, cum oi putea, și dând iar pinteni calului, pornește mai repede. ",
     ];
-    let Backgrounds = [
-      this.cutscene11,
-      this.cutscene22,
-      this.cutscene11,
-      this.cutscene11,
-      this.cutscene22,
-    ];
+    let Backgrounds = ["B36", "B37", "B36", "B36", "B37"];
     let currentDialog = 0;
     this.Background = this.add.image(10, 10, Backgrounds[currentDialog]);
     this.Dialog.setText(Dialogs[currentDialog]);
@@ -48,5 +38,4 @@ export class Cutscene8 extends Phaser.Scene {
       Align.center(this.game, this.Background);
     });
   }
-  update() { }
 }

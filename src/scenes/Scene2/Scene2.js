@@ -39,6 +39,7 @@ export class Scene2 extends Phaser.Scene {
     this.spawnY = data.y;
   }
   create() {
+    this.events.on('wake', () => this.movePlayerAfterCutscene6());
     this.animsManagerOnHorse.create();
     this.music3 = this.sound.add('music3', {
       volume: 0.2,
@@ -52,6 +53,9 @@ export class Scene2 extends Phaser.Scene {
       this.sound.once(Phaser.Sound.Events.UNLOCKED, () => {
         this.music3.play()
       })
+    }
+    if (localStorage.getItem('HarapAlb-musicOff')) {
+      this.music3.stop();
     }
     this.cursors = this.input.keyboard.createCursorKeys();
     window.player = this.player = this.add.character({
@@ -245,7 +249,11 @@ export class Scene2 extends Phaser.Scene {
   HitLayer(player, target) {
     if (target.properties.portal && !this.Dialog.visible) {
       this.music3.stop()
-      this.scene.start(target.properties.portal, { x: 100, y: 500 });
+      if (target.properties.portal === "Scene2Forest") {
+        this.scene.start(target.properties.portal, { x: 100, y: 500 });
+      } else {
+        this.scene.switch(target.properties.portal);
+      }
     }
   }
   HitScript(player, target) {
@@ -253,5 +261,10 @@ export class Scene2 extends Phaser.Scene {
       player.anims.stopAfterRepeat(0);
       this.Dialog.setText(this.script[player.name][target.properties.name]);
     }
+  }
+  movePlayerAfterCutscene6() {
+    this.scene.remove("Cutscene6")
+    this.player.x = 3220
+    this.player.y = 1444
   }
 }

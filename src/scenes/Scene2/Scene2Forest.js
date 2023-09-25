@@ -27,6 +27,8 @@ export class Scene2Forest extends Phaser.Scene {
     this.spawnY = data.y;
   }
   create() {
+    this.events.on('wake', () => this.movePlayerAfterCutscene7());
+    this.events.on('transitionwake', () => this.movePlayerAfterCutscene8());
     this.cursors = this.input.keyboard.createCursorKeys();
     window.player = this.player = this.add.character({
       x: this.spawnX,
@@ -156,10 +158,7 @@ export class Scene2Forest extends Phaser.Scene {
   }
   HitLayer(player, target) {
     if (target.properties.portal && !this.Dialog.visible) {
-      this.scene.start(target.properties.portal, {
-        cutscene1: "B36",
-        cutscene2: "B37",
-      });
+      this.scene.switch(target.properties.portal);
     }
   }
   HitScript(player, target) {
@@ -167,5 +166,14 @@ export class Scene2Forest extends Phaser.Scene {
       player.anims.stopAfterRepeat(0);
       this.Dialog.setText(this.script[player.name][target.properties.name]);
     }
+  }
+  movePlayerAfterCutscene7() {
+    this.scene.remove("Cutscene7")
+    this.player.x = 3400
+    this.player.y = 830
+  }
+  movePlayerAfterCutscene8() {
+    this.player.x = 90
+    this.player.y = 600
   }
 }
