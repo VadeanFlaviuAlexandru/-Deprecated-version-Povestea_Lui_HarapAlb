@@ -2,6 +2,7 @@ import { Align } from "../../../utilities/Align";
 import background from "../../../assets/QuickMath/BackGround.jpg"
 import timebar from "../../../assets/QuickMath/timebar.png"
 import spritesheet from "../../../assets/QuickMath/buttons.png"
+import { Music } from "../../../utilities/music";
 
 export class QuickMath extends Phaser.Scene {
   constructor() {
@@ -65,18 +66,10 @@ export class QuickMath extends Phaser.Scene {
       percentText.destroy();
       assetText.destroy();
     });
-    this.music6 = this.sound.add('music6', {
-      volume: 0.1,
-      loop: true
-    })
-    this.music6.play()
-    if (!this.sound.locked) {
-      this.music6.play()
-    }
-    else {
-      this.sound.once(Phaser.Sound.Events.UNLOCKED, () => {
-        this.music6.play()
-      })
+    if (this.registry.get("HarapAlbMusicOption")) {
+      Music(this, "music6", true)
+    } else {
+      Music(this, "music6", false)
     }
     this.Background = this.add.image(10, 10, "Background");
     Align.ScaleToGameW(this.game, this.Background, 1);
@@ -225,7 +218,7 @@ export class QuickMath extends Phaser.Scene {
       Math.max(this.score, this.topScore)
     );
     if (this.score > 2000) {
-      this.music6.stop()
+      Music(this, "music6", true)
       this.scene.start("Cutscene10");
     }
     this.GameInfo.setText(

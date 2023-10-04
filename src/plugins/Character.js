@@ -17,7 +17,7 @@ export class Character extends Phaser.GameObjects.Sprite {
       this.anims.stop();
     }
   }
-  ForceStop(){
+  ForceStop() {
     this.body.setVelocity(0);
     this.anims.stop()
   }

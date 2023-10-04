@@ -20,6 +20,7 @@ import B8 from "../../assets/Scene1/B8.png";
 import B9 from "../../assets/Scene1/B9.png";
 import { Align } from "../../utilities/Align";
 import { LoadingScreen } from "../../utilities/LoadingScreen";
+import { Music } from "../../utilities/music";
 
 export class Cutscene1 extends Phaser.Scene {
   constructor() {
@@ -50,21 +51,14 @@ export class Cutscene1 extends Phaser.Scene {
     this.load.audio("music2", 'src/assets/music/Batraneasca.mp3')
   }
   create() {
-    this.music2 = this.sound.add('music2', {
+    const music = this.sound.add("music2", {
       volume: 0.2,
       loop: true
     })
-    this.music2.play()
-    if (!this.sound.locked) {
-      this.music2.play()
-    }
-    else {
-      this.sound.once(Phaser.Sound.Events.UNLOCKED, () => {
-        this.music2.play()
-      })
-    }
-    if (localStorage.getItem('HarapAlb-musicOff')) {
-      this.music2.stop();
+    if (this.registry.get("HarapAlbMusicOption") === 0) {
+      Music(this, music, true)
+    } else {
+      Music(this, music, false)
     }
     let Dialogs = [
       "Amu cică era odată într-o țară un crai, care avea trei feciori. Și craiul acela mai avea un frate mai mare, care era împărat într-o altă țară, mai depărtată. Și împăratul, fratele craiului, se numea Verde-împărat; și împăratul Verde nu avea feciori, ci numai fete. Mulți ani trecură la mijloc de când acești frați mai avură prilej a se întâlni amândoi. Iară verii, adică feciorii craiului și fetele împăratului, nu se văzuse niciodată de când erau ei.",
@@ -111,7 +105,6 @@ export class Cutscene1 extends Phaser.Scene {
       this.Background.destroy();
       currentDialog++;
       if (currentDialog >= Dialogs.length) {
-        this.music2.stop();
         this.scene.start("Scene1", { x: 360, y: 1181 });
       }
       this.Background = this.add.image(10, 10, Backgrounds[currentDialog]);

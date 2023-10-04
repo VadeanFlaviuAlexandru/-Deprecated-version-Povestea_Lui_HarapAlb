@@ -3,6 +3,7 @@ import { getRandomInt } from "../../../utilities/Random";
 import Card from "./Card";
 import { images } from "./imageUtils.js";
 import backGround from "../../../assets/MemoryMatch/Background.jpg"
+import { Music } from "../../../utilities/music";
 
 export class Board extends Phaser.Scene {
   constructor() {
@@ -15,6 +16,7 @@ export class Board extends Phaser.Scene {
     this.cursors = null;
     this.timedEvent;
     this.text;
+    this.music = null
   }
   preload() {
     this.load.image("Background", backGround);
@@ -66,21 +68,14 @@ export class Board extends Phaser.Scene {
       percentText.destroy();
       assetText.destroy();
     });
-    this.music4 = this.sound.add('music4', {
+    this.music = this.sound.add("music4", {
       volume: 0.2,
       loop: true
     })
-    this.music4.play()
-    if (!this.sound.locked) {
-      this.music4.play()
-    }
-    else {
-      this.sound.once(Phaser.Sound.Events.UNLOCKED, () => {
-        this.music4.play()
-      })
-    }
-    if (localStorage.getItem('HarapAlb-musicOff')) {
-      this.music4.stop();
+    if (this.registry.get("HarapAlbMusicOption") === 0) {
+      Music(this, this.music, true)
+    } else {
+      Music(this, this.music, false)
     }
     this.Background = this.add.image(10, 10, "Background");
     Align.ScaleToGameW(this.game, this.Background, 1);
@@ -171,7 +166,7 @@ export class Board extends Phaser.Scene {
       : 0;
     if (this.matchedCards() === 4) {
       setTimeout(() => {
-        this.music4.stop()
+        Music(this, this.music, true)
         this.scene.start("Cutscene6");
       }, 125);
     }

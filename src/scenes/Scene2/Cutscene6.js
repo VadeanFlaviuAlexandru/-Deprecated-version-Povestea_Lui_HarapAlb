@@ -3,6 +3,7 @@ import B34 from "../../assets/Scene2/B34.png";
 import B35 from "../../assets/Scene2/B35.png";
 import { Align } from "../../utilities/Align";
 import { LoadingScreen } from "../../utilities/LoadingScreen";
+import { Music } from "../../utilities/music";
 
 export class Cutscene6 extends Phaser.Scene {
   constructor() {
@@ -16,18 +17,14 @@ export class Cutscene6 extends Phaser.Scene {
     this.load.audio("music5", 'src/assets/music/OmuleCatAiTraiSLOWEDandREVERB.mp3')
   }
   create() {
-    this.music5 = this.sound.add('music5', {
+    const music = this.sound.add("music5", {
       volume: 0.2,
       loop: true
     })
-    this.music5.play()
-    if (!this.sound.locked) {
-      this.music5.play()
-    }
-    else {
-      this.sound.once(Phaser.Sound.Events.UNLOCKED, () => {
-        this.music5.play()
-      })
+    if (this.registry.get("HarapAlbMusicOption") === 0) {
+      Music(this, music, true)
+    } else {
+      Music(this, music, false)
     }
     let Dialogs = [
       "- Dragul tatei, nu da, că eu sunt!",
@@ -45,7 +42,7 @@ export class Cutscene6 extends Phaser.Scene {
       this.Background.destroy();
       currentDialog++;
       if (currentDialog >= Dialogs.length) {
-        this.music5.stop()
+        Music(this, music, true)
         this.scene.wake("Scene2");
       }
       this.Background = this.add.image(10, 10, Backgrounds[currentDialog]);

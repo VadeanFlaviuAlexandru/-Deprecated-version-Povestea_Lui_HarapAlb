@@ -1,15 +1,17 @@
 import { AnimsOnHorse } from "../../plugins/AnimsOnHorse";
 import { LoadingScreen } from "../../utilities/LoadingScreen";
+import { Music } from "../../utilities/music";
 
 export class Scene2 extends Phaser.Scene {
   constructor() {
     super("Scene2");
+    this.music = null;
     this.cursors = null;
     this.player = null;
     this.animsManagerOnHorse = new AnimsOnHorse(this);
   }
   preload() {
-    LoadingScreen(this)
+    LoadingScreen(this);
     this.load.image(
       "tilesOutsideCastle",
       "src/assets/World/SimpleGrassTiles.png"
@@ -30,32 +32,27 @@ export class Scene2 extends Phaser.Scene {
       "src/assets/Scene2/Scene2.json"
     );
     this.animsManagerOnHorse.preload();
-    this.load.json("scriptDataHorse", "src/assets/Interactions/scriptOnHorse.json");
-    this.load.audio("music3", 'src/assets/music/OmuleCatAiTrai.mp3')
-
+    this.load.json(
+      "scriptDataHorse",
+      "src/assets/Interactions/scriptOnHorse.json"
+    );
+    this.load.audio("music3", "src/assets/music/OmuleCatAiTrai.mp3");
   }
   init(data) {
     this.spawnX = data.x;
     this.spawnY = data.y;
   }
   create() {
-    this.events.on('wake', () => this.movePlayerAfterCutscene6());
+    this.events.on("wake", () => this.movePlayerAfterCutscene6());
     this.animsManagerOnHorse.create();
-    this.music3 = this.sound.add('music3', {
+    this.music = this.sound.add("music3", {
       volume: 0.2,
       loop: true
     })
-    this.music3.play()
-    if (!this.sound.locked) {
-      this.music3.play()
-    }
-    else {
-      this.sound.once(Phaser.Sound.Events.UNLOCKED, () => {
-        this.music3.play()
-      })
-    }
-    if (localStorage.getItem('HarapAlb-musicOff')) {
-      this.music3.stop();
+    if (this.registry.get("HarapAlbMusicOption") === 0) {
+      Music(this, this.music, true)
+    } else {
+      Music(this, this.music, false)
     }
     this.cursors = this.input.keyboard.createCursorKeys();
     window.player = this.player = this.add.character({
@@ -248,7 +245,7 @@ export class Scene2 extends Phaser.Scene {
   }
   HitLayer(player, target) {
     if (target.properties.portal && !this.Dialog.visible) {
-      this.music3.stop()
+      Music(this, this.music, true)
       if (target.properties.portal === "Scene2Forest") {
         this.scene.start(target.properties.portal, { x: 100, y: 500 });
       } else {
@@ -263,8 +260,8 @@ export class Scene2 extends Phaser.Scene {
     }
   }
   movePlayerAfterCutscene6() {
-    this.scene.remove("Cutscene6")
-    this.player.x = 3220
-    this.player.y = 1444
+    this.scene.remove("Cutscene6");
+    this.player.x = 3220;
+    this.player.y = 1444;
   }
 }
