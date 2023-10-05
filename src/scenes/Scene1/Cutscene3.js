@@ -7,7 +7,7 @@ export class Cutscene3 extends Phaser.Scene {
     super("Cutscene3");
   }
   preload() {
-    LoadingScreen(this)
+    LoadingScreen(this);
     this.load.image("B25", B25);
   }
   create() {
@@ -28,7 +28,7 @@ export class Cutscene3 extends Phaser.Scene {
         this.scene.transition({
           target: "Scene1",
           remove: true,
-        })
+        });
       }
       this.Background = this.add.image(10, 10, Backgrounds[currentDialog]);
       this.Dialog.setText(Dialogs[currentDialog]);
@@ -36,5 +36,5 @@ export class Cutscene3 extends Phaser.Scene {
       Align.center(this.game, this.Background);
     });
   }
-  update() { }
+  update() {}
 }

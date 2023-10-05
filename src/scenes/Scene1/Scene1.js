@@ -10,7 +10,7 @@ export class Scene1 extends Phaser.Scene {
     this.animsManager = new Anims(this);
   }
   preload() {
-    LoadingScreen(this)
+    LoadingScreen(this);
     this.load.image("tilesCastle", "src/assets/World/SimpleGrassTiles.png");
     this.load.image("tiles2Castle", "src/assets/World/PlantTiles.png");
     this.load.image("tiles3Castle", "src/assets/World/FenceTiles.png");
@@ -27,8 +27,8 @@ export class Scene1 extends Phaser.Scene {
     this.spawnY = data.y;
   }
   create() {
-    this.events.on('wake', () => this.movePlayerAfterCutscene1());
-    this.events.on('transitionwake', () => this.movePlayerAfterCutscene3());
+    this.events.on("wake", () => this.movePlayerAfterCutscene1());
+    this.events.on("transitionwake", () => this.movePlayerAfterCutscene3());
     this.cursors = this.input.keyboard.createCursorKeys();
     window.player = this.player = this.add.character({
       x: this.spawnX,
@@ -162,7 +162,7 @@ export class Scene1 extends Phaser.Scene {
   }
   update() {
     if (!this.Dialog.visible) {
-      PlayerInstructions(this)
+      PlayerInstructions(this);
     } else if (this.Dialog.visible) {
       if (this.cursors.space.isDown) {
         this.Dialog.display(false);
@@ -176,9 +176,11 @@ export class Scene1 extends Phaser.Scene {
         this.registry.get("ExitAttic") !== 1 &&
         !(target.properties.portal == "Cutscene4")
       ) {
-        this.scene.switch(target.properties.portal)
-      } else if (this.registry.get("ExitAttic") == 1 &&
-        target.properties.portal == "Cutscene4") {
+        this.scene.switch(target.properties.portal);
+      } else if (
+        this.registry.get("ExitAttic") == 1 &&
+        target.properties.portal == "Cutscene4"
+      ) {
         this.scene.switch(target.properties.portal);
       }
     }
@@ -190,12 +192,12 @@ export class Scene1 extends Phaser.Scene {
     }
   }
   movePlayerAfterCutscene1() {
-    this.scene.remove("Cutscene2")
-    this.player.x = 1272
-    this.player.y = 510
+    this.scene.remove("Cutscene2");
+    this.player.x = 1272;
+    this.player.y = 510;
   }
   movePlayerAfterCutscene3() {
-    this.player.x = 876
-    this.player.y = 300
+    this.player.x = 876;
+    this.player.y = 300;
   }
 }

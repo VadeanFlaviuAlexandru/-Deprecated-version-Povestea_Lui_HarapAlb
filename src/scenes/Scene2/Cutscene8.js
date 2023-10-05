@@ -8,7 +8,7 @@ export class Cutscene8 extends Phaser.Scene {
     super("Cutscene8");
   }
   preload() {
-    LoadingScreen(this)
+    LoadingScreen(this);
     this.load.image("B36", B36);
     this.load.image("B37", B37);
   }

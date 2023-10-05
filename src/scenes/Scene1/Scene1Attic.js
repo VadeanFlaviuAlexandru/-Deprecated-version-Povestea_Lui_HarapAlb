@@ -11,7 +11,7 @@ export class Scene1Attic extends Phaser.Scene {
     this.vision = null;
   }
   preload() {
-    LoadingScreen(this)
+    LoadingScreen(this);
     this.load.image("tilesAttic", "src/assets/World/InteriorTiles.png");
     this.load.image("tiles2Attic", "src/assets/World/PropsTiles.png");
     this.load.tilemapTiledJSON("mapAttic", "src/assets/Scene1/attic.json");
@@ -131,7 +131,7 @@ export class Scene1Attic extends Phaser.Scene {
   }
   update() {
     if (!this.Dialog.visible) {
-      PlayerInstructions(this)
+      PlayerInstructions(this);
     } else if (this.Dialog.visible) {
       if (this.cursors.space.isDown) {
         this.Dialog.display(false);

@@ -1,9 +1,10 @@
+import backGround from "../../../assets/MemoryMatch/Background.jpg";
 import { Align } from "../../../utilities/Align";
 import { getRandomInt } from "../../../utilities/Random";
+import { Music } from "../../../utilities/music";
+import { LoadingScreen } from "../../../utilities/LoadingScreen";
 import Card from "./Card";
 import { images } from "./imageUtils.js";
-import backGround from "../../../assets/MemoryMatch/Background.jpg"
-import { Music } from "../../../utilities/music";
 
 export class Board extends Phaser.Scene {
   constructor() {
@@ -16,74 +17,37 @@ export class Board extends Phaser.Scene {
     this.cursors = null;
     this.timedEvent;
     this.text;
-    this.music = null
+    this.music = null;
   }
   preload() {
+    LoadingScreen(this);
     this.load.image("Background", backGround);
     this.loadCards();
     this.GameInfo.setText(
       'Pentru ca fiul craiului să învingă acest urs, trebuie completat "Jocul de memorie". Trebuie să găsești perechi de cărți cu aceeași imagine în cel mult 15 de secunde! Apasă mouse-ul pentru a alege cartea.'
     );
-    this.load.audio("music4", 'src/assets/music/TurningDance.mp3')
-
+    this.load.audio("music4", "src/assets/music/TurningDance.mp3");
   }
   create() {
-    var width = this.cameras.main.width;
-    var height = this.cameras.main.height;
-    var loadingText = this.make.text({
-      x: width / 2,
-      y: height / 2 - 50,
-      text: "Loading...",
-      style: {
-        font: "20px monospace",
-        fill: "#ffffff",
-      },
-    });
-    loadingText.setOrigin(0.5, 0.5);
-    var percentText = this.make.text({
-      x: width / 2,
-      y: height / 2 - 5,
-      text: "0%",
-      style: {
-        font: "18px monospace",
-        fill: "#ffffff",
-      },
-    });
-    percentText.setOrigin(0.5, 0.5);
-    var assetText = this.make.text({
-      x: width / 2,
-      y: height / 2 + 50,
-      text: "",
-      style: {
-        font: "18px monospace",
-        fill: "#ffffff",
-      },
-    });
-    assetText.setOrigin(0.5, 0.5);
-    this.load.on("progress", function (value) {
-      percentText.setText(parseInt(value * 100) + "%");
-    });
-    this.load.on("complete", function () {
-      loadingText.destroy();
-      percentText.destroy();
-      assetText.destroy();
-    });
     this.music = this.sound.add("music4", {
       volume: 0.2,
-      loop: true
-    })
-    if (this.registry.get("HarapAlbMusicOption") === 0) {
-      Music(this, this.music, true)
+      loop: true,
+    });
+    if (
+      this.registry.get("HarapAlbMusicOption") === 0 ||
+      localStorage.getItem("HarapAlb-musicOff") === "true"
+    ) {
+      Music(this, this.music, true);
     } else {
-      Music(this, this.music, false)
+      Music(this, this.music, false);
     }
     this.Background = this.add.image(10, 10, "Background");
     Align.ScaleToGameW(this.game, this.Background, 1);
     Align.center(this.game, this.Background);
-    this.text = this.add.text(32, 32, '', {
-      fontFamily: 'Arial',
-      fontSize: '24px',
-      color: '#ffffff'
+    this.text = this.add.text(32, 32, "", {
+      fontFamily: "Arial",
+      fontSize: "24px",
+      color: "#ffffff",
     });
     this.text.setDepth(100);
     this.text.setScrollFactor(0);
@@ -97,18 +61,22 @@ export class Board extends Phaser.Scene {
         this.restartGame();
         this.timedEvent = this.time.delayedCall(15500, this.onEvent, [], this);
         this.GameInfo.display(false);
-        this.Background.clearTint()
+        this.Background.clearTint();
       }
       return false;
     }
     this.time.addEvent({
       delay: 1000, // Update every 1 second
       callback: function () {
-        var remainingTime = Math.ceil((this.timedEvent.delay - this.timedEvent.elapsed) / 1000);
-        this.text.setText("Timp rămas: " + remainingTime.toString() + " secunde");
+        var remainingTime = Math.ceil(
+          (this.timedEvent.delay - this.timedEvent.elapsed) / 1000
+        );
+        this.text.setText(
+          "Timp rămas: " + remainingTime.toString() + " secunde"
+        );
       },
       callbackScope: this,
-      loop: true
+      loop: true,
     });
   }
   loadCards() {
@@ -166,7 +134,7 @@ export class Board extends Phaser.Scene {
       : 0;
     if (this.matchedCards() === 4) {
       setTimeout(() => {
-        Music(this, this.music, true)
+        Music(this, this.music, true);
         this.scene.start("Cutscene6");
       }, 125);
     }
@@ -187,7 +155,7 @@ export class Board extends Phaser.Scene {
   }
   onEvent() {
     this.restartGame();
-    this.Background.setTint(0xFF0000)
+    this.Background.setTint(0xff0000);
     this.GameInfo.setText(
       "Din păcate, fiul craiului nu a putut rămane concentrat... Hai să încercăm din nou!"
     );

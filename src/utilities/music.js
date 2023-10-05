@@ -1,27 +1,16 @@
 export const Music = (scene, music, turnedOff) => {
-    let globalMusic = music
-    if (turnedOff) {
-        globalMusic.stop();
-        scene.registry.set("HarapAlbMusicOption", 0);
+  let globalMusic = music;
+  if (turnedOff) {
+    globalMusic.stop();
+    scene.registry.set("HarapAlbMusicOption", 0);
+  } else {
+    scene.registry.set("HarapAlbMusicOption", 1);
+    if (!scene.sound.locked) {
+      globalMusic.play();
     } else {
-        scene.registry.set("HarapAlbMusicOption", 1);
-        if (!scene.sound.locked) {
-            globalMusic.play()
-        }
-        else {
-            scene.sound.once(Phaser.Sound.Events.UNLOCKED, () => {
-                globalMusic.play()
-            })
-        }
+      scene.sound.once(Phaser.Sound.Events.UNLOCKED, () => {
+        globalMusic.play();
+      });
     }
-}
-
-
-export const PlayMusic = (music) => {
-    globalMusic = music
-}
-export const StopMusic = () => {
-    if (globalMusic) {
-        globalMusic.stop()
-    }
-}
+  }
+};

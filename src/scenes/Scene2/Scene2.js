@@ -1,6 +1,7 @@
 import { AnimsOnHorse } from "../../plugins/AnimsOnHorse";
 import { LoadingScreen } from "../../utilities/LoadingScreen";
 import { Music } from "../../utilities/music";
+import { PlayerInstructions } from "../../utilities/PlayerInstructions";
 
 export class Scene2 extends Phaser.Scene {
   constructor() {
@@ -47,12 +48,15 @@ export class Scene2 extends Phaser.Scene {
     this.animsManagerOnHorse.create();
     this.music = this.sound.add("music3", {
       volume: 0.2,
-      loop: true
-    })
-    if (this.registry.get("HarapAlbMusicOption") === 0) {
-      Music(this, this.music, true)
+      loop: true,
+    });
+    if (
+      this.registry.get("HarapAlbMusicOption") === 0 ||
+      localStorage.getItem("HarapAlb-musicOff") === "true"
+    ) {
+      Music(this, this.music, true);
     } else {
-      Music(this, this.music, false)
+      Music(this, this.music, false);
     }
     this.cursors = this.input.keyboard.createCursorKeys();
     window.player = this.player = this.add.character({
@@ -225,15 +229,7 @@ export class Scene2 extends Phaser.Scene {
     }
   }
   update() {
-    if (this.cursors.left.isDown)
-      this.player.SetInstruction({ action: "walk", option: "left" });
-    else if (this.cursors.right.isDown)
-      this.player.SetInstruction({ action: "walk", option: "right" });
-    if (this.cursors.up.isDown)
-      this.player.SetInstruction({ action: "walk", option: "back" });
-    else if (this.cursors.down.isDown)
-      this.player.SetInstruction({ action: "walk", option: "front" });
-    this.player.update();
+    PlayerInstructions(this);
     if (this.Dialog.visible) {
       player.body.velocity.x = 0;
       player.body.velocity.y = 0;
@@ -245,7 +241,7 @@ export class Scene2 extends Phaser.Scene {
   }
   HitLayer(player, target) {
     if (target.properties.portal && !this.Dialog.visible) {
-      Music(this, this.music, true)
+      Music(this, this.music, true);
       if (target.properties.portal === "Scene2Forest") {
         this.scene.start(target.properties.portal, { x: 100, y: 500 });
       } else {

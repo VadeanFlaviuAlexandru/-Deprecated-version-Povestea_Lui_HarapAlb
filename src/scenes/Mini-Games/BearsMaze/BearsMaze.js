@@ -1,7 +1,8 @@
 import { Anims } from "../../../plugins/anims";
-import TILES from './Tile-Mapping'
+import TILES from "./Tile-Mapping";
 import Dungeon from "@mikewesthad/dungeon";
 import TilemapVisibility from "./Tile-Visibility.js";
+import { LoadingScreen } from "../../../utilities/LoadingScreen";
 
 export class BearsMaze extends Phaser.Scene {
   constructor() {
@@ -12,81 +13,41 @@ export class BearsMaze extends Phaser.Scene {
     this.level = 0;
     this.timedEvent;
     this.TextSalateRamase;
-    this.SalateRamase = 3
+    this.SalateRamase = 3;
     this.durationInSeconds = 180;
     this.durationInMilliseconds = this.durationInSeconds * 1000;
-    this.TimerIsDone = false
+    this.TimerIsDone = false;
   }
   preload() {
+    LoadingScreen(this);
     this.animsManager.preload();
-    this.load.image("tiles", "src/assets/BearsMaze/sheet.jpg")
+    this.load.image("tiles", "src/assets/BearsMaze/sheet.jpg");
     this.GameInfo.setText(
-      'Trebuie sa te grabesti! Culege cele 3 salate inainte sa se trezeasca ursul!'
+      "Trebuie sa te grabesti! Culege cele 3 salate inainte sa se trezeasca ursul!"
     );
   }
   create() {
-    var width = this.cameras.main.width;
-    var height = this.cameras.main.height;
-    var loadingText = this.make.text({
-      x: width / 2,
-      y: height / 2 - 50,
-      text: "Loading...",
-      style: {
-        font: "20px monospace",
-        fill: "#ffffff",
-      },
-    });
-    loadingText.setOrigin(0.5, 0.5);
-    var percentText = this.make.text({
-      x: width / 2,
-      y: height / 2 - 5,
-      text: "0%",
-      style: {
-        font: "18px monospace",
-        fill: "#ffffff",
-      },
-    });
-    percentText.setOrigin(0.5, 0.5);
-    var assetText = this.make.text({
-      x: width / 2,
-      y: height / 2 + 50,
-      text: "",
-      style: {
-        font: "18px monospace",
-        fill: "#ffffff",
-      },
-    });
-    assetText.setOrigin(0.5, 0.5);
-    this.load.on("progress", function (value) {
-      percentText.setText(parseInt(value * 100) + "%");
-    });
-    this.load.on("complete", function () {
-      loadingText.destroy();
-      percentText.destroy();
-      assetText.destroy();
-    });
-    this.RestartGame()
+    this.RestartGame();
 
     // Create the timer
 
     // Create the text object
-    this.textTimpRamas = this.add.text(32, 32, '', {
-      fontFamily: 'Arial',
-      fontSize: '24px',
-      color: '#ffffff'
+    this.textTimpRamas = this.add.text(32, 32, "", {
+      fontFamily: "Arial",
+      fontSize: "24px",
+      color: "#ffffff",
     });
     // Set depth and scroll factor
     this.textTimpRamas.setDepth(100);
     this.textTimpRamas.setScrollFactor(0);
     this.TextSalateRamase = this.add.text(32, 62, ``, {
-      fontFamily: 'Arial',
-      fontSize: '24px',
-      color: '#ffffff'
-    })
+      fontFamily: "Arial",
+      fontSize: "24px",
+      color: "#ffffff",
+    });
     this.TextSalateRamase.setDepth(100);
     this.TextSalateRamase.setScrollFactor(0);
     this.cursors = this.input.keyboard.createCursorKeys();
-
   }
   update() {
     const playerTileX = this.groundLayer.worldToTileX(this.player.x);
@@ -95,25 +56,25 @@ export class BearsMaze extends Phaser.Scene {
     this.tilemapVisibility.setActiveRoom(playerRoom);
     if (this.GameInfo.visible) {
       if (this.cursors.space.isDown) {
-        this.resetUI()
+        this.resetUI();
         this.GameInfo.display(false);
         this.timer = this.time.addEvent({
           delay: 1000, // 1 second
           repeat: this.durationInSeconds - 1, // Repeat for the specified duration
           callback: this.updateTimer,
           callbackScope: this,
-          loop: false // Set to false to stop the timer after the specified duration
+          loop: false, // Set to false to stop the timer after the specified duration
         });
         this.updateTimer();
-        this.TimerIsDone = false
+        this.TimerIsDone = false;
       }
-      return false
+      return false;
     }
     if (this.hasPlayerReachedStairs) {
       this.player.destroy();
       this.RestartGame();
       this.SalateRamase -= 1;
-      this.TextSalateRamase.setText('Salate Rămase: ' + this.SalateRamase);
+      this.TextSalateRamase.setText("Salate Rămase: " + this.SalateRamase);
     }
     if (this.cursors.left.isDown)
       this.player.SetInstruction({ action: "walk", option: "left" });
@@ -126,11 +87,11 @@ export class BearsMaze extends Phaser.Scene {
     this.player.update();
     if (this.TimerIsDone) {
       this.GameInfo.setText(
-        'Din pacate Harap-Alb nu a reusit sa culeaga salatele si ursul s-a trezit. Hai sa incercam din nou!'
+        "Din pacate Harap-Alb nu a reusit sa culeaga salatele si ursul s-a trezit. Hai sa incercam din nou!"
       );
       this.player.ForceStop();
       this.RestartGame();
-      this.resetUI()
+      this.resetUI();
     }
     if (this.SalateRamase == 0) {
       alert("done!");
@@ -138,8 +99,8 @@ export class BearsMaze extends Phaser.Scene {
   }
   resetUI() {
     this.textTimpRamas.setText("Timp rămas: 03:00");
-    this.SalateRamase = 3
-    this.TextSalateRamase.setText('Salate Rămase: ' + this.SalateRamase);
+    this.SalateRamase = 3;
+    this.TextSalateRamase.setText("Salate Rămase: " + this.SalateRamase);
   }
   RestartGame() {
     const cam = this.cameras.main;
@@ -157,8 +118,8 @@ export class BearsMaze extends Phaser.Scene {
       doorPadding: 2,
       rooms: {
         width: { min: 7, max: 15, onlyOdd: true },
-        height: { min: 7, max: 15, onlyOdd: true }
-      }
+        height: { min: 7, max: 15, onlyOdd: true },
+      },
     });
 
     // Creating a blank tilemap with dimensions matching the dungeon
@@ -166,7 +127,7 @@ export class BearsMaze extends Phaser.Scene {
       tileWidth: 48,
       tileHeight: 48,
       width: this.dungeon.width,
-      height: this.dungeon.height
+      height: this.dungeon.height,
     });
     const tileset = map.addTilesetImage("tiles", null, 48, 48, 1, 2); // 1px margin, 2px spacing
     this.groundLayer = map
@@ -323,7 +284,9 @@ export class BearsMaze extends Phaser.Scene {
     });
     // Not exactly correct for the tileset since there are more possible floor tiles, but this will
     // do for the example.
-    this.groundLayer.setCollisionByExclusion([3, 4, 5, 7, 8, 13, 32, 51, 6, 2, 40, 38, 0, 166, 81, 245, 244, 246]);
+    this.groundLayer.setCollisionByExclusion([
+      3, 4, 5, 7, 8, 13, 32, 51, 6, 2, 40, 38, 0, 166, 81, 245, 244, 246,
+    ]);
     this.stuffLayer.setTileIndexCallback(TILES.STAIRS, () => {
       this.stuffLayer.setTileIndexCallback(TILES.STAIRS, null);
       this.hasPlayerReachedStairs = true;
@@ -347,16 +310,17 @@ export class BearsMaze extends Phaser.Scene {
     camera.startFollow(this.player);
     this.animsManager.create();
     cam.fadeIn(250, 0, 0, 0);
-
   }
   updateTimer() {
     const remainingTime = this.timer.repeatCount;
     const minutes = Math.floor(remainingTime / 60);
     const seconds = remainingTime % 60;
-    const formattedTime = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    const formattedTime = `${minutes.toString().padStart(2, "0")}:${seconds
+      .toString()
+      .padStart(2, "0")}`;
     this.textTimpRamas.setText("Timp rămas: " + formattedTime);
     if (remainingTime <= 0) {
-      this.TimerIsDone = true
+      this.TimerIsDone = true;
     }
   }
 }

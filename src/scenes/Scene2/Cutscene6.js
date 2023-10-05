@@ -10,21 +10,27 @@ export class Cutscene6 extends Phaser.Scene {
     super("Cutscene6");
   }
   preload() {
-    LoadingScreen(this)
+    LoadingScreen(this);
     this.load.image("B33", B33);
     this.load.image("B34", B34);
     this.load.image("B35", B35);
-    this.load.audio("music5", 'src/assets/music/OmuleCatAiTraiSLOWEDandREVERB.mp3')
+    this.load.audio(
+      "music5",
+      "src/assets/music/OmuleCatAiTraiSLOWEDandREVERB.mp3"
+    );
   }
   create() {
     const music = this.sound.add("music5", {
       volume: 0.2,
-      loop: true
-    })
-    if (this.registry.get("HarapAlbMusicOption") === 0) {
-      Music(this, music, true)
+      loop: true,
+    });
+    if (
+      this.registry.get("HarapAlbMusicOption") === 0 ||
+      localStorage.getItem("HarapAlb-musicOff") === "true"
+    ) {
+      Music(this, music, true);
     } else {
-      Music(this, music, false)
+      Music(this, music, false);
     }
     let Dialogs = [
       "- Dragul tatei, nu da, că eu sunt!",
@@ -42,7 +48,7 @@ export class Cutscene6 extends Phaser.Scene {
       this.Background.destroy();
       currentDialog++;
       if (currentDialog >= Dialogs.length) {
-        Music(this, music, true)
+        Music(this, music, true);
         this.scene.wake("Scene2");
       }
       this.Background = this.add.image(10, 10, Backgrounds[currentDialog]);
@@ -51,5 +57,5 @@ export class Cutscene6 extends Phaser.Scene {
       Align.center(this.game, this.Background);
     });
   }
-  update() { }
+  update() {}
 }

@@ -1,5 +1,6 @@
 import { AnimsOnHorse } from "../../plugins/AnimsOnHorse";
 import { LoadingScreen } from "../../utilities/LoadingScreen";
+import { PlayerInstructions } from "../../utilities/PlayerInstructions";
 
 export class Scene2Forest extends Phaser.Scene {
   constructor() {
@@ -10,25 +11,28 @@ export class Scene2Forest extends Phaser.Scene {
     this.script = null;
   }
   preload() {
-    LoadingScreen(this)
+    LoadingScreen(this);
     this.load.image("tilesCodru", "src/assets/World/SimpleGrassTiles.png");
     this.load.image("tiles2Codru", "src/assets/World/PlantTiles.png");
     this.load.image("tiles6Codru", "src/assets/World/PropsTiles.png");
-    this.load.image("spanT", "src/assets/Player/span.png")
+    this.load.image("spanT", "src/assets/Player/span.png");
     this.load.tilemapTiledJSON(
       "mapCodru",
       "src/assets/Scene2/Scene2Forest.json"
     );
     this.animsManager.preload();
-    this.load.json("scriptDataHorse", "src/assets/Interactions/scriptOnHorse.json");
+    this.load.json(
+      "scriptDataHorse",
+      "src/assets/Interactions/scriptOnHorse.json"
+    );
   }
   init(data) {
     this.spawnX = data.x;
     this.spawnY = data.y;
   }
   create() {
-    this.events.on('wake', () => this.movePlayerAfterCutscene7());
-    this.events.on('transitionwake', () => this.movePlayerAfterCutscene8());
+    this.events.on("wake", () => this.movePlayerAfterCutscene7());
+    this.events.on("transitionwake", () => this.movePlayerAfterCutscene8());
     this.cursors = this.input.keyboard.createCursorKeys();
     window.player = this.player = this.add.character({
       x: this.spawnX,
@@ -138,15 +142,7 @@ export class Scene2Forest extends Phaser.Scene {
     }
   }
   update() {
-    if (this.cursors.left.isDown)
-      this.player.SetInstruction({ action: "walk", option: "left" });
-    else if (this.cursors.right.isDown)
-      this.player.SetInstruction({ action: "walk", option: "right" });
-    if (this.cursors.up.isDown)
-      this.player.SetInstruction({ action: "walk", option: "back" });
-    else if (this.cursors.down.isDown)
-      this.player.SetInstruction({ action: "walk", option: "front" });
-    this.player.update();
+    PlayerInstructions(this);
     if (this.Dialog.visible) {
       player.body.velocity.x = 0;
       player.body.velocity.y = 0;
@@ -168,12 +164,12 @@ export class Scene2Forest extends Phaser.Scene {
     }
   }
   movePlayerAfterCutscene7() {
-    this.scene.remove("Cutscene7")
-    this.player.x = 3400
-    this.player.y = 830
+    this.scene.remove("Cutscene7");
+    this.player.x = 3400;
+    this.player.y = 830;
   }
   movePlayerAfterCutscene8() {
-    this.player.x = 90
-    this.player.y = 600
+    this.player.x = 90;
+    this.player.y = 600;
   }
 }

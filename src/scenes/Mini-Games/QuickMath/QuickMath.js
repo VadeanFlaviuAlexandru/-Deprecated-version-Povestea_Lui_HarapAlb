@@ -1,8 +1,9 @@
+import background from "../../../assets/QuickMath/BackGround.jpg";
+import spritesheet from "../../../assets/QuickMath/buttons.png";
+import timebar from "../../../assets/QuickMath/timebar.png";
 import { Align } from "../../../utilities/Align";
-import background from "../../../assets/QuickMath/BackGround.jpg"
-import timebar from "../../../assets/QuickMath/timebar.png"
-import spritesheet from "../../../assets/QuickMath/buttons.png"
 import { Music } from "../../../utilities/music";
+import { LoadingScreen } from "../../../utilities/LoadingScreen";
 
 export class QuickMath extends Phaser.Scene {
   constructor() {
@@ -10,73 +11,41 @@ export class QuickMath extends Phaser.Scene {
     this.cursors = null;
     this.gameOptions = {
       maxSumLen: 5,
-      localStorageName: "oneplustwo",
       timeToAnswer: 6500,
       nextLevel: 500,
     };
+    this.music = null;
   }
   preload() {
+    LoadingScreen(this);
     this.load.image("Background", background);
     this.load.image("timebar", timebar);
     this.load.spritesheet("buttons", spritesheet, {
       frameWidth: 400,
       frameHeight: 50,
     });
-    this.load.audio("music6", 'src/assets/music/TheCask.mp3')
-
+    this.load.audio("music6", "src/assets/music/TheCask.mp3");
   }
   create() {
-    var width = this.cameras.main.width;
-    var height = this.cameras.main.height;
-    var loadingText = this.make.text({
-      x: width / 2,
-      y: height / 2 - 50,
-      text: "Loading...",
-      style: {
-        font: "20px monospace",
-        fill: "#ffffff",
-      },
+    this.music = this.sound.add("music6", {
+      volume: 0.2,
+      loop: true,
     });
-    loadingText.setOrigin(0.5, 0.5);
-    var percentText = this.make.text({
-      x: width / 2,
-      y: height / 2 - 5,
-      text: "0%",
-      style: {
-        font: "18px monospace",
-        fill: "#ffffff",
-      },
-    });
-    percentText.setOrigin(0.5, 0.5);
-    var assetText = this.make.text({
-      x: width / 2,
-      y: height / 2 + 50,
-      text: "",
-      style: {
-        font: "18px monospace",
-        fill: "#ffffff",
-      },
-    });
-    assetText.setOrigin(0.5, 0.5);
-    this.load.on("progress", function (value) {
-      percentText.setText(parseInt(value * 100) + "%");
-    });
-    this.load.on("complete", function () {
-      loadingText.destroy();
-      percentText.destroy();
-      assetText.destroy();
-    });
-    if (this.registry.get("HarapAlbMusicOption")) {
-      Music(this, "music6", true)
+    if (
+      this.registry.get("HarapAlbMusicOption") === 0 ||
+      localStorage.getItem("HarapAlb-musicOff") === "true"
+    ) {
+      Music(this, this.music, true);
     } else {
-      Music(this, "music6", false)
+      Music(this, this.music, false);
     }
     this.Background = this.add.image(10, 10, "Background");
     Align.ScaleToGameW(this.game, this.Background, 1);
     Align.center(this.game, this.Background);
     this.cursors = this.input.keyboard.createCursorKeys();
     this.GameInfo.setText(
-      "Pentru ca fiul craiului să scape, obține un scor de peste 2000 în acest joc de aritmetică! Alege răspunsul corect înainte ca timpul să expire! Ai întotdeauna mai mult timp decât crezi! Apasă mouse-ul pentru a selecta cartea.");
+      "Pentru ca fiul craiului să scape, obține un scor de peste 2000 în acest joc de aritmetică! Alege răspunsul corect înainte ca timpul să expire! Ai întotdeauna mai mult timp decât crezi! Apasă mouse-ul pentru a selecta cartea."
+    );
   }
   update() {
     if (this.GameInfo.visible) {
@@ -98,10 +67,6 @@ export class QuickMath extends Phaser.Scene {
     this.isGameOver = false;
     this.score = 0;
     this.correctAnswers = 0;
-    this.topScore =
-      localStorage.getItem(this.localStorageName) == null
-        ? 0
-        : localStorage.getItem(this.gameOptions.localStorageName);
     this.sumsArray = [];
     for (var i = 1; i < this.gameOptions.maxSumLen; i++) {
       this.sumsArray[i] = [[], [], []];
@@ -160,12 +125,7 @@ export class QuickMath extends Phaser.Scene {
     }
   }
   nextNumber() {
-    this.scoreText.setText(
-      "Score: " +
-      this.score.toString() +
-      "\nBest Score: " +
-      this.topScore.toString()
-    );
+    this.scoreText.setText("Score: " + this.score.toString());
     if (this.correctAnswers > 1) {
       this.timeTween.stop();
       this.buttonMask.x = this.game.config.width / 2;
@@ -188,10 +148,10 @@ export class QuickMath extends Phaser.Scene {
     );
     this.questionText.setText(
       this.sumsArray[questionLength][this.randomSum][
-      Phaser.Math.Between(
-        0,
-        this.sumsArray[questionLength][this.randomSum].length - 1
-      )
+        Phaser.Math.Between(
+          0,
+          this.sumsArray[questionLength][this.randomSum].length - 1
+        )
       ]
     );
   }
@@ -213,12 +173,8 @@ export class QuickMath extends Phaser.Scene {
     this.Background.setTint(0xff0000);
     this.questionText.setText(this.questionText.text + " = " + gameOverString);
     this.isGameOver = true;
-    localStorage.setItem(
-      this.gameOptions.localStorageName,
-      Math.max(this.score, this.topScore)
-    );
     if (this.score > 2000) {
-      Music(this, "music6", true)
+      Music(this, this.music, true);
       this.scene.start("Cutscene10");
     }
     this.GameInfo.setText(

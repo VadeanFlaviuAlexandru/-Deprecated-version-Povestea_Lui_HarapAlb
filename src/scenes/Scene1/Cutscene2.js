@@ -9,7 +9,7 @@ export class Cutscene2 extends Phaser.Scene {
     super("Cutscene2");
   }
   preload() {
-    LoadingScreen(this)
+    LoadingScreen(this);
     this.load.image("B22", B22);
     this.load.image("B23", B23);
     this.load.image("B7", B7);
@@ -43,5 +43,5 @@ export class Cutscene2 extends Phaser.Scene {
       Align.center(this.game, this.Background);
     });
   }
-  update() { }
+  update() {}
 }

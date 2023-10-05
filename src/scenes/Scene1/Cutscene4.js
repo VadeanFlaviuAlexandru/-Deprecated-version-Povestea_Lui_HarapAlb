@@ -11,7 +11,7 @@ export class Cutscene4 extends Phaser.Scene {
     super("Cutscene4");
   }
   preload() {
-    LoadingScreen(this)
+    LoadingScreen(this);
     this.load.image("B21", B1);
     this.load.image("B27", B27);
     this.load.image("B28", B28);
@@ -37,7 +37,7 @@ export class Cutscene4 extends Phaser.Scene {
       this.Background.destroy();
       currentDialog++;
       if (currentDialog >= Dialogs.length) {
-        this.sound.stopAll()
+        this.sound.stopAll();
         this.scene.start("Scene2", { x: 161, y: 391 });
       }
       this.Background = this.add.image(10, 10, Backgrounds[currentDialog]);
@@ -47,5 +47,5 @@ export class Cutscene4 extends Phaser.Scene {
       this.registry.destroy("ExitAttic");
     });
   }
-  update() { }
+  update() {}
 }

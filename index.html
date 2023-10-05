@@ -1,19 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="./index.css" />
-
-    <style>
-      canvas {
+<!doctype html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta http-equiv="X-UA-Compatible" content="ie=edge"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/><link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet"/><link rel="stylesheet" href="./index.css"/><style>canvas {
         position: absolute;
         top: 0;
         bottom: 0;
@@ -31,89 +16,7 @@
       #button {
         background-color: transparent;
         border-color: transparent;
-      }
-    </style>
-  <script defer src="dist/vendors-node_modules_phaser_dist_phaser_js.js"></script><script defer src="dist/vendors-node_modules_mikewesthad_dungeon_dist_dungeon_min_js.js"></script><script defer src="dist/app.js"></script><script defer src="dist/vendor.js"></script></head>
-
-  <body>
-    <div id="GameScreen"></div>
-    <img id="title" src="src/assets/Main/title.png" alt="title" />
-    <noscript> You need to enable JavaScript to run this app. </noscript>
-    <div id="myModal-controls" class="modal">
-      <div class="modal-content">
-        <span class="close1" style="cursor: default">&times;</span>
-        <u>
-          <h1>Cum se joacă</h1>
-        </u>
-        <hr />
-        <div class="randIndicatie">
-          <img
-            src="./src/assets/Main/Buttons/sus.png"
-            style="max-width: 5rem; margin-right: 0.5rem"
-          />
-          <h1 style="font-size: 2rem">
-            tasta 'săgeată în sus' pentru a te deplasa în sus.
-          </h1>
-        </div>
-        <div class="randIndicatie">
-          <img
-            src="./src/assets/Main/Buttons/jos.png"
-            style="max-width: 5rem; margin-right: 0.5rem"
-          />
-          <h1 style="font-size: 2rem">
-            tasta 'săgeată în jos' pentru a te deplasa în jos.
-          </h1>
-        </div>
-        <div class="randIndicatie">
-          <img
-            src="./src/assets/Main/Buttons/staga.png"
-            style="max-width: 5rem; margin-right: 0.5rem"
-          />
-          <h1 style="font-size: 2rem">
-            tasta 'săgeată în stânga' pentru a te deplasa în stânga.
-          </h1>
-        </div>
-        <div class="randIndicatie">
-          <img
-            src="./src/assets/Main/Buttons/dreapta.png"
-            style="max-width: 5rem; margin-right: 0.5rem"
-          />
-          <h1 style="font-size: 2rem">
-            Tasta 'săgeată în dreapta' pentru a te deplasa în dreapta.
-          </h1>
-        </div>
-        <div class="randIndicatie">
-          <img
-            src="./src/assets/Main/Buttons/space.png"
-            style="max-width: 5rem; margin-right: 0.5rem"
-          />
-          <h1 style="font-size: 2rem">
-            tasta 'space bar' pentru a continua dialogul sau povestea.
-          </h1>
-        </div>
-      </div>
-    </div>
-    <div id="myModal-info" class="modal">
-      <div class="modal-content">
-        <span class="close2" style="cursor: default">&times;</span>
-        <u>
-          <h1>Cum se redimensionează jocul:</h1>
-        </u>
-        <hr />
-        <h1 style="font-size: 2rem">
-          Pentru a redimensiona jocul, apasă pe următoarele butoane:
-        </h1>
-        <button id="button" onclick="zoomIn()">
-          <img src="src/assets/Main/Buttons/plus.png" />
-        </button>
-        <button id="button" onclick="zoomOut()">
-          <img src="src/assets/Main/Buttons/minus.png" />
-        </button>
-      </div>
-    </div>
-
-    <script>
-      const titleImage = document.getElementById("titleImage");
+      }</style><script defer="defer" src="dist/64.js"></script><script defer="defer" src="dist/app.js"></script><script defer="defer" src="dist/vendor.js"></script></head><body><div id="GameScreen"></div><img id="title" src="src/assets/Main/title.png" alt="title"/><noscript>You need to enable JavaScript to run this app.</noscript><div id="myModal-controls" class="modal"><div class="modal-content"><span class="close1" style="cursor: default">&times;</span> <u><h1>Cum se joacă</h1></u><hr/><div class="randIndicatie"><img src="./src/assets/Main/Buttons/sus.png" style="max-width: 5rem; margin-right: 0.5rem"/><h1 style="font-size: 2rem">tasta 'săgeată în sus' pentru a te deplasa în sus.</h1></div><div class="randIndicatie"><img src="./src/assets/Main/Buttons/jos.png" style="max-width: 5rem; margin-right: 0.5rem"/><h1 style="font-size: 2rem">tasta 'săgeată în jos' pentru a te deplasa în jos.</h1></div><div class="randIndicatie"><img src="./src/assets/Main/Buttons/staga.png" style="max-width: 5rem; margin-right: 0.5rem"/><h1 style="font-size: 2rem">tasta 'săgeată în stânga' pentru a te deplasa în stânga.</h1></div><div class="randIndicatie"><img src="./src/assets/Main/Buttons/dreapta.png" style="max-width: 5rem; margin-right: 0.5rem"/><h1 style="font-size: 2rem">Tasta 'săgeată în dreapta' pentru a te deplasa în dreapta.</h1></div><div class="randIndicatie"><img src="./src/assets/Main/Buttons/space.png" style="max-width: 5rem; margin-right: 0.5rem"/><h1 style="font-size: 2rem">tasta 'space bar' pentru a continua dialogul sau povestea.</h1></div></div></div><div id="myModal-info" class="modal"><div class="modal-content"><span class="close2" style="cursor: default">&times;</span> <u><h1>Cum se redimensionează jocul:</h1></u><hr/><h1 style="font-size: 2rem">Pentru a redimensiona jocul, apasă pe următoarele butoane:</h1><button id="button" onclick="zoomIn()"><img src="src/assets/Main/Buttons/plus.png"/></button> <button id="button" onclick="zoomOut()"><img src="src/assets/Main/Buttons/minus.png"/></button></div></div><script>const titleImage = document.getElementById("titleImage");
       const gameScreen = document.getElementById("GameScreen");
       let zoomLevel = 1;
 
@@ -137,7 +40,4 @@
         } else {
           document.getElementById("title").style.visibility = "visible";
         }
-      }
-    </script>
-  </body>
-</html>
+      }</script></body></html>

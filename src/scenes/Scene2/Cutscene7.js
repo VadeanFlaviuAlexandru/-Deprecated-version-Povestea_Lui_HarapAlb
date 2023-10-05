@@ -12,7 +12,7 @@ export class Cutscene7 extends Phaser.Scene {
     this.load.image("B37", B37);
   }
   create() {
-    LoadingScreen(this)
+    LoadingScreen(this);
     let Dialogs = [
       "— Bun întâlnișul, voinice! Nu ai trebuință de slugă la drum? Prin locurile iestea e cam greu de călătorit singur; nu cumva să-ți iasă vro dihanie ceva înainte și să-ți scurteze cărările. Eu cunosc bine pe-aici, și poate mai încolo să ai nevoie de unul ca mine.",
       "— Poate să am, poate să n-am, zise fiul craiului, dar acum deodată mă las în voia întâmplării.",
@@ -35,5 +35,5 @@ export class Cutscene7 extends Phaser.Scene {
       Align.center(this.game, this.Background);
     });
   }
-  update() { }
+  update() {}
 }

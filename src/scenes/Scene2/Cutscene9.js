@@ -1,21 +1,21 @@
 import { Align } from "../../utilities/Align";
-import B36 from "../../assets/Scene2/B36.png"
-import B37 from "../../assets/Scene2/B37.png"
-import B38 from "../../assets/Scene2/B38.png"
-import B39 from "../../assets/Scene2/B39.png"
-import B40 from "../../assets/Scene2/B40.png"
-import B41 from "../../assets/Scene2/B41.png"
-import B42 from "../../assets/Scene2/B42.png"
-import B43 from "../../assets/Scene2/B43.png"
-import B44 from "../../assets/Scene2/B44.png"
-import B45 from "../../assets/Scene2/B45.png"
-import B46 from "../../assets/Scene2/B46.png"
-import B47 from "../../assets/Scene2/B47.png"
-import B48 from "../../assets/Scene2/B48.png"
-import B49 from "../../assets/Scene2/B49.png"
-import B50 from "../../assets/Scene2/B50.png"
-import B51 from "../../assets/Scene2/B51.png"
-import B52 from "../../assets/Scene2/B52.png"
+import B36 from "../../assets/Scene2/B36.png";
+import B37 from "../../assets/Scene2/B37.png";
+import B38 from "../../assets/Scene2/B38.png";
+import B39 from "../../assets/Scene2/B39.png";
+import B40 from "../../assets/Scene2/B40.png";
+import B41 from "../../assets/Scene2/B41.png";
+import B42 from "../../assets/Scene2/B42.png";
+import B43 from "../../assets/Scene2/B43.png";
+import B44 from "../../assets/Scene2/B44.png";
+import B45 from "../../assets/Scene2/B45.png";
+import B46 from "../../assets/Scene2/B46.png";
+import B47 from "../../assets/Scene2/B47.png";
+import B48 from "../../assets/Scene2/B48.png";
+import B49 from "../../assets/Scene2/B49.png";
+import B50 from "../../assets/Scene2/B50.png";
+import B51 from "../../assets/Scene2/B51.png";
+import B52 from "../../assets/Scene2/B52.png";
 import { LoadingScreen } from "../../utilities/LoadingScreen";
 
 export class Cutscene9 extends Phaser.Scene {
@@ -23,7 +23,7 @@ export class Cutscene9 extends Phaser.Scene {
     super("Cutscene9");
   }
   preload() {
-    LoadingScreen(this)
+    LoadingScreen(this);
     this.load.image("B36", B36);
     this.load.image("B37", B37);
     this.load.image("B38", B38);

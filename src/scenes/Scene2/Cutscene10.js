@@ -11,10 +11,10 @@ export class Cutscene10 extends Phaser.Scene {
     super("Cutscene10");
   }
   preload() {
-    LoadingScreen(this)
+    LoadingScreen(this);
     this.load.image("B48", B48);
     this.load.image("B49", B49);
-    this.load.image("B50", B50)
+    this.load.image("B50", B50);
     this.load.image("B51", B51);
     this.load.image("B52", B52);
   }
@@ -37,8 +37,8 @@ export class Cutscene10 extends Phaser.Scene {
       this.Background.destroy();
       currentDialog++;
       if (currentDialog >= Dialogs.length) {
-        window.alert("End Of Demo!")
-        this.scene.start("Main")
+        window.alert("End Of Demo!");
+        this.scene.start("Main");
       }
       this.Background = this.add.image(10, 10, Backgrounds[currentDialog]);
       this.Dialog.setText(Dialogs[currentDialog]);
@@ -46,5 +46,5 @@ export class Cutscene10 extends Phaser.Scene {
       Align.center(this.game, this.Background);
     });
   }
-  update() { }
+  update() {}
 }

@@ -1,5 +1,6 @@
 import { AnimsOnHorse } from "../../plugins/AnimsOnHorse";
 import { LoadingScreen } from "../../utilities/LoadingScreen";
+import { PlayerInstructions } from "../../utilities/PlayerInstructions";
 
 export class Scene2Forest3 extends Phaser.Scene {
   constructor() {
@@ -10,7 +11,7 @@ export class Scene2Forest3 extends Phaser.Scene {
     this.script = null;
   }
   preload() {
-    LoadingScreen(this)
+    LoadingScreen(this);
     this.load.image("tilesCodru3", "src/assets/World/SimpleGrassTiles.png");
     this.load.image("tiles2Codru3", "src/assets/World/PlantTiles.png");
     this.load.image("tiles6Codru3", "src/assets/World/PropsTiles.png");
@@ -20,7 +21,10 @@ export class Scene2Forest3 extends Phaser.Scene {
       "src/assets/Scene2/Scene2ForestSplitPart2.json"
     );
     this.animsManagerOnHorse.preload();
-    this.load.json("scriptDataHorse", "src/assets/Interactions/scriptOnHorse.json");
+    this.load.json(
+      "scriptDataHorse",
+      "src/assets/Interactions/scriptOnHorse.json"
+    );
   }
   init(data) {
     this.spawnX = data.x;
@@ -142,15 +146,7 @@ export class Scene2Forest3 extends Phaser.Scene {
     }
   }
   update() {
-    if (this.cursors.left.isDown)
-      this.player.SetInstruction({ action: "walk", option: "left" });
-    else if (this.cursors.right.isDown)
-      this.player.SetInstruction({ action: "walk", option: "right" });
-    if (this.cursors.up.isDown)
-      this.player.SetInstruction({ action: "walk", option: "back" });
-    else if (this.cursors.down.isDown)
-      this.player.SetInstruction({ action: "walk", option: "front" });
-    this.player.update();
+    PlayerInstructions(this);
     if (this.Dialog.visible) {
       player.body.velocity.x = 0;
       player.body.velocity.y = 0;

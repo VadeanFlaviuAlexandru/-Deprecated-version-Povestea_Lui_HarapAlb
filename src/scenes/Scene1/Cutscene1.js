@@ -27,7 +27,7 @@ export class Cutscene1 extends Phaser.Scene {
     super("Cutscene1");
   }
   preload() {
-    LoadingScreen(this)
+    LoadingScreen(this);
     this.load.image("B1", B1);
     this.load.image("B2", B2);
     this.load.image("B3", B3);
@@ -48,17 +48,20 @@ export class Cutscene1 extends Phaser.Scene {
     this.load.image("B18", B18);
     this.load.image("B19", B19);
     this.load.image("B20", B20);
-    this.load.audio("music2", 'src/assets/music/Batraneasca.mp3')
+    this.load.audio("music2", "src/assets/music/Batraneasca.mp3");
   }
   create() {
     const music = this.sound.add("music2", {
       volume: 0.2,
-      loop: true
-    })
-    if (this.registry.get("HarapAlbMusicOption") === 0) {
-      Music(this, music, true)
+      loop: true,
+    });
+    if (
+      this.registry.get("HarapAlbMusicOption") === 0 ||
+      localStorage.getItem("HarapAlb-musicOff") === "true"
+    ) {
+      Music(this, music, true);
     } else {
-      Music(this, music, false)
+      Music(this, music, false);
     }
     let Dialogs = [
       "Amu cică era odată într-o țară un crai, care avea trei feciori. Și craiul acela mai avea un frate mai mare, care era împărat într-o altă țară, mai depărtată. Și împăratul, fratele craiului, se numea Verde-împărat; și împăratul Verde nu avea feciori, ci numai fete. Mulți ani trecură la mijloc de când acești frați mai avură prilej a se întâlni amândoi. Iară verii, adică feciorii craiului și fetele împăratului, nu se văzuse niciodată de când erau ei.",
@@ -94,7 +97,39 @@ export class Cutscene1 extends Phaser.Scene {
       "du-te la tată-tău și cere să-ți dea calul, armele și hainele cu care a fost el mire, și atunci ai să te poți duce unde n-au putut merge frații tăi; pentru că ție a fost scris de sus să-ți fie dată această cinste. Tatu-tău s-a împotrivi și n-a vrea să te lase, dar tu stăruiește pe lângă dânsul cu rugăminte, că ai să-l îndupleci. ",
       "Hainele despre care ți-am vorbit sunt vechi și ponosite, și armele ruginite, iară calul ai să-l poți alege punând în mijlocul hergheliei o tavă plină cu jăratic, și care dintre cai a veni la jăratic să mănânce, acela are să te ducă la împărăție și are să te scape din multe primejdii. Ține minte ce-ți spun eu, că poate să ne mai întâlnim la vrun capăt de lume: căci deal cu deal se ajunge, dar încă om cu om! ",
     ];
-    let Backgrounds = ["B1", "B1", "B1", "B2", "B3", "B4", "B5", "B6", "B7", "B8", "B9", "B10", "B11", "B12", "B13", "B12", "B14", "B12", "B8", "B15", "B12", "B16", "B12", "B12", "B12", "B17", "B18", "B19", "B20", "B19", "B19", "B19",
+    let Backgrounds = [
+      "B1",
+      "B1",
+      "B1",
+      "B2",
+      "B3",
+      "B4",
+      "B5",
+      "B6",
+      "B7",
+      "B8",
+      "B9",
+      "B10",
+      "B11",
+      "B12",
+      "B13",
+      "B12",
+      "B14",
+      "B12",
+      "B8",
+      "B15",
+      "B12",
+      "B16",
+      "B12",
+      "B12",
+      "B12",
+      "B17",
+      "B18",
+      "B19",
+      "B20",
+      "B19",
+      "B19",
+      "B19",
     ];
     let currentDialog = 0;
     this.Background = this.add.image(10, 10, Backgrounds[currentDialog]);
@@ -113,5 +148,5 @@ export class Cutscene1 extends Phaser.Scene {
       Align.center(this.game, this.Background);
     });
   }
-  update() { }
+  update() {}
 }
